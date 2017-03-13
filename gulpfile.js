@@ -7,6 +7,19 @@ const browserSync = require('browser-sync');
 const reload = browserSync.reload;
 const notify = require('gulp-notify');
 const plumber = require('gulp-plumber');
+const sass = require('gulp-sass');
+const concat = require('gulp-concat');
+
+gulp.task('styles', ()=> {
+    return gulp.src('./src/styles/**/*.scss')
+        .pipe(sass()
+        .on('error',notify.onError({
+            message: "Error: <%= error.message %>",
+            title: 'Error in CSS 😩'
+        })))
+        .pipe(concat('style.css'))
+        .pipe(gulp.dest('./public/styles/'))
+    })
 
 gulp.task('js', () => {
     browserify('src/app.js')
@@ -16,7 +29,7 @@ gulp.task('js', () => {
         .bundle()
         .on('error',notify.onError({
             message: "Error: <%= error.message %>",
-            title: 'Error in JS 💀'
+            title: 'Error in JS '
         }))
         .pipe(source('app.js'))
         .pipe(buffer())
@@ -33,7 +46,9 @@ gulp.task('bs', () => {
 });
 
 
-gulp.task('default', ['js','bs'], () => {
+gulp.task('default', ['js','bs', 'styles'], () => {
+    gulp.watch('src/styles/**/*.scss', ['styles']);
     gulp.watch('src/**/*.js',['js']);
-    gulp.watch('./public/style.css',reload);
+    gulp.watch('src/styles/**/*.scss',reload);
+    gulp.watch('*.html', reload);
 });
