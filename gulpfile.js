@@ -28,7 +28,7 @@ gulp.task('js', () => {
         })
         .bundle()
         .on('error',notify.onError({
-            message: "Error: <%= error.message %>",
+            message: "Error: <%= error.message 💩%>",
             title: 'Error in JS '
         }))
         .pipe(source('app.js'))
