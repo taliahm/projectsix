@@ -1,6 +1,30 @@
 {
-	"oneMonth" : [
-		"Dust Molding", "Clear Cobwebs from ceilings"
-
+	todos: [
+			{
+				description: 'Clean House' ,
+				status: 'inactive',
+				frequency: '3',
+				id: 10
+			},{
+				description: 'Clean Microwave' ,
+				status: 'inactive',
+				frequency: '6',
+				id: 11
+			},{
+				description: 'Clean pillows',
+				status: 'completed',
+				frequency: '12',
+				id: 12
+			},{
+				description: 'Gutters' ,
+				status: 'active',
+				frequency: '6',
+				id: '13'
+			},{
+				description: 'Sweep kitchen' ,
+				status: 'active',
+				frequency: '12',
+				id: 14
+			}
 	]
 }
