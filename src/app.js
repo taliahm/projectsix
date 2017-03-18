@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { TodoList } from './data.js';
 import Header from './components/header.js';
-import Todos from './components/Todos.js';
+import InactiveTodos from './components/InactiveTodos.js';
+import ActiveTodos from './components/ActiveTodos.js';
 
 const config = {
    apiKey: "AIzaSyA0uP9IaxMempNtWne_eHswqHZg_l9ZfYY",
@@ -36,37 +37,27 @@ class CreateTodo extends React.Component {
 	}
 	addCustomToDo(e) {
 		e.preventDefault();
-		// console.log('customTODO')
 		const customItem = {
-			description: this.state.userDescription,
-			frequency: this.state.userFrequency, 
+			description: this.state.userDescription ,
+			frequency: this.state.userFrequency , 
 			status: 'active'
 		}
-		// console.log(customItem)
-		//need custom list key, HOW
 		const dbRef = firebase.database().ref('users/eJNXLvaQhDNc383OS5NA0UifcDx2/todolist')
 		dbRef.once('value').then((data) => {
-			// console.log(data.val())
 			const usersList = data.val();
-			// const garbageKey = usersList[garbageKey];
-			// console.log(garbageKey);
-		for (let garbageKey in usersList) {
-				const actualList = usersList[garbageKey];
-				// console.log(customItem);
-				actualList.push(customItem);
-				const newDbRef = firebase.database().ref(`users/eJNXLvaQhDNc383OS5NA0UifcDx2/todolist/${garbageKey}`)
-				const ref = newDbRef.push(customItem);
-				this.props.resetState();
+			// const keyToList = ' ';
+			for (let garbageKey in usersList) {
+				const keyToList = garbageKey;
+			const dbRefToList = firebase.database().ref(`users/eJNXLvaQhDNc383OS5NA0UifcDx2/todolist/${garbageKey}`)
+				dbRefToList.push(customItem);
 			}
-			// dbRef.remove();
-			// dbRef.push(actualList);
 		})
-		// dbRef.push(customItem);
 		this.setState({
-			userDescription: "",
-			userFrequency: "",
-		});
+				userDescription: "",
+				userFrequency: "",
+				});
 		document.getElementById('makeToDo').reset();
+		//now we need to trigger state update on App component
 	}
 	render() {
 		return (
@@ -101,32 +92,56 @@ class App extends React.Component {
 		this.userAddsToDo = this.userAddsToDo.bind(this);
 		this.state= {
 				uid: null,
-				todos: [],
+				todos: {},
 				time: false
 		}
 	}
+	componentDidMount() {
+		console.log(this)
+		firebase.auth().onAuthStateChanged((user) => {
+		if(user) {
+			const dbRef = firebase.database().ref(`users/${user.uid}/todolist/`)
+			dbRef.on('value', (data) => {
+				console.log(data.val())
+				const dbList = data.val()
+				for (let garbageKey in dbList) {
+					const stateToDoList = dbList[garbageKey]
+			this.setState({
+				todos: stateToDoList
+					})
+				}
+				})
+			}
+		})
+	}
 	statusUpdate(e) {
 		const desc = e.target.name
-		const newState = Array.from(this.state.todos);
-		const updatedState = newState.map((item, i, array) => {
-			if(item.description === e.target.name && item.status === "active") {
-				item.status = 'completed'
-			}
-			else if(item.description === e.target.name && item.status === "completed") {
-				item.status = 'active'
-			}
-			return item
-		});
-		const dbRef = firebase.database().ref('users/eJNXLvaQhDNc383OS5NA0UifcDx2/todolist')
-		dbRef.remove();
-		dbRef.push(updatedState);
-		this.setState({
-			todos: updatedState
-		})
+		console.log(desc, 'describing click event')
+		//push to firebase with updated state!
+		//get the database back
+		//loop over it and delete the right one
+		//create new object with updated state and push back to firebase
+		// console.log(newState, 'this is the new state')
+		
+
+		// const updatedState = newState.map((item, i, array) => {
+		// 	if(item.description === e.target.name && item.status === "active") {
+		// 		item.status = 'completed'
+		// 	}
+		// 	else if(item.description === e.target.name && item.status === "completed") {
+		// 		item.status = 'active'
+		// 	}
+		// 	return item
+		// });
+		// const dbRef = firebase.database().ref('users/eJNXLvaQhDNc383OS5NA0UifcDx2/todolist')
+		// dbRef.remove();
+		// dbRef.push(updatedState);
+		// this.setState({
+		// 	todos: updatedState
+		// })
 	}
 	loadTodos() {
 		//This will happen when user creates profile
-		// console.log('clickeeeed');
 		//This will need to be a reference to the actual user's route
 		const dbRef = firebase.database().ref('users/eJNXLvaQhDNc383OS5NA0UifcDx2/todolist');
 		dbRef.push(TodoList);
@@ -134,10 +149,11 @@ class App extends React.Component {
 		dbRef.once('value', (data) => {
 			// console.log(data.val());
 			const dbToDoList = data.val();
+			// console.log(dbToDoList)
 			//dbToDoList is an object containing an array??????
 			for (let key in dbToDoList) {
 				const innerToDos = dbToDoList[key];
-				// console.log(innerToDos)
+				// console.log(dbToDoList[key])
 				
 				this.setState({
 					todos: innerToDos
@@ -216,12 +232,10 @@ class App extends React.Component {
 			<div>
 				<Header />
 				<CreateTodo resetState={this.userAddsToDo}/>
-				<h2>Things you should be cleaning:</h2>
-				<Todos clickFunction={this.statusUpdate} addToDo={this.reactivateToDo} removeFunction={this.deactivateToDo} todos={this.state.todos} status='active' countdown={this.startCountdown}/>
-				<h2>Things you've already cleaned:</h2>
-				<Todos clickFunction={this.statusUpdate} addToDo={this.reactivateToDo} removeFunction={this.deactivateToDo} todos={this.state.todos} status='completed' countdown={this.startCountdown}/>
+				<h2>All Your To Dos:</h2>
+				<ActiveTodos clickFunction={this.statusUpdate} addToDo={this.reactivateToDo} removeFunction={this.deactivateToDo} todos={this.state.todos} status='completed' countdown={this.startCountdown}/>
 				<h2>You've indicated these do not apply to you</h2>
-				<Todos clickFunction={this.statusUpdate} addToDo={this.reactivateToDo} removeFunction={this.deactivateToDo} todos={this.state.todos} status='inactive' countdown={this.startCountdown}/>
+				<InactiveTodos clickFunction={this.statusUpdate} addToDo={this.reactivateToDo} removeFunction={this.deactivateToDo} todos={this.state.todos} countdown={this.startCountdown}/>
 			{/*<InActiveTodo removeFunction={this.deactivateToDo} todos={this.state.todos} status*/}
 
 			{/* This will eventually be sign in section */}

@@ -1,8 +1,6 @@
 import React from 'react';
 
 export default (props) => {
-	const runTime = () => {
-	}
 	const byTimeArray = props.data.filter((item) => {
 		return item.frequency === props.frequency
 	});
