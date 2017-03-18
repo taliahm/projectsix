@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { TodoList } from './data.js';
+import Header from './components/header.js';
+import Todos from './components/Todos.js';
 
 const config = {
    apiKey: "AIzaSyA0uP9IaxMempNtWne_eHswqHZg_l9ZfYY",
@@ -11,80 +13,80 @@ const config = {
  };
  firebase.initializeApp(config);
 
-const MonthlyTask = (props) => {
-	const runTime = () => {
-		console.log('running')
+class CreateTodo extends React.Component {
+	constructor() {
+		super();
+		this.updateTask = this.updateTask.bind(this);
+		this.updateFrequency = this.updateFrequency.bind(this);
+		this.addCustomToDo = this.addCustomToDo.bind(this);
+		this.state= {
+			userDescription: "",
+			userFrequency: "",
+		}
 	}
-	const byTimeArray = props.data.filter((item) => {
-		return item.frequency === props.frequency
-	});
-	return (
-		<div>
-			<h6>You should be cleaning this every {props.frequency} months</h6>
-				{byTimeArray.map((item, i) => {
-					if(item.status === 'completed') {
-					return (
-							<li key={`${item.frequency}-${i}`}>
-								<input name={item.id} checked
-									   onChange={(e)=> props.clickFunction(e)} 
-									   type="checkbox" 
-									   id={`${item.id}`}/>
-								<label htmlFor={`${item.id}`}>
-									{item.description}
-								</label>
-							</li>
-						)
-					}
-					else {
-						return (
-								<li key={`${item.frequency}-${i}`}>
-									<input name={item.id}
-										   onChange={(e)=> props.clickFunction(e)} 
-										   type="checkbox" 
-										   id={`${item.id}`}/>
-									<label htmlFor={`${item.id}`}>
-										{item.description}
-									</label>
-								</li>
-							)
-					}
-				})}
-		</div>
-		)
-}
-
-const Todos = (props) => {
-	const filteredArray = props.todos.filter((item) => {
-		return item.status === props.status;
-	})
-	if(props.status === 'inactive') {
+	updateTask(e) {
+		this.setState ({
+			userDescription: e.target.value
+		})
+	}
+	updateFrequency(e) {
+		this.setState ({
+			userFrequency: e.target.value
+		})
+	}
+	addCustomToDo(e) {
+		e.preventDefault();
+		// console.log('customTODO')
+		const customItem = {
+			description: this.state.userDescription,
+			frequency: this.state.userFrequency, 
+			status: 'active'
+		}
+		// console.log(customItem)
+		//need custom list key, HOW
+		const dbRef = firebase.database().ref('users/eJNXLvaQhDNc383OS5NA0UifcDx2/todolist')
+		dbRef.once('value').then((data) => {
+			// console.log(data.val())
+			const usersList = data.val();
+			// const garbageKey = usersList[garbageKey];
+			// console.log(garbageKey);
+		for (let garbageKey in usersList) {
+				const actualList = usersList[garbageKey];
+				// console.log(customItem);
+				actualList.push(customItem);
+				const newDbRef = firebase.database().ref(`users/eJNXLvaQhDNc383OS5NA0UifcDx2/todolist/${garbageKey}`)
+				const ref = newDbRef.push(customItem);
+				this.props.resetState();
+			}
+			// dbRef.remove();
+			// dbRef.push(actualList);
+		})
+		// dbRef.push(customItem);
+		this.setState({
+			userDescription: "",
+			userFrequency: "",
+		});
+		document.getElementById('makeToDo').reset();
+	}
+	render() {
 		return (
-				<section>
-					<ul>
-						{filteredArray.map((item, i) => {
-							return (
-								<li key={`${item.frequency}-${i}`}>
-									<input type="checkbox" disabled id={`${item.status}${item.frequency}-${i}`} />
-									<label htmlFor={`${item.status}${item.frequency}-${i}`}>
-										{item.description}
-									</label>
-								</li>
-								)
-						})}
-					</ul>
-				</section>
+			<div>
+				<form id="makeToDo" onSubmit={this.addCustomToDo}>
+					<h6>Add Your Own Tasks:</h6>
+					<label htmlFor="userDescription">Describe Your Task:</label>
+					<input id="userDescription" type="text" value={this.state.userDescription} onChange={this.updateTask}/>
+					<h6>How frequenctly do you need to perform these tasks?</h6>
+					<label htmlFor="threeMonth">every 3 Months</label>
+					<input onChange={this.updateFrequency} value="3" name="userFrequency" id="threeMonth" className="radioButton" type="radio"/>
+					<label htmlFor="sixMonth">every 6 Months</label>
+					<input onChange={this.updateFrequency} value="6" name="userFrequency" id="sixMonth" className="radioButton" type="radio"/>
+					<label htmlFor="twelveMonth">every Year!</label>
+					<input onChange={this.updateFrequency} value="12" name="userFrequency" id="twelveMonth" className="radioButton" type="radio"/>
+					<input type="submit" value="add To Do!" onClick={this.addCustomToDo}/>
+				</form>
+			</div>
 			)
 	}
-	else { return (
-			<section>
-				<MonthlyTask clickFunction={(e) => props.clickFunction(e)} data={filteredArray} frequency='3'/>
-				<MonthlyTask clickFunction={(e) => props.clickFunction(e)} data={filteredArray} frequency='6'/>
-				<MonthlyTask clickFunction={(e) => props.clickFunction(e)} data={filteredArray} frequency='12'/>
-			</section>
-		)
-	}
-
-
 }
 
 class App extends React.Component {
@@ -94,6 +96,9 @@ class App extends React.Component {
 		this.loadTodos = this.loadTodos.bind(this);
 		this.showTodos = this.showTodos.bind(this);
 		this.startCountdown = this.startCountdown.bind(this);
+		this.deactivateToDo = this.deactivateToDo.bind(this);
+		this.reactivateToDo = this.reactivateToDo.bind(this);
+		this.userAddsToDo = this.userAddsToDo.bind(this);
 		this.state= {
 				uid: null,
 				todos: [],
@@ -101,21 +106,17 @@ class App extends React.Component {
 		}
 	}
 	statusUpdate(e) {
-		console.log(e.target.name)
-		const id = e.target.name
-		console.log(id);
+		const desc = e.target.name
 		const newState = Array.from(this.state.todos);
-		console.log(newState);
 		const updatedState = newState.map((item, i, array) => {
-			if(item.id === e.target.name && item.status === "active") {
+			if(item.description === e.target.name && item.status === "active") {
 				item.status = 'completed'
 			}
-			else if(item.id === e.target.name && item.status === "completed") {
+			else if(item.description === e.target.name && item.status === "completed") {
 				item.status = 'active'
 			}
 			return item
 		});
-		console.log(updatedState);
 		const dbRef = firebase.database().ref('users/eJNXLvaQhDNc383OS5NA0UifcDx2/todolist')
 		dbRef.remove();
 		dbRef.push(updatedState);
@@ -130,7 +131,7 @@ class App extends React.Component {
 		const dbRef = firebase.database().ref('users/eJNXLvaQhDNc383OS5NA0UifcDx2/todolist');
 		dbRef.push(TodoList);
 		//retrieve that information from db and display on page, this will need to be actual user route
-		dbRef.on('value', (data) => {
+		dbRef.once('value', (data) => {
 			// console.log(data.val());
 			const dbToDoList = data.val();
 			//dbToDoList is an object containing an array??????
@@ -152,16 +153,76 @@ class App extends React.Component {
 		this.setState({
 			time: true
 		})
+		
+	}
+	deactivateToDo(e) {
+		e.preventDefault();
+		console.log('remove me', e.target.name);
+		const desc = e.target.name
+		const newState = Array.from(this.state.todos);
+		const updatedState = newState.map((item, i, array) => {
+			if(item.description === e.target.name && item.status === "active") {
+				item.status = 'inactive'
+			}
+			else if(item.description === e.target.name && item.status === "completed") {
+				item.status = 'inactive'
+			}
+			return item
+		});
+		const dbRef = firebase.database().ref('users/eJNXLvaQhDNc383OS5NA0UifcDx2/todolist')
+		dbRef.remove();
+		dbRef.push(updatedState);
+		this.setState({
+			todos: [...updatedState]
+		})
+	}
+	reactivateToDo(e) {
+		e.preventDefault();
+		console.log('reactivate!')
+		const desc = e.target.name
+		const newState = Array.from(this.state.todos);
+		const updatedState = newState.map((item, i, array) => {
+			if(item.description === e.target.name && item.status === "inactive") {
+				item.status = 'active'
+			}
+			else if(item.description === e.target.name && item.status === "completed") {
+				item.status = 'active'
+			}
+			return item
+		});
+		const dbRef = firebase.database().ref('users/eJNXLvaQhDNc383OS5NA0UifcDx2/todolist')
+		dbRef.remove();
+		dbRef.push(updatedState);
+		this.setState({
+			todos: updatedState
+		})
+	}
+	userAddsToDo() {
+		const dbRef = firebase.database().ref('users/eJNXLvaQhDNc383OS5NA0UifcDx2/todolist')
+			dbRef.on('value', (data) => {
+			// console.log(data.val());
+			const updatedList = data.val();
+			for(let garbagekey in updatedList) {
+				let userAddedList = updatedList[garbagekey];
+				console.log(userAddedList);
+				this.setState({
+					todos:userAddedList
+				})
+			}
+		})
 	}
 	render() {
 		return (
 			<div>
+				<Header />
+				<CreateTodo resetState={this.userAddsToDo}/>
 				<h2>Things you should be cleaning:</h2>
-				<Todos clickFunction={this.statusUpdate} todos={this.state.todos} status='active'/>
+				<Todos clickFunction={this.statusUpdate} addToDo={this.reactivateToDo} removeFunction={this.deactivateToDo} todos={this.state.todos} status='active' countdown={this.startCountdown}/>
 				<h2>Things you've already cleaned:</h2>
-				<Todos clickFunction={this.statusUpdate} todos={this.state.todos} status='completed'/>
+				<Todos clickFunction={this.statusUpdate} addToDo={this.reactivateToDo} removeFunction={this.deactivateToDo} todos={this.state.todos} status='completed' countdown={this.startCountdown}/>
 				<h2>You've indicated these do not apply to you</h2>
-				<Todos todos={this.state.todos} status='inactive' />
+				<Todos clickFunction={this.statusUpdate} addToDo={this.reactivateToDo} removeFunction={this.deactivateToDo} todos={this.state.todos} status='inactive' countdown={this.startCountdown}/>
+			{/*<InActiveTodo removeFunction={this.deactivateToDo} todos={this.state.todos} status*/}
 
 			{/* This will eventually be sign in section */}
 				<button onClick={this.loadTodos}>User Signs Up for first time</button>
