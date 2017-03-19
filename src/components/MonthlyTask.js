@@ -11,38 +11,40 @@ export default (props) => {
 		return item.frequency === props.frequency
 	});
 	return (
-		<div className="monthlyList">
+		<ul className="monthlyList">
 				{byTimeArray.map((item, i) => {
 					let descriptionKey = item.description.replace(" ", "");
 					if(item.status === 'completed') {
 					return (
-							<li key={descriptionKey}>
+							<li className="monthlyList__listItem monthlyList__listItem--completed" key={descriptionKey}>
 								<input name={item.description} checked
 									   onChange={(e)=> props.clickFunction(e)} 
 									   type="checkbox" 
 									   id={`${item.description}`}/>
-								<label htmlFor={`${item.description}`}>
-									{item.description}
+								<label className="monthlyList__label monthlyList__label--completed" htmlFor={`${item.description}`}>
+									<div className="imgContain"><img src="../../assets/checked.png" alt=""/></div>
+									<span>{item.description}</span>
 								</label>
 							</li>
 						)
 					}
 					else {
 						return (
-								<li key={descriptionKey}>
+								<li className="monthlyList__listItem monthlyList__listItem--active" key={descriptionKey}>
 									<input name={item.description}
 										   onChange={(e)=> props.clickFunction(e)} 
 										   type="checkbox" 
 										   id={`${item.description}`}/>
-									<label htmlFor={`${item.description}`}>
-										{item.description}
+									<label className="monthlyList__label monthlyList__label--active" htmlFor={`${item.description}`}>
+										<div className="imgContain"><img src="../../assets/unchecked.png" alt=""/></div>
+										<span>{item.description}</span>
 									</label>
-									<a onClick={(e) => props.removeFunction(e)} className={item.description} name={item.description} href="#">Does Not Apply to Me</a>
+									<a className="monthlyList__tag" onClick={(e) => props.removeFunction(e)} className={item.description} name={item.description} href="#">Does Not Apply to Me</a>
 								</li>
 							)
 					}
 				})}
-		</div>
+		</ul>
 		)
 }
 

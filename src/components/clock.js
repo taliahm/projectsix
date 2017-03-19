@@ -88,7 +88,7 @@ export default class Clock extends React.Component {
 	 }
 	render() {
 		return(
-			<div>You have {this.state.totalTime.days} days, {this.state.totalTime.hours} hours {this.state.totalTime.minutes} minutes to clean these!</div>
+			<div className="countdown">You have {this.state.totalTime.days} days, {this.state.totalTime.hours} hours {this.state.totalTime.minutes} minutes to clean these!</div>
 			)
 	}
 }

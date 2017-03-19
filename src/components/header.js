@@ -7,7 +7,8 @@ export default class Header extends React.Component {
 			signedIn: false,
 			email:" ",
 			password:" ",
-			confirm:" "
+			confirm:" ",
+			showForm: ''
 		}
 		this.signIn = this.signIn.bind(this);
 		this.handleChange = this.handleChange.bind(this);
@@ -69,24 +70,28 @@ export default class Header extends React.Component {
 	}
 	showSignIn(e) {
 		e.preventDefault()
+		this.formSignUp.classList.remove('show')
+		this.formSignIn.classList.add('show')
 		console.log('user wants to sign in yo')
 		console.log(this.showSignUp)
-		this.setState({
-			showForm: 'signIn'
-		})
-		if(this.state.showForm != 'signUp'){
-		this.formSignIn.classList.toggle('show')
-		}
+		// this.setState({
+		// 	showForm: 'signIn'
+		// // })
+		// if(this.state.showForm != 'signUp'){
+		// 	this.formSignIn.classList.add('show')
+		// }
 	}
 
 	showSignUp(e) {
 		e.preventDefault()
-		this.setState({
-			showForm: 'signUp'
-		})
-		if(this.state.showForm != 'signIn') {
-		this.formSignUp.classList.toggle('show')
-		}
+		this.formSignIn.classList.remove('show')
+		this.formSignUp.classList.add('show')
+		// this.setState({
+		// 	showForm: 'signUp'
+		// })
+		// if(this.state.showForm != 'signIn') {
+		// 	this.formSignUp.classList.add('show')
+		// }
 	}
 	render() {
 		return (

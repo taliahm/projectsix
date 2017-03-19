@@ -16,33 +16,33 @@ export default (props) => {
 			filteredCompleteData.push(allData[key]);
 		}
 	}
-			return (	<section>
-							<div>
-							<h6>You should be cleaning these right now</h6>
-								<ul>
+			return (	<section className="holdActiveandCompleted">
+							<h3 className="taskSection__header">You should be cleaning these right now</h3>
+							<div className="activeTasks taskSection">
+								<div className="holdClockandTask">
 									<Clock month='90' />
 									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredActiveData} countdown={props.countdown} frequency='3' />
-								</ul>
-								<ul>
+								</div>
+								<div className="holdClockandTask">
 									<Clock month='180' />
 									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredActiveData} countdown={props.countdown} frequency='6' />
-								</ul>
-								<ul>
+								</div>
+								<div className="holdClockandTask">
 									<Clock month='360' />
 									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredActiveData} countdown={props.countdown}frequency='12' />
-								</ul>
+								</div>
 							</div>
-							<div>
-								<h3>You've cleaned these, congrats!</h3>
-								<ul>
+							<h3 className="taskSection__header">You've cleaned these, congrats!</h3>
+							<div className="completedTasks taskSection">
+								<div className="holdClockandTask">
 									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredCompleteData} countdown='upclock' frequency='3' />
-								</ul>
-								<ul>
+								</div>
+								<div className="holdClockandTask">
 									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredCompleteData} countdown='upclock' frequency='6' />
-								</ul>
-								<ul>
+								</div>
+								<div className="holdClockandTask">
 									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredCompleteData} countdown='upclock' frequency='12' />
-								</ul>
+								</div>
 							</div>
 						</section>		
 				)

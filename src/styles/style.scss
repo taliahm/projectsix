@@ -1,4 +1,5 @@
 
+@import 'partials/_normalize.scss';
 
 form.signIn {
 	display: none;
@@ -19,3 +20,68 @@ main {
 main.showMain {
 	display: block
 }
+.holdActiveandCompleted {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.taskSection {
+	display: flex;
+}
+.holdClockandTask {
+	border: 1px solid red;
+	width: 30%;
+	display: flex;
+	flex-direction: column;
+	min-height: 150px;
+	min-width: 300px;
+}
+
+.countdown {
+	align-self: center;
+	text-align: center;
+}
+
+.monthlyList {
+	list-style: none;
+	// width:50%;
+}
+.monthlyList__listItem {
+	display: flex;
+	// justify-content: center;
+}
+.monthlyList__listItem input {
+	display: none;
+}
+
+.monthlyList__label {
+	display: flex;
+	align-items: center;
+	flex-grow: 50%;
+}
+
+.monthlyList__tag {
+	display: block;
+	text-decoration: none;
+
+}
+
+.monthlyList__label img {
+	max-width: 100%;
+	display: block;
+}
+
+.monthlyList__label .imgContain {
+	margin-right: 10px;
+}
+
+.monthlyList__label--active .imgContain {
+	// border:2px solid red;
+	width:5%;
+}
+
+.monthlyList__label--completed .imgContain {
+	width: 6%;
+}
+
+

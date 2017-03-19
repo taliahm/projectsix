@@ -127,7 +127,7 @@ class App extends React.Component {
 					todos: stateToDoList, 
 					})
 				}
-				this.mainContent.classList.toggle('showMain')
+				this.mainContent.classList.add('showMain')
 				// this.setUpTimer()
 				})
 			}
@@ -138,6 +138,7 @@ class App extends React.Component {
 			todos: { },
 			signUpDate: ''
 		})
+		this.mainContent.classList.remove('showMain')
 	}
 	userAddsToDo() {
 		//THIS ONE IS DONE
@@ -306,10 +307,9 @@ class App extends React.Component {
 		this.userSignsOut()
 	}
 	showMainContent() {
-		firebase.auth().currentUser
-		if(user) {
-			this.mainContent.classList.toggle('showMain')
-		}
+		
+			this.mainContent.classList.add('showMain')
+
 
 	}
 	render() {
