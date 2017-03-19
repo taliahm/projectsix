@@ -4,6 +4,7 @@ import { TodoList } from './data.js';
 import Header from './components/header.js';
 import InactiveTodos from './components/InactiveTodos.js';
 import ActiveTodos from './components/ActiveTodos.js';
+import Clock from './components/clock.js';
 
 const config = {
    apiKey: "AIzaSyA0uP9IaxMempNtWne_eHswqHZg_l9ZfYY",
@@ -94,12 +95,27 @@ class App extends React.Component {
 		this.userSignsOut = this.userSignsOut.bind(this);
 		this.signOut = this.signOut.bind(this);
 		this.showMainContent = this.showMainContent.bind(this);
-		this.state= {
-				uid: null,
+		this.setUpTimer = this.setUpTimer.bind(this);
+		firebase.auth().onAuthStateChanged((user) => {
+			if(user) {
+				const dbRefForDate = firebase.database().ref(`users/${user.uid}/signUpDate`)
+				dbRefForDate.on('value', (data) => {
+					const userSignUpData = data.val()
+					for(let key in userSignUpData) {
+						const signUpDate = userSignUpData[key]
+						this.state.signUpDate = signUpDate
+					}
+				})
+			}
+		})
+		this.state = {
+				signUpDate: "",
 				todos: {},
 				time: false,
 				countdown: '',
-				loading: true
+				loading: true,
+				ticking: '',
+				totalTime: ''
 		}
 	}
 	componentDidMount() {
@@ -110,17 +126,72 @@ class App extends React.Component {
 				const dbList = data.val()
 				for (let garbageKey in dbList) {
 					const stateToDoList = dbList[garbageKey]
-			this.setState({
-				todos: stateToDoList, 
+				this.setState({
+					todos: stateToDoList, 
 					})
 				}
+				this.mainContent.classList.toggle('showMain')
+				this.setUpTimer()
 				})
 			}
 		})
 	}
+	setUpTimer() {
+		console.log('set up the fucking timer')
+		if(this.state.signUpDate != ''){
+			const currentDate = new Date()
+			const threeMonths = 90*24*60*60*1000
+			const userSignedUp = this.state.signUpDate
+			const userSignUpDate = new Date(userSignedUp)
+			const userTime = userSignUpDate.getTime()
+			const currentTime = currentDate.getTime()
+			const deadline = userTime + threeMonths;
+			const deadlineDate = new Date(deadline)
+			const getTimeRemaining = (deadline) => {
+					let total = Date.parse(deadline) - Date.parse(new Date());
+					let seconds = Math.floor((total/1000) % 60);
+					let minutes = Math.floor((total/1000/60) % 60);
+					let hours = Math.floor((total/(1000*60*60)) % 24);
+					let days = Math.floor(total/(1000*60*60*24));
+					return {
+						// 'total': total, 
+						'days': days,
+						'hours': hours,
+						'minutes': minutes,
+						'seconds': seconds
+					}
+				}
+				 this.timerID = setInterval(
+   				   () => this.tick(),
+      				1000
+    			);
+			this.tick = () => {
+				this.setState({
+					totalTime: getTimeRemaining(deadlineDate)
+				})
+			}
+			// const initClock = (id, endtime) => {
+			// 		// const clock = document.getElementById(id)
+			// 		// const insideClock = document.getElementById(id).innerHTML
+			// 		const timeInterval = setInterval(() =>{
+			// 			// console.log('interval')
+			// 			let total = getTimeRemaining(endtime)
+			// 			this.state.ticking = `<span> ${total.days}</span>
+			// 							   <span> ${total.hours}</span>
+			// 							   <span> ${total.minutes}</span>
+			// 							   <span> ${total.seconds}</span`
+			// 		})
+			// 	}
+			// 		initClock('clock', deadlineDate)
+		}
+	}
+	componentWillUnmount() {
+	   clearInterval(this.timerID);
+	 }
 	userSignsOut() {
 		this.setState({
-			todos: { }
+			todos: { },
+			signUpDate: ''
 		})
 	}
 	userAddsToDo() {
@@ -187,12 +258,15 @@ class App extends React.Component {
 			if(user){
 				const dbRef = firebase.database().ref(`users/${user.uid}/todolist`);
 				dbRef.push(TodoList);
+				const userSignedUpDate = new Date()
+				const dateForFirebase = userSignedUpDate.toString();
+				console.log('stringed date', dateForFirebase)
+				const dbRefDate = firebase.database().ref(`users/${user.uid}/signUpDate`)
+				dbRefDate.push(dateForFirebase)
 				//retrieve that information from db and display on page, this will need to be actual user route
 				dbRef.once('value', (data) => {
-					// console.log(data.val());
 					const dbToDoList = data.val();
 					// console.log(dbToDoList)
-					//dbToDoList is an object containing an array??????
 					for (let key in dbToDoList) {
 						const innerToDos = dbToDoList[key];
 						// console.log(dbToDoList[key])
@@ -338,7 +412,10 @@ class App extends React.Component {
 		this.userSignsOut()
 	}
 	showMainContent() {
-		this.mainContent.classList.toggle('showMain')
+		firebase.auth().currentUser
+		if(user) {
+			this.mainContent.classList.toggle('showMain')
+		}
 
 	}
 	render() {
@@ -349,7 +426,9 @@ class App extends React.Component {
 					<button onClick={this.signOut}>Sign OUT</button>
 					<CreateTodo resetState={this.userAddsToDo}/>
 					<h2>All Your To Dos:</h2>
-					<ActiveTodos clickFunction={this.statusUpdate} countdown={this.state.countdown} addToDo={this.reactivateToDo} removeFunction={this.deactivateToDo} todos={this.state.todos} status='completed' />
+					<Clock userSignedUpDate={this.state.signUpDate}/>
+					<div>{this.state.totalTime.days}{this.state.totalTime.seconds}</div>
+					<ActiveTodos userSignedUpDate={this.state.signUpDate} clickFunction={this.statusUpdate} countdown={this.state.countdown} addToDo={this.reactivateToDo} removeFunction={this.deactivateToDo} todos={this.state.todos} status='completed' />
 					<h2>You've indicated these do not apply to you</h2>
 					<InactiveTodos clickFunction={this.statusUpdate} addToDo={this.reactivateToDo} removeFunction={this.deactivateToDo} todos={this.state.todos} />
 				</main>

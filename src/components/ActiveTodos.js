@@ -3,6 +3,7 @@ import MonthlyTask from './MonthlyTask.js';
 
 export default (props) => {
 	const allData = props.todos;
+	// console.log(props.userSignedUpDate)
 	const filteredActiveData = [ ];
 	const filteredCompleteData = [ ];
 	for(let key in allData) {
@@ -18,25 +19,25 @@ export default (props) => {
 							<div>
 							<h6>You should be cleaning these right now</h6>
 								<ul>
-									<MonthlyTask clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredActiveData} countdown={props.countdown} frequency='3' />
+									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredActiveData} countdown={props.countdown} frequency='3' />
 								</ul>
 								<ul>
-									<MonthlyTask clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredActiveData} countdown={props.countdown} frequency='6' />
+									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredActiveData} countdown={props.countdown} frequency='6' />
 								</ul>
 								<ul>
-									<MonthlyTask clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredActiveData} countdown={props.countdown}frequency='12' />
+									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredActiveData} countdown={props.countdown}frequency='12' />
 								</ul>
 							</div>
 							<div>
 								<h3>You've cleaned these, congrats!</h3>
 								<ul>
-									<MonthlyTask clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredCompleteData} countdown='upclock' frequency='3' />
+									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredCompleteData} countdown='upclock' frequency='3' />
 								</ul>
 								<ul>
-									<MonthlyTask clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredCompleteData} countdown='upclock' frequency='6' />
+									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredCompleteData} countdown='upclock' frequency='6' />
 								</ul>
 								<ul>
-									<MonthlyTask clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredCompleteData} countdown='upclock' frequency='12' />
+									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredCompleteData} countdown='upclock' frequency='12' />
 								</ul>
 							</div>
 						</section>		

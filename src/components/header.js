@@ -15,6 +15,15 @@ export default class Header extends React.Component {
 		this.showSignIn = this.showSignIn.bind(this);
 		this.showSignUp = this.showSignUp.bind(this);
 	}
+	componentDidMount() {
+		firebase.auth().onAuthStateChanged((user) => {
+			if(user) {
+				this.setState({
+					signedIn: true
+				})
+			}
+		})
+	}
 	signIn(e) {
 		e.preventDefault();
 		console.log('signing in')
