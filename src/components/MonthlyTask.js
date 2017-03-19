@@ -11,8 +11,7 @@ export default (props) => {
 		return item.frequency === props.frequency
 	});
 	return (
-		<div>
-			<h6>You should be cleaning this everys months</h6>
+		<div className="monthlyList">
 				{byTimeArray.map((item, i) => {
 					let descriptionKey = item.description.replace(" ", "");
 					if(item.status === 'completed') {

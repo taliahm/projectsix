@@ -1,5 +1,6 @@
 import React from 'react';
 import MonthlyTask from './MonthlyTask.js';
+import Clock from './clock.js';
 
 export default (props) => {
 	const allData = props.todos;
@@ -19,12 +20,15 @@ export default (props) => {
 							<div>
 							<h6>You should be cleaning these right now</h6>
 								<ul>
+									<Clock month='90' />
 									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredActiveData} countdown={props.countdown} frequency='3' />
 								</ul>
 								<ul>
+									<Clock month='180' />
 									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredActiveData} countdown={props.countdown} frequency='6' />
 								</ul>
 								<ul>
+									<Clock month='360' />
 									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredActiveData} countdown={props.countdown}frequency='12' />
 								</ul>
 							</div>

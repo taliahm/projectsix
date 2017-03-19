@@ -3,23 +3,92 @@ import React from 'react';
 export default class Clock extends React.Component {
 	constructor() {
 		super();
-		// this.setUpTimer = this.setUpTimer.bind(this);
-		currentDate: new Date()
-		// const userSignedUp = this.props.userSignedUpDate
-		// userSignUpDate: new Date(this.props.userSignedUpDate)
-		threeMonths: 90*24*60*60*1000
-		// userTime: this.userSignUpDate.getTime()
+		this.runTheTimer = this.runTheTimer.bind(this)
+		this.timerEnds = this.timerEnds.bind(this)
+		firebase.auth().onAuthStateChanged((user) => {
+			if(user) {
+				const dbRefForDate = firebase.database().ref(`users/${user.uid}/signUpDate`)
+				dbRefForDate.on('value', (data) => {
+					const userSignUpData = data.val()
+					for(let key in userSignUpData) {
+						const signUpDate = userSignUpData[key]
+						this.state.signUpDate = signUpDate
+						this.runTheTimer()
+					}
+				})
+			}
+		})
+		this.state = {
+				signUpDate: '',
+				ticking: '',
+				totalTime: '',
+				wait: false
+		}
 	}
 	componentDidMount() {
+		
+	}
+	runTheTimer() {
 		console.log('MOUNTED MOFO')
+		if(this.state.signUpDate != ''){
+			const currentDate = new Date()
+			const monthAmount = this.props.month
+			// console.log(monthAmount)
+			const threeMonths = monthAmount*24*60*60*1000
+			const userSignedUp = this.state.signUpDate
+			const userSignUpDate = new Date(userSignedUp)
+			const userTime = userSignUpDate.getTime()
+			const currentTime = currentDate.getTime()
+			const deadline = userTime + threeMonths;
+			const deadlineDate = new Date(deadline)
+			const getTimeRemaining = (deadline) => {
+					let total = Date.parse(deadline) - Date.parse(new Date());
+					let seconds = Math.floor((total/1000) % 60);
+					let minutes = Math.floor((total/1000/60) % 60);
+					let hours = Math.floor((total/(1000*60*60)) % 24);
+					let days = Math.floor(total/(1000*60*60*24));
+					return {
+						// 'total': total, 
+						'days': days,
+						// 'days': 0, 
+						'hours': hours,
+						'minutes': minutes,
+						'seconds': seconds
+					}
+				}
+				 this.timerID = setInterval(
+   				   () => this.tick(),
+      				1000
+    			);
+			this.tick = () => {
+				this.setState({
+					totalTime: getTimeRemaining(deadlineDate)
+				})
+			}
+		}
+		else{
+			this.setState({
+				wait: 'true'
+			})
+		}
 		// this.setUpTimer()
 		// const userSignedUp = this.props.userSignedUpDate
 		// console.log(userSignedUp)
 		// const userTime = userSignedUp.getTime()
 	}
+	timerEnds() {
+		console.log('if i done i be here')
+		console.log(this.state.totalTime)
+		if(this.state.totalTime.days === 0) {
+			console.log('timer done')
+		}
+	}
+	componentWillUnmount() {
+	   clearInterval(this.timerID);
+	 }
 	render() {
 		return(
-			<div>This could maybe be a clock, maybe. No promises</div>
+			<div>You have {this.state.totalTime.days} days, {this.state.totalTime.hours} hours {this.state.totalTime.minutes} minutes to clean these!</div>
 			)
 	}
 }

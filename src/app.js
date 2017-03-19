@@ -4,7 +4,7 @@ import { TodoList } from './data.js';
 import Header from './components/header.js';
 import InactiveTodos from './components/InactiveTodos.js';
 import ActiveTodos from './components/ActiveTodos.js';
-import Clock from './components/clock.js';
+// import Clock from './components/clock.js';
 
 const config = {
    apiKey: "AIzaSyA0uP9IaxMempNtWne_eHswqHZg_l9ZfYY",
@@ -88,14 +88,12 @@ class App extends React.Component {
 		this.statusUpdate = this.statusUpdate.bind(this);
 		this.loadTodos = this.loadTodos.bind(this);
 		this.showTodos = this.showTodos.bind(this);
-		this.initiateCountdown = this.initiateCountdown.bind(this);
 		this.deactivateToDo = this.deactivateToDo.bind(this);
 		this.reactivateToDo = this.reactivateToDo.bind(this);
 		this.userAddsToDo = this.userAddsToDo.bind(this);
 		this.userSignsOut = this.userSignsOut.bind(this);
 		this.signOut = this.signOut.bind(this);
 		this.showMainContent = this.showMainContent.bind(this);
-		this.setUpTimer = this.setUpTimer.bind(this);
 		firebase.auth().onAuthStateChanged((user) => {
 			if(user) {
 				const dbRefForDate = firebase.database().ref(`users/${user.uid}/signUpDate`)
@@ -112,7 +110,6 @@ class App extends React.Component {
 				signUpDate: "",
 				todos: {},
 				time: false,
-				countdown: '',
 				loading: true,
 				ticking: '',
 				totalTime: ''
@@ -131,63 +128,11 @@ class App extends React.Component {
 					})
 				}
 				this.mainContent.classList.toggle('showMain')
-				this.setUpTimer()
+				// this.setUpTimer()
 				})
 			}
 		})
 	}
-	setUpTimer() {
-		console.log('set up the fucking timer')
-		if(this.state.signUpDate != ''){
-			const currentDate = new Date()
-			const threeMonths = 90*24*60*60*1000
-			const userSignedUp = this.state.signUpDate
-			const userSignUpDate = new Date(userSignedUp)
-			const userTime = userSignUpDate.getTime()
-			const currentTime = currentDate.getTime()
-			const deadline = userTime + threeMonths;
-			const deadlineDate = new Date(deadline)
-			const getTimeRemaining = (deadline) => {
-					let total = Date.parse(deadline) - Date.parse(new Date());
-					let seconds = Math.floor((total/1000) % 60);
-					let minutes = Math.floor((total/1000/60) % 60);
-					let hours = Math.floor((total/(1000*60*60)) % 24);
-					let days = Math.floor(total/(1000*60*60*24));
-					return {
-						// 'total': total, 
-						'days': days,
-						'hours': hours,
-						'minutes': minutes,
-						'seconds': seconds
-					}
-				}
-				 this.timerID = setInterval(
-   				   () => this.tick(),
-      				1000
-    			);
-			this.tick = () => {
-				this.setState({
-					totalTime: getTimeRemaining(deadlineDate)
-				})
-			}
-			// const initClock = (id, endtime) => {
-			// 		// const clock = document.getElementById(id)
-			// 		// const insideClock = document.getElementById(id).innerHTML
-			// 		const timeInterval = setInterval(() =>{
-			// 			// console.log('interval')
-			// 			let total = getTimeRemaining(endtime)
-			// 			this.state.ticking = `<span> ${total.days}</span>
-			// 							   <span> ${total.hours}</span>
-			// 							   <span> ${total.minutes}</span>
-			// 							   <span> ${total.seconds}</span`
-			// 		})
-			// 	}
-			// 		initClock('clock', deadlineDate)
-		}
-	}
-	componentWillUnmount() {
-	   clearInterval(this.timerID);
-	 }
 	userSignsOut() {
 		this.setState({
 			todos: { },
@@ -280,57 +225,6 @@ class App extends React.Component {
 	showTodos() {
 		console.log('todos showed')
 
-	}
-	initiateCountdown() {
-		console.log('COUNTING')
-		this.setState({
-			time: true
-		})
-		const currentDate = new Date();
-		const addMonths = 3
-		// const threeMonths = 90
-		// const sixMonths = 180
-		// const twelveMonths = 364
-		// const futureDate = currentDate.setMonth(addMonths)//returns date as numerical value
-		const futureMonth= new Date(new Date(currentDate).setMonth(currentDate.getMonth() + addMonths));
-		console.log('now', currentDate)
-		// console.log('three months from now', futureDate)
-		console.log('three months again', futureMonth)
-
-		function getTimeRemaining(futureDate){
-		  var t = Date.parse(futureDate) - Date.parse(new Date())
-		  var seconds = Math.floor( (t/1000) % 60 )
-		  var minutes = Math.floor( (t/1000/60) % 60 )
-		  var hours = Math.floor( (t/(1000*60*60)) % 24 )
-		  var days = Math.floor( t/(1000*60*60*24) )
-		  return {
-		    'total': t,
-		    'days': days,
-		    'hours': hours,
-		    'minutes': minutes,
-		    'seconds': seconds
-		  }
-		}
-		const days = getTimeRemaining(futureMonth).days
-		const hours = getTimeRemaining(futureMonth).hours
-		const minutes = getTimeRemaining(futureMonth).minutes
-		const seconds = getTimeRemaining(futureMonth).seconds
-		console.log(days, hours, minutes, seconds)
-		this.state.countdown = getTimeRemaining(futureMonth).days
-		// function initializeClock(id, futureDate){
-		//   // var clock = document.getElementById(id);
-		//   var timeinterval = setInterval(function(){
-		//     var t = getTimeRemaining(futureDate);
-		//     var clock = 'days: ' + t.days + '<br>' +
-		//                       'hours: '+ t.hours + '<br>' +
-		//                       'minutes: ' + t.minutes + '<br>' +
-		//                       'seconds: ' + t.seconds;
-		//     if(t.total<=0){
-		//       clearInterval(timeinterval);
-		//     }
-		//   },1000);
-		// }
-		// console.log(clock)
 	}
 	deactivateToDo(e) {
 		//going from active & completed to 'inactive'
@@ -426,7 +320,7 @@ class App extends React.Component {
 					<button onClick={this.signOut}>Sign OUT</button>
 					<CreateTodo resetState={this.userAddsToDo}/>
 					<h2>All Your To Dos:</h2>
-					<Clock userSignedUpDate={this.state.signUpDate}/>
+				
 					<div>{this.state.totalTime.days}{this.state.totalTime.seconds}</div>
 					<ActiveTodos userSignedUpDate={this.state.signUpDate} clickFunction={this.statusUpdate} countdown={this.state.countdown} addToDo={this.reactivateToDo} removeFunction={this.deactivateToDo} todos={this.state.todos} status='completed' />
 					<h2>You've indicated these do not apply to you</h2>
