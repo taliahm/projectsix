@@ -7,17 +7,15 @@ export default class Clock extends React.Component {
 		this.timerEnds = this.timerEnds.bind(this)
 		firebase.auth().onAuthStateChanged((user) => {
 			if(user) {
-				//DONEupdate end point to reference it's own endpoint
-				// const dbRefDateThree = firebase.database().ref(`users/${user.uid}/signUpDateThree`)
-				// const dbRefDateSix = firebase.database().ref(`users/${user.uid}/signUpDateSix`)
-				// const dbRefDateTwelve = firebase.database().ref(`users/${user.uid}/signUpDateTwelve`)
+				console.log('this is where timer would start again?')
 				const dbRefForDate = firebase.database().ref(`users/${user.uid}/signUpDate${this.props.dbRef}`)
-				this.state.userUID = user.uid
-				dbRefForDate.on('value', (data) => {
+				this.state.userUID = user.uid //this is also not cool
+				dbRefForDate.once('value').then((data) => {
 					const userSignUpData = data.val()
-					for(let key in userSignUpData) {
+					// console.log(userSignUpData)
+					for (let key in userSignUpData) {
+						console.log(userSignUpData[key])
 						const signUpDate = userSignUpData[key]
-						//!upadte state to reference it's month
 						this.state.signUpDate = signUpDate //this is not cool
 						this.runTheTimer()
 					}
@@ -61,10 +59,10 @@ export default class Clock extends React.Component {
 					let days = Math.floor(total/(1000*60*60*24));
 					return {
 						// 'total': total, 
-						// 'days': days,
-						'days': 0, 
-						// 'hours': hours,
-						'hours': 0,
+						'days': days,
+						// 'days': 0, 
+						'hours': hours,
+						// 'hours': 0,
 						'minutes': minutes,
 						'seconds': seconds
 					}
@@ -77,7 +75,7 @@ export default class Clock extends React.Component {
 				if(this.state.totalTime.days <= 0 && this.state.totalTime.hours <= 0) {
 					console.log(this.timerID)
 					clearInterval(this.timerID)
-					//this.timerEnds()
+					this.timerEnds()
 				}
 				this.setState({
 					totalTime: getTimeRemaining(deadlineDate)
@@ -97,8 +95,12 @@ export default class Clock extends React.Component {
 		const newDateForFirebase = newDate.toString();
 		dbRefUpdateDate.remove()
 		dbRefUpdateDate.push(newDateForFirebase)
-		// this.props.updateFunction()
+		this.props.updateFunction(`${this.props.dbRef}`)
 		console.log('timer done in timerEnds function')
+		this.setState({
+			totalTime: '',
+			signUpDate: ''
+		})
 	}
 	componentWillUnmount() {
 	   clearInterval(this.timerID);

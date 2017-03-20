@@ -208,3 +208,9 @@ main.showMain {
 
 .showUserAction {
   display: flex; }
+
+.overlayFooter {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: grey; }

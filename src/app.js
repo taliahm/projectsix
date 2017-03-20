@@ -286,17 +286,67 @@ class App extends React.Component {
 	showMainContent() {
 			this.mainContent.classList.add('showMain')
 	}
-	countdownComplete() {
+	countdownComplete(months) {
 		console.log('she DONE in APP!')
-		dbRefRefreshTodos = firebase.database().ref(`users/${this.state.userUIDApp}/todos`)
+		console.log(months)
+		const dbRefRefreshTodos = firebase.database().ref(`users/${this.state.userUIDApp}/todolist`)
 		dbRefRefreshTodos.once('value').then((data) => {
 			const refreshData = data.val()
 			for (let garbageKey in refreshData){
 				const actualRefresh = refreshData[garbageKey]
+				const newdbRefRefreshTodos = firebase.database().ref(`users/${this.state.userUIDApp}/todolist/${garbageKey}`)
 				for(let key in actualRefresh) {
-					if(actualRefresh[key].status === 'completed') {
-						console.log(actualRefresh[key])
+					if(months === 'Three') {
+						console.log('month is three')
+						const comparison = '3'
+						console.log('this should be 3', comparison)
+						if(actualRefresh[key].status === 'completed' && actualRefresh[key].frequency === '3') {
+							console.log(actualRefresh[key])
+							console.log('all the three month and completed todos are being updated')
+							actualRefresh[key].status='active'
+							const dataRefresh = key
+							const updatesRefresh = { }
+							updatesRefresh[`${key}`] = actualRefresh[key]
+							newdbRefRefreshTodos.update(updatesRefresh)
+						}
 					}
+					else if(months === 'Six') {
+						console.log('month is six')
+						const comparison = '6'
+						console.log('comparison should be 6', comparison)
+						if(actualRefresh[key].status === 'completed' && actualRefresh[key].frequency === '6') {
+							console.log(actualRefresh[key])
+							console.log('all the six month todps being updated')
+							actualRefresh[key].status='active'
+							const dataRefresh = key
+							const updatesRefresh = { }
+							updatesRefresh[`${key}`] = actualRefresh[key]
+							newdbRefRefreshTodos.update(updatesRefresh)
+						}
+					}
+					else if(months === 'Twelve') {
+						console.log('month is twelve')
+						const comparison = '12'
+						console.log('this should be 12', comparison)
+						if(actualRefresh[key].status === 'completed' && actualRefresh[key].frequency === '12') {
+							console.log('all the twelve month todos being updates')
+							console.log(actualRefresh[key])
+							actualRefresh[key].status='active'
+							const dataRefresh = key
+							const updatesRefresh = { }
+							updatesRefresh[`${key}`] = actualRefresh[key]
+							newdbRefRefreshTodos.update(updatesRefresh)
+							
+						}
+					}
+					// if(actualRefresh[key].status === 'completed') {
+					// 	console.log(actualRefresh[key])
+					// 	actualRefresh[key].status='active'
+					// 	const dataRefresh = key
+					// 	const updatesRefresh = { }
+					// 	updatesRefresh[`${key}`] = actualRefresh[key]
+					// 	newdbRefRefreshTodos.update(updatesRefresh)
+					// }
 				}
 			}
 		})
