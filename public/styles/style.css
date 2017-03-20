@@ -119,6 +119,19 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   border: 0;
   padding: 0; }
 
+html {
+  font-size: 62.5%; }
+
+body {
+  background-image: url(../../assets/gplaypattern.png);
+  background-position: fixed;
+  color: #050505;
+  font-size: 1.2rem; }
+
+h1 {
+  color: #52F9D0;
+  font-family: cursive; }
+
 form.signIn {
   display: none; }
 
@@ -129,7 +142,8 @@ form.show {
   display: flex; }
 
 main {
-  display: none; }
+  display: none;
+  background: rgba(255, 255, 255, 0.7); }
 
 main.showMain {
   display: block; }

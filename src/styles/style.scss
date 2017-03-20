@@ -1,6 +1,22 @@
 
 @import 'partials/_normalize.scss';
+@import 'partials/_variables.scss';
 
+html{
+	font-size: 62.5%;
+}
+
+body {
+	background-image: url(../../assets/gplaypattern.png);
+	background-position: fixed;
+	color: $black;
+	font-size: 1.2rem;
+}
+
+h1 {
+	color: $surpriseGreen;
+	font-family: cursive;
+}
 form.signIn {
 	display: none;
 }
@@ -15,6 +31,7 @@ form.show {
 
 main {
 	display: none;
+	background: transparentize(white, 0.3);
 }
 
 main.showMain {
