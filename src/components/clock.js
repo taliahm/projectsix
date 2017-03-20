@@ -7,34 +7,46 @@ export default class Clock extends React.Component {
 		this.timerEnds = this.timerEnds.bind(this)
 		firebase.auth().onAuthStateChanged((user) => {
 			if(user) {
-				const dbRefForDate = firebase.database().ref(`users/${user.uid}/signUpDate`)
+				//DONEupdate end point to reference it's own endpoint
+				// const dbRefDateThree = firebase.database().ref(`users/${user.uid}/signUpDateThree`)
+				// const dbRefDateSix = firebase.database().ref(`users/${user.uid}/signUpDateSix`)
+				// const dbRefDateTwelve = firebase.database().ref(`users/${user.uid}/signUpDateTwelve`)
+				const dbRefForDate = firebase.database().ref(`users/${user.uid}/signUpDate${this.props.dbRef}`)
+				this.state.userUID = user.uid
 				dbRefForDate.on('value', (data) => {
 					const userSignUpData = data.val()
 					for(let key in userSignUpData) {
 						const signUpDate = userSignUpData[key]
-						this.state.signUpDate = signUpDate
+						//!upadte state to reference it's month
+						this.state.signUpDate = signUpDate //this is not cool
 						this.runTheTimer()
 					}
 				})
 			}
+			else {
+				this.state.userUID = ''
+				//!update state to reference it's month
+				this.state.signUpDate = ''
+			}
 		})
 		this.state = {
+			//!update state to reference it's own month
 				signUpDate: '',
 				ticking: '',
 				totalTime: '',
-				wait: false
+				wait: false,
+				userUID: ''
 		}
-	}
-	componentDidMount() {
-		
 	}
 	runTheTimer() {
 		console.log('MOUNTED MOFO')
+		//!update state to reference it'w own month
 		if(this.state.signUpDate != ''){
 			const currentDate = new Date()
 			const monthAmount = this.props.month
 			// console.log(monthAmount)
 			const threeMonths = monthAmount*24*60*60*1000
+			//!update state to reference it's own month
 			const userSignedUp = this.state.signUpDate
 			const userSignUpDate = new Date(userSignedUp)
 			const userTime = userSignUpDate.getTime()
@@ -49,18 +61,24 @@ export default class Clock extends React.Component {
 					let days = Math.floor(total/(1000*60*60*24));
 					return {
 						// 'total': total, 
-						'days': days,
-						// 'days': 0, 
-						'hours': hours,
+						// 'days': days,
+						'days': 0, 
+						// 'hours': hours,
+						'hours': 0,
 						'minutes': minutes,
 						'seconds': seconds
 					}
 				}
-				 this.timerID = setInterval(
-   				   () => this.tick(),
-      				1000
-    			);
+			this.timerID = setInterval(
+   				   () => this.tick(), 1000
+    			)
+			
 			this.tick = () => {
+				if(this.state.totalTime.days <= 0 && this.state.totalTime.hours <= 0) {
+					console.log(this.timerID)
+					clearInterval(this.timerID)
+					//this.timerEnds()
+				}
 				this.setState({
 					totalTime: getTimeRemaining(deadlineDate)
 				})
@@ -71,17 +89,16 @@ export default class Clock extends React.Component {
 				wait: 'true'
 			})
 		}
-		// this.setUpTimer()
-		// const userSignedUp = this.props.userSignedUpDate
-		// console.log(userSignedUp)
-		// const userTime = userSignedUp.getTime()
 	}
 	timerEnds() {
-		console.log('if i done i be here')
-		console.log(this.state.totalTime)
-		if(this.state.totalTime.days === 0) {
-			console.log('timer done')
-		}
+
+		const dbRefUpdateDate = firebase.database().ref(`users/${this.state.userUID}/signUpDate${this.props.dbRef}`)
+		const newDate = new Date();
+		const newDateForFirebase = newDate.toString();
+		dbRefUpdateDate.remove()
+		dbRefUpdateDate.push(newDateForFirebase)
+		// this.props.updateFunction()
+		console.log('timer done in timerEnds function')
 	}
 	componentWillUnmount() {
 	   clearInterval(this.timerID);
@@ -156,3 +173,5 @@ export default class Clock extends React.Component {
 // 		<div id="clock"></div>
 // 		)
 // }
+
+//check hackflix for better way to hand;e 

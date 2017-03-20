@@ -124,7 +124,7 @@ html {
 
 body {
   background-image: url(../../assets/gplaypattern.png);
-  background-position: fixed;
+  background-attachment: fixed;
   color: #050505;
   font-size: 1.2rem; }
 
@@ -142,8 +142,7 @@ form.show {
   display: flex; }
 
 main {
-  display: none;
-  background: rgba(255, 255, 255, 0.7); }
+  display: none; }
 
 main.showMain {
   display: block; }
@@ -151,10 +150,14 @@ main.showMain {
 .holdActiveandCompleted {
   display: flex;
   flex-direction: column;
-  align-items: center; }
+  align-items: center;
+  max-width: 80%;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.7); }
 
 .taskSection {
-  display: flex; }
+  display: flex;
+  justify-content: center; }
 
 .holdClockandTask {
   border: 1px solid red;
@@ -169,7 +172,8 @@ main.showMain {
   text-align: center; }
 
 .monthlyList {
-  list-style: none; }
+  list-style: none;
+  padding: 0; }
 
 .monthlyList__listItem {
   display: flex; }
@@ -180,7 +184,7 @@ main.showMain {
 .monthlyList__label {
   display: flex;
   align-items: center;
-  flex-grow: 50%; }
+  width: 50%; }
 
 .monthlyList__tag {
   display: block;
@@ -194,7 +198,13 @@ main.showMain {
   margin-right: 10px; }
 
 .monthlyList__label--active .imgContain {
-  width: 5%; }
+  width: 10%; }
 
 .monthlyList__label--completed .imgContain {
-  width: 6%; }
+  width: 12%; }
+
+.userAction {
+  display: none; }
+
+.showUserAction {
+  display: flex; }

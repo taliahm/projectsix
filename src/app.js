@@ -4,6 +4,7 @@ import { TodoList } from './data.js';
 import Header from './components/header.js';
 import InactiveTodos from './components/InactiveTodos.js';
 import ActiveTodos from './components/ActiveTodos.js';
+import Footer from './components/Footer.js';
 // import Clock from './components/clock.js';
 
 const config = {
@@ -43,13 +44,14 @@ class CreateTodo extends React.Component {
 			frequency: this.state.userFrequency , 
 			status: 'active'
 		}
-		const dbRef = firebase.database().ref('users/eJNXLvaQhDNc383OS5NA0UifcDx2/todolist')
+		//UPDATE
+		const dbRef = firebase.database().ref(`users/${this.props.userUIDCreate}/todolist`)
 		dbRef.once('value').then((data) => {
 			const usersList = data.val();
 			// const keyToList = ' ';
 			for (let garbageKey in usersList) {
 				const keyToList = garbageKey;
-			const dbRefToList = firebase.database().ref(`users/eJNXLvaQhDNc383OS5NA0UifcDx2/todolist/${garbageKey}`)
+			const dbRefToList = firebase.database().ref(`users/${this.props.userUIDCreate}/todolist/${garbageKey}`)
 				dbRefToList.push(customItem);
 			}
 		})
@@ -58,8 +60,6 @@ class CreateTodo extends React.Component {
 				userFrequency: "",
 				});
 		document.getElementById('makeToDo').reset();
-		this.props.resetState()
-		//now we need to trigger state update on App component
 	}
 	render() {
 		return (
@@ -90,29 +90,19 @@ class App extends React.Component {
 		this.showTodos = this.showTodos.bind(this);
 		this.deactivateToDo = this.deactivateToDo.bind(this);
 		this.reactivateToDo = this.reactivateToDo.bind(this);
-		this.userAddsToDo = this.userAddsToDo.bind(this);
+		// this.userAddsToDo = this.userAddsToDo.bind(this);
 		this.userSignsOut = this.userSignsOut.bind(this);
 		this.signOut = this.signOut.bind(this);
+		this.countdownComplete = this.countdownComplete.bind(this);
 		this.showMainContent = this.showMainContent.bind(this);
-		firebase.auth().onAuthStateChanged((user) => {
-			if(user) {
-				const dbRefForDate = firebase.database().ref(`users/${user.uid}/signUpDate`)
-				dbRefForDate.on('value', (data) => {
-					const userSignUpData = data.val()
-					for(let key in userSignUpData) {
-						const signUpDate = userSignUpData[key]
-						this.state.signUpDate = signUpDate
-					}
-				})
-			}
-		})
 		this.state = {
-				signUpDate: "",
+				// signUpDate: "",
 				todos: {},
 				time: false,
 				loading: true,
 				ticking: '',
-				totalTime: ''
+				totalTime: '',
+				userUIDApp: ''
 		}
 	}
 	componentDidMount() {
@@ -125,6 +115,7 @@ class App extends React.Component {
 					const stateToDoList = dbList[garbageKey]
 				this.setState({
 					todos: stateToDoList, 
+					userUIDApp: user.uid
 					})
 				}
 				this.mainContent.classList.add('showMain')
@@ -139,66 +130,48 @@ class App extends React.Component {
 			signUpDate: ''
 		})
 		this.mainContent.classList.remove('showMain')
+		// this.triggerStateinHeader()
 	}
-	userAddsToDo() {
-		//THIS ONE IS DONE
-		//triggered by Add To Do component, is the same as componentDidMount
-		firebase.auth().onAuthStateChanged((user) => {
-		if(user) {
-			const dbRef = firebase.database().ref(`users/${user.uid}/todolist/`)
-			dbRef.on('value', (data) => {
-				const dbList = data.val()
-				for (let garbageKey in dbList) {
-					const stateToDoList = dbList[garbageKey]
-			this.setState({
-				todos: stateToDoList
-					})
-				}
-				})
-			}
-		})
-	}
+	// triggerStateinHeader() {
+	// 	console.log('this should trigget header?')
+
 	statusUpdate(e) {
 		//THIS ONE IS DONE
 		//changing from 'active' to 'completed' and the reverse
 		const desc = e.target.name
-		firebase.auth().onAuthStateChanged((user) => {
-		if(user) {
-			const dbRef = firebase.database().ref(`users/${user.uid}/todolist/`)
-			dbRef.once('value', (data) => {
-				// console.log(data.val())
-				const dataList = data.val()
-				for(let garbageKey in dataList) {
-					const actualData = dataList[garbageKey]
-					const newdbRef = firebase.database().ref(`users/${user.uid}/todolist/${garbageKey}`)
-					for(let key in actualData) {
-						if(actualData[key].description === desc && actualData[key].status === 'active') {
-							console.log(actualData[key].status)
-							actualData[key].status = 'completed'
-							const dataKey = key 
-							// console.log(key)
-							const updates = { }
-							updates[`${key}`] = actualData[key]
-							newdbRef.update(updates)
-						}
-						else if (actualData[key].description === desc && actualData[key].status === 'completed') {
-							console.log('you already done')
-							console.log(actualData[key].status)
-							actualData[key].status = 'active'
-							const dataKey = key 
-							// console.log(key)
-							const updates = { }
-							updates[`${key}`] = actualData[key]
-							newdbRef.update(updates)
-						}
+		const dbRef = firebase.database().ref(`users/${this.state.userUIDApp}/todolist/`)
+		dbRef.once('value', (data) => {
+			const dataList = data.val()
+			for(let garbageKey in dataList) {
+				const actualData = dataList[garbageKey]
+				const newdbRef = firebase.database().ref(`users/${this.state.userUIDApp}/todolist/${garbageKey}`)
+				for(let key in actualData) {
+					if(actualData[key].description === desc && actualData[key].status === 'active') {
+						console.log(actualData[key].status)
+						actualData[key].status = 'completed'
+						const dataKey = key 
+						// console.log(key)
+						const updates = { }
+						updates[`${key}`] = actualData[key]
+						newdbRef.update(updates)
+					}
+					else if (actualData[key].description === desc && actualData[key].status === 'completed') {
+						console.log('you already done')
+						console.log(actualData[key].status)
+						actualData[key].status = 'active'
+						const dataKey = key 
+						// console.log(key)
+						const updates = { }
+						updates[`${key}`] = actualData[key]
+						newdbRef.update(updates)
 					}
 				}
+			}
 			})
-		}
-	})
+		// }
+	// })
 }
 	loadTodos() {
-		// this.initiateCountdown()
 		console.log('we will get todos')
 		const user = firebase.auth().currentUser
 			if(user){
@@ -207,8 +180,12 @@ class App extends React.Component {
 				const userSignedUpDate = new Date()
 				const dateForFirebase = userSignedUpDate.toString();
 				console.log('stringed date', dateForFirebase)
-				const dbRefDate = firebase.database().ref(`users/${user.uid}/signUpDate`)
-				dbRefDate.push(dateForFirebase)
+				const dbRefDateThree = firebase.database().ref(`users/${user.uid}/signUpDateThree`)
+				const dbRefDateSix = firebase.database().ref(`users/${user.uid}/signUpDateSix`)
+				const dbRefDateTwelve = firebase.database().ref(`users/${user.uid}/signUpDateTwelve`)
+				dbRefDateThree.push(dateForFirebase)
+				dbRefDateSix.push(dateForFirebase)
+				dbRefDateTwelve.push(dateForFirebase)
 				//retrieve that information from db and display on page, this will need to be actual user route
 				dbRef.once('value', (data) => {
 					const dbToDoList = data.val();
@@ -301,16 +278,31 @@ class App extends React.Component {
 		e.preventDefault();
 		console.log('sign out')
 		firebase.auth().signOut()
-		this.setState({
-			signedIn: false
-		})
+		// this.setState({
+		// 	signedIn: false
+		// })
 		this.userSignsOut()
 	}
 	showMainContent() {
-		
 			this.mainContent.classList.add('showMain')
-
-
+	}
+	countdownComplete() {
+		console.log('she DONE in APP!')
+		dbRefRefreshTodos = firebase.database().ref(`users/${this.state.userUIDApp}/todos`)
+		dbRefRefreshTodos.once('value').then((data) => {
+			const refreshData = data.val()
+			for (let garbageKey in refreshData){
+				const actualRefresh = refreshData[garbageKey]
+				for(let key in actualRefresh) {
+					if(actualRefresh[key].status === 'completed') {
+						console.log(actualRefresh[key])
+					}
+				}
+			}
+		})
+		//get all the todos from firebase
+		//update todos that are 'completed' to 'active'
+		//push back to firebase 
 	}
 	render() {
 		return (
@@ -318,14 +310,23 @@ class App extends React.Component {
 				<Header setStateonSignUp={() => this.loadTodos()} showMainContent={() => this.showMainContent()}/>
 				<main ref={(main) => {this.mainContent = main}}>
 					<button onClick={this.signOut}>Sign OUT</button>
-					<CreateTodo resetState={this.userAddsToDo}/>
+					<CreateTodo  userUIDCreate={this.state.userUIDApp}/>
 					<h2>All Your To Dos:</h2>
-				
 					<div>{this.state.totalTime.days}{this.state.totalTime.seconds}</div>
-					<ActiveTodos userSignedUpDate={this.state.signUpDate} clickFunction={this.statusUpdate} countdown={this.state.countdown} addToDo={this.reactivateToDo} removeFunction={this.deactivateToDo} todos={this.state.todos} status='completed' />
+					<ActiveTodos userSignedUpDate={this.state.signUpDate} 
+								 clickFunction={this.statusUpdate} 
+								 countdownComplete={this.countdownComplete}
+								 addToDo={this.reactivateToDo} 
+								 removeFunction={this.deactivateToDo} 
+								 todos={this.state.todos} 
+								 status='completed' />
 					<h2>You've indicated these do not apply to you</h2>
-					<InactiveTodos clickFunction={this.statusUpdate} addToDo={this.reactivateToDo} removeFunction={this.deactivateToDo} todos={this.state.todos} />
+					<InactiveTodos clickFunction={this.statusUpdate} 
+								   addToDo={this.reactivateToDo} 
+								   removeFunction={this.deactivateToDo} 
+								   todos={this.state.todos} />
 				</main>
+				<Footer />
 			</div>
 			)
 	}

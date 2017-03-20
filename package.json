@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "react-count-down": "^1.1.0",
-    "react-countdown-clock": "^1.1.0"
+    "react-countdown-clock": "^1.1.0",
+    "sweetalert-react": "^0.4.9"
   }
 }
