@@ -5,6 +5,8 @@ export default (props) => {
 	const byTimeArray = props.data.filter((item) => {
 		return item.frequency === props.frequency
 	})
+	let items = ' '
+	if(props.monthStatus === 'full') {
 	return (
 		<ul className="monthlyList">
 				{byTimeArray.map((item, i ) => {
@@ -49,6 +51,15 @@ export default (props) => {
 					}
 				})}
 		</ul>
+		)
+	}
+	else if (props.monthStatus === 'empty'){
+		return(
+				<div>get cleaning!</div>
+			)
+	}
+	return (
+			<section></section>
 		)
 }
 

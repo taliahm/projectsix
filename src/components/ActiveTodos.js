@@ -24,16 +24,37 @@ export default (props) => {
 							<h3 className="taskSection__header">Get cleaning! You have a lot to do!</h3>
 							<div className="activeTasks taskSection">
 								<div className="holdClockandTask">
-									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredActiveData} countdown={props.countdown} frequency='3' />
+									<MonthlyTask 
+										userSignedUpDate={props.userSignedUpDate} 
+										clickFunction={(e) => props.clickFunction(e)} 
+										removeFunction={(e) => props.removeFunction(e)} 
+										data={filteredActiveData} 
+										countdown={props.countdown} 
+										frequency='3' 
+										monthStatus={props.threeMonthStatus}/>
 									<Clock month='90' dbRef='Three' updateFunction={(months) => props.countdownComplete(months)}/>
 								</div>
 								<div className="holdClockandTask">
 									<Clock month='180' dbRef='Six' updateFunction={(months) => props.countdownComplete(months)}/>
-									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredActiveData} countdown={props.countdown} frequency='6' />
+									<MonthlyTask 
+										userSignedUpDate={props.userSignedUpDate} 
+										clickFunction={(e) => props.clickFunction(e)} 
+										removeFunction={(e) => props.removeFunction(e)} 
+										data={filteredActiveData} 
+										countdown={props.countdown} 
+										frequency='6'
+										monthStatus={props.sixMonthStatus} />
 								</div>
 								<div className="holdClockandTask">
 									<Clock month='360' dbRef='Twelve' updateFunction={(months) => props.countdownComplete(months)}/>
-									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredActiveData} countdown={props.countdown}frequency='12' />
+									<MonthlyTask 
+										userSignedUpDate={props.userSignedUpDate} 
+										clickFunction={(e) => props.clickFunction(e)} 
+										removeFunction={(e) => props.removeFunction(e)} 
+										data={filteredActiveData} 
+										countdown={props.countdown}
+										frequency='12' 
+										monthStatus={props.twelveMonthStatus}/>
 								</div>
 							</div>
 							<h3 className="taskSection__header">You've cleaned these, congrats!</h3>
