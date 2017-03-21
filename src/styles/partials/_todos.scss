@@ -1,3 +1,13 @@
+main {
+	display: none;
+}
+
+main.showMain {
+	display: block;
+	max-width: 1200px;
+	margin: 20px auto;
+}
+
 .holdAllTasks {
 	display: flex;
 	flex-direction:column;

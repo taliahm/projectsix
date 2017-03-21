@@ -24,17 +24,20 @@ export default class Footer extends React.Component{
 	render() {
 		let footer = ' '
 		if(this.state.show === true){
-			footer = ( <div className="overlayFooter"><a onClick={this.hideFooter} href="#"><i className="fa fa-times" aria-hidden="true"></i></a> 
+			footer = ( <div className="overlayFooter">
 					   		<div className="innerFooter">
-								<p>Created by Talia Harrison-Marcassa at HackerYou</p>
+					   			<div className="closeForm">
+					   			<a onClick={this.hideFooter} href="#"><i className="fa fa-times" aria-hidden="true"></i></a> 
+					   			</div>
+								<p>Created by Talia Harrison-Marcassa at HackerYou.</p>
 								<p>This site was created using React Js!</p>
 								<p>Thank you to the Noun Project for their icons!</p>
-								<p>Thank you to Subtle Patterns for their background pattern</p>
+								<p>Thank you to Subtle Patterns for their background pattern.</p>
 					   		</div>
 					   </div>)
 		}
 		return (
-				<div><a onClick={this.showFooter} href="#">Credits</a>
+				<div><a onClick={this.showFooter} href="#" className="footerTag">Credits</a>
 					{footer}
 				</div>
 

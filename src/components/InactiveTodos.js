@@ -3,6 +3,10 @@ import React from 'react';
 export default (props) => {
 	const allData = props.todos;
 	const filteredData = [ ];
+	let statusMessage = ''
+	if(props.lengthStatus === 'empty') {
+		statusMessage = (<div className="emptyStatusMessage"><p>Tasks that you've indicated don't apply to you will appear here.</p></div>)
+	}
 	for(let key in allData) {
 		if (allData[key].status === 'inactive') {
 			filteredData.push(allData[key]);
@@ -19,9 +23,12 @@ export default (props) => {
 				)
 			})
 	return (
-		 <ul className="inactiveList"> 
-		 {displayData}
-		</ul>
+		<div>
+			 <ul className="inactiveList"> 
+				 {statusMessage}
+				 {displayData}
+			</ul>
+		</div>
 		)
 	}
 

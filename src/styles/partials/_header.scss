@@ -1,0 +1,147 @@
+//Adding todos bit and sign out button
+.mainHeader {
+	display: flex;
+	justify-content: space-between;
+}
+
+.signOutSection {
+	display: flex;
+}
+.signOutSection p {
+	font-family: $cursive;
+	font-size: 2rem;
+	margin-right:10px;
+}
+.signOutSection__signOutBtn {
+	@include btnStyles($white, $blue);
+	flex-shrink: 0;
+	margin: auto;
+}
+
+
+
+//HEADER STYLING
+header {
+	background: $blue;
+	padding: 20px 10px 30px 10px;
+	line-height: 1.4;
+	text-align: center;
+}
+header h1 {
+	color: $white;
+	font-family: $cursive;
+	letter-spacing: 2px;
+	text-shadow: 1px 1px 1px grey;
+	font-size: 5.5rem;
+	margin-bottom: 30px;
+	margin-top:30px;
+}
+
+header h2, header h4 {
+	color: $otherGreen;
+}
+
+header h2 {
+	font-size: 2.5rem;
+}
+
+header h4 {
+	font-size: 2rem;
+}
+.userAction {
+	display:none;
+}
+
+.showUserAction {
+	display: flex;
+	justify-content:center;
+	padding-top:50px;
+}
+
+.userAuth__title, .userAuth__instructions {
+	margin:0;
+	color:$surpriseGreen;
+	text-align: center;
+}
+
+.userAuth__instructions{
+	font-size: 2rem;
+	margin-bottom:20px;
+}
+
+
+
+.showUserAction .btn {
+	@include btnStyles($white, $blue)
+	// text-transform: uppercase;
+}
+
+.showUserAction .btn:hover {
+	background: darken($blue, 5);
+}
+
+.userAuth {
+	display: none;
+}
+
+.userAuth__instructions span {
+	display: block;
+}
+
+.userAuth__title {
+	font-size: 3rem;
+	margin-bottom: 40px;
+}
+
+.userAuth__title--big {
+	font-size: 3.2rem;
+	letter-spacing: 1.5px;
+}
+
+.userAuth__title span {
+	display: block;
+	font-size: 2.9rem;
+}
+
+.show {
+	display: block;
+	max-width:40%;
+	margin: 0 auto;
+}
+.formWrap {
+	margin-top: 40px;
+	display: flex;
+	flex-direction:column;
+	// max-width:40%;
+	align-items: center;
+	padding: 40px 20px 40px 20px;
+	background: lighten($blue, 10);
+	border-radius: 10px;
+}
+
+.formWrap label {
+	// text-transform: uppercase;
+	color: $otherGreen;	
+	font-size: 2rem;
+	margin-bottom:10px;
+}
+
+.formWrap .formWrap__textInput {
+	width:60%;
+	background: none;
+	background: white;
+	border:none;
+	padding: 10px;
+	font-size: 1.4rem;
+	margin-bottom: 25px;
+	border-radius: 5px;
+}
+
+.userAuth__submitBtn {
+	@include btnStyles($blue, $surpriseGreen)
+	padding: 10px 40px;
+	text-transform: uppercase;
+	margin-top:10px;
+}
+
+
