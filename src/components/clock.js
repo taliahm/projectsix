@@ -7,14 +7,14 @@ export default class Clock extends React.Component {
 		this.timerEnds = this.timerEnds.bind(this)
 		firebase.auth().onAuthStateChanged((user) => {
 			if(user) {
-				console.log('this is where timer would start again?')
+				// console.log('this is where timer would start again?')
 				const dbRefForDate = firebase.database().ref(`users/${user.uid}/signUpDate${this.props.dbRef}`)
 				this.state.userUID = user.uid //this is also not cool
 				dbRefForDate.once('value').then((data) => {
 					const userSignUpData = data.val()
 					// console.log(userSignUpData)
 					for (let key in userSignUpData) {
-						console.log(userSignUpData[key])
+						// console.log(userSignUpData[key])
 						const signUpDate = userSignUpData[key]
 						this.state.signUpDate = signUpDate //this is not cool
 						this.runTheTimer()
@@ -37,7 +37,7 @@ export default class Clock extends React.Component {
 		}
 	}
 	runTheTimer() {
-		console.log('MOUNTED MOFO')
+		// console.log('MOUNTED MOFO')
 		//!update state to reference it'w own month
 		if(this.state.signUpDate != ''){
 			const currentDate = new Date()
@@ -73,7 +73,7 @@ export default class Clock extends React.Component {
 			
 			this.tick = () => {
 				if(this.state.totalTime.days <= 0 && this.state.totalTime.hours <= 0) {
-					console.log(this.timerID)
+					// console.log(this.timerID)
 					clearInterval(this.timerID)
 					this.timerEnds()
 				}

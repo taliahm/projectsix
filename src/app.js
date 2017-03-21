@@ -105,7 +105,13 @@ class App extends React.Component {
 				loading: true,
 				ticking: '',
 				totalTime: '',
-				userUIDApp: ''
+				userUIDApp: '',
+				threeMonthStatus: '',
+				sixMonthStatus: '', 
+				twelveMonthStatus: '',
+				threeMonthCompletedStatus: '',
+				sixMonthCompletedStatus: '',
+				twelveMonthCompletedStatus: ''
 		}
 	}
 	componentDidMount() {
@@ -130,12 +136,92 @@ class App extends React.Component {
 							inactiveToDoList.push(stateToDoList[key])
 						}
 					}
+					//creating Arrays of Active to dos by month
+					const threeMonthActive = []
+					const sixMonthActive = []
+					const twelveMonthActive = []
+					activeToDoList.map((item) => {
+						if(item.frequency === '3'){
+							threeMonthActive.push(item)
+						}
+						else if(item.frequency === '6'){
+							sixMonthActive.push(item)
+						}
+						else if(item.frequency === '12') {
+							twelveMonthActive.push(item)
+						}
+					})
+					//setting state for active to dos
+					let threeMonthEmpty = ''
+					let sixMonthEmpty = ''
+					let twelveMonthEmpty = ''
+					if(threeMonthActive.length > 0){
+						threeMonthEmpty = 'full'
+					}
+					else if(threeMonthActive.length === 0) {
+						threeMonthEmpty = 'empty'
+					}
+					if(sixMonthActive.length > 0){
+						sixMonthEmpty = 'full'
+					}
+					else if(sixMonthActive.length === 0) {
+						sixMonthEmpty = 'empty'
+					}
+					if(twelveMonthActive.length > 0){
+						twelveMonthEmpty = 'full'
+					}
+					else if(twelveMonthActive.length === 0) {
+						twelveMonthEmpty = 'empty'
+					}
+					//creating Arrays for Completed to dos by month
+					const threeMonthCompleted = []
+					const sixMonthCompleted = []
+					const twelveMonthCompleted = []
+					completedToDoList.map((item) => {
+						if(item.frequency === '3'){
+							threeMonthCompleted.push(item)
+						}
+						else if(item.frequency === '6'){
+							sixMonthCompleted.push(item)
+						}
+						else if(item.frequency === '12') {
+							twelveMonthCompleted.push(item)
+						}
+					})
+					//setting state for completed to dos!
+					let threeMonthEmptyCompleted = ''
+					let sixMonthEmptyCompleted = ''
+					let twelveMonthEmptyCompleted = ''
+					if(threeMonthCompleted.length > 0){
+						threeMonthEmptyCompleted = 'full'
+					}
+					else if(threeMonthCompleted.length === 0) {
+						threeMonthEmptyCompleted = 'empty'
+					}
+					if(sixMonthCompleted.length > 0){
+						sixMonthEmptyCompleted = 'full'
+					}
+					else if(sixMonthCompleted.length === 0) {
+						sixMonthEmptyCompleted = 'empty'
+					}
+					if(twelveMonthCompleted.length > 0){
+						twelveMonthEmptyCompleted = 'full'
+					}
+					else if(twelveMonthCompleted.length === 0) {
+						twelveMonthEmptyCompleted = 'empty'
+					}
 				this.setState({
 					todos: stateToDoList, 
 					userUIDApp: user.uid,
 					activeToDos: activeToDoList,
 					completedToDos: completedToDoList,
-					inactiveToDos: inactiveToDoList
+					inactiveToDos: inactiveToDoList,
+					threeMonthStatus: threeMonthEmpty,
+					sixMonthStatus: sixMonthEmpty, 
+					twelveMonthStatus: twelveMonthEmpty,
+					threeMonthCompletedStatus: threeMonthEmptyCompleted,
+					sixMonthCompletedStatus: sixMonthEmptyCompleted,
+					twelveMonthCompletedStatus: twelveMonthEmptyCompleted,
 					})
 				}
 				this.mainContent.classList.add('showMain')
@@ -394,15 +480,14 @@ class App extends React.Component {
 									 removeFunction={this.deactivateToDo} 
 									 todos={this.state.todos}
 									 activeToDos={this.state.activeToDos} 
-									 status='completed' />
-						<ActiveTodos userSignedUpDate={this.state.signUpDate} 
-									 clickFunction={this.statusUpdate} 
-									 countdownComplete={this.countdownComplete}
-									 addToDo={this.reactivateToDo} 
-									 removeFunction={this.deactivateToDo} 
-									 todos={this.state.todos}
-									 activeToDos={this.state.completedToDos} 
-									 status='completed' />
+									 status='completed'
+									 threeMonthStatus={this.state.threeMonthStatus} 
+									 sixMonthStatus={this.state.sixMonthStatus}
+									 twelveMonthStatus={this.state.twelveMonthStatus}
+									 threeMonthCompletedStatus={this.state.threeMonthCompletedStatus}
+									 sixMonthCompletedStatus={this.state.sixMonthCompletedStatus}
+									 twelveMonthCompletedStatus={this.state.twelveMonthCompletedStatus}
+									/>
 						<h2>You've indicated these do not apply to you</h2>
 						<InactiveTodos clickFunction={this.statusUpdate} 
 									   addToDo={this.reactivateToDo} 
