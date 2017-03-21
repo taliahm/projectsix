@@ -336,7 +336,7 @@ class App extends React.Component {
 							const updatesRefresh = { }
 							updatesRefresh[`${key}`] = actualRefresh[key]
 							newdbRefRefreshTodos.update(updatesRefresh)
-							
+
 						}
 					}
 					// if(actualRefresh[key].status === 'completed') {
@@ -359,22 +359,27 @@ class App extends React.Component {
 			<div>
 				<Header setStateonSignUp={() => this.loadTodos()} showMainContent={() => this.showMainContent()}/>
 				<main ref={(main) => {this.mainContent = main}}>
-					<button onClick={this.signOut}>Sign OUT</button>
-					<CreateTodo  userUIDCreate={this.state.userUIDApp}/>
-					<h2>All Your To Dos:</h2>
-					<div>{this.state.totalTime.days}{this.state.totalTime.seconds}</div>
-					<ActiveTodos userSignedUpDate={this.state.signUpDate} 
-								 clickFunction={this.statusUpdate} 
-								 countdownComplete={this.countdownComplete}
-								 addToDo={this.reactivateToDo} 
-								 removeFunction={this.deactivateToDo} 
-								 todos={this.state.todos} 
-								 status='completed' />
-					<h2>You've indicated these do not apply to you</h2>
-					<InactiveTodos clickFunction={this.statusUpdate} 
-								   addToDo={this.reactivateToDo} 
-								   removeFunction={this.deactivateToDo} 
-								   todos={this.state.todos} />
+					<section className="mainHeader">
+						<div className="signOutSection">
+							<p>Done Cleaning?</p>
+							<button className="signOutSection__signOutBtn" onClick={this.signOut}>Sign out</button>
+						</div>
+						<CreateTodo  userUIDCreate={this.state.userUIDApp}/>
+					</section>
+					<section className="holdAllTasks">
+						<ActiveTodos userSignedUpDate={this.state.signUpDate} 
+									 clickFunction={this.statusUpdate} 
+									 countdownComplete={this.countdownComplete}
+									 addToDo={this.reactivateToDo} 
+									 removeFunction={this.deactivateToDo} 
+									 todos={this.state.todos} 
+									 status='completed' />
+						<h2>You've indicated these do not apply to you</h2>
+						<InactiveTodos clickFunction={this.statusUpdate} 
+									   addToDo={this.reactivateToDo} 
+									   removeFunction={this.deactivateToDo} 
+									   todos={this.state.todos} />
+					</section>
 				</main>
 				<Footer />
 			</div>

@@ -104,29 +104,37 @@ export default class Header extends React.Component {
 		return (
 				<div>
 				<header>
-					<h1>Clean It!</h1>
-					<h2>Can't remember what you should be cleaning, no problem, we do.</h2>
+					<h1>You should be cleaning!</h1>
+					<h2>Can't remember what you should be cleaning? No problem, we do.</h2>
 					<h4>The dirt will win, don't give up the good fight!</h4>
 				</header>
 				<section className="userAction" ref={(section) => {this.userAction = section}}>
-					<button onClick={this.showSignIn}>Have an account? Sign In!</button>
-					<button onClick={this.showSignUp}>Need an account? Sign up!</button> 
+					<button className="btn btn--showSignIn" onClick={this.showSignIn}>Have an account? Sign In!</button>
+					<button className="btn btn--showSignup" onClick={this.showSignUp}>Need an account? Sign up!</button> 
 				</section>
-					<form className="signUp" id="signUp" onSubmit={this.signUp} ref={(form) => { this.formSignUp = form }}>
-						<label htmlFor="email">Please enter your email:</label>
-						<input name="email" onChange={this.handleChange} id="email" type="email"/>
-						<label htmlFor="password">Please enter your password:</label>
-						<input name="password" onChange={this.handleChange} type="password" id="password"/>
-						<label htmlFor="confirmPassword">Please confirm your password:</label>
-						<input name="confirm" onChange={this.handleChange} type="password" id="confirmPassword"/>
-						<input type="submit" value="Submit" onClick={this.signUp}/>
+					<form className="signUp userAuth" id="signUp" onSubmit={this.signUp} ref={(form) => { this.formSignUp = form }}>
+						<div className="formWrap">
+							<h3 className="userAuth__title">Enter your email and choose a password<span> to sign up!</span></h3>
+							<label htmlFor="email">Please enter your email:</label>
+							<input className="formWrap__textInput" name="email" onChange={this.handleChange} id="email" type="email"/>
+							<label htmlFor="password">Please enter a password:</label>
+							<input className="formWrap__textInput" name="password" onChange={this.handleChange} type="password" id="password"/>
+							<label htmlFor="confirmPassword">Please confirm your password choice:</label>
+							<input className="formWrap__textInput" name="confirm" onChange={this.handleChange} type="password" id="confirmPassword"/>
+							<p className="userAuth__instructions">One click away from cleaning bliss!<span> Click submit to complete the sign up process</span></p>
+							<input className="userAuth__submitBtn" type="submit" value="Submit" onClick={this.signUp}/>
+						</div>
 					</form>
-					<form className="signIn" id="signIn" onSubmit={this.signIn} ref={(form) => { this.formSignIn = form }}>
-						<label htmlFor="email">Please enter your email:</label>
-						<input name="email" onChange={this.handleChange} id="email" type="email"/>
-						<label htmlFor="password">Please enter your password:</label>
-						<input name="password" onChange={this.handleChange} type="password" id="password"/>
-						<input type="submit" value="Sign In" onClick={this.signIn}/>
+					<form className="signIn userAuth" id="signIn" onSubmit={this.signIn} ref={(form) => { this.formSignIn = form }}>
+						<div className="formWrap">
+							<h3 className="userAuth__title userAuth__title--big">Welcome back! <span>You know the drill:</span></h3>
+							<label htmlFor="email">Enter your email:</label>
+							<input className="formWrap__textInput" name="email" onChange={this.handleChange} id="email" type="email"/>
+							<label htmlFor="password">Enter your password:</label>
+							<input className="formWrap__textInput" name="password" onChange={this.handleChange} type="password" id="password"/>
+							<p className="userAuth__instructions">Planning to clean today? Do it!</p>
+							<input className="userAuth__submitBtn" type="submit" value="Sign In" onClick={this.signIn}/>
+						</div>
 					</form>
 				</div>
 			)

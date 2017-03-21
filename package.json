@@ -25,6 +25,7 @@
     "vinyl-source-stream": "^1.1.0"
   },
   "dependencies": {
+    "react-addons-css-transition-group": "^15.4.2",
     "react-count-down": "^1.1.0",
     "react-countdown-clock": "^1.1.0",
     "sweetalert-react": "^0.4.9"

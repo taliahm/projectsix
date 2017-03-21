@@ -2,6 +2,26 @@ $white: #FDFDFD;
 $purple: #C3ACCE;
 $lightBlue: #C6DBF0;
 $medBlue: #AED1E6;
-$blue: #A0C4E2;
+$blue: #2D3A65;
 $surpriseGreen: #52F9D0;
+// $otherGreen: #8defaf;
+$otherGreen: #a5ffde;
 $black: #050505;
+
+$cursive: 'Pacifico', cursive;
+$sanSerif: 'Nunito', sans-serif;
+
+@mixin btnStyles($color, $bgColor) {
+	background: none;
+	background: lighten($bgColor, 10);
+	border:none;
+	margin: 0 10px;
+	padding: 10px 20px;
+	font-size: 1.7rem;
+	transition: all 0.3s ease-in;
+	color: $color;
+	border-radius: 10px;
+	&:hover {
+		background: darken($bgColor, 20);
+	}
+}

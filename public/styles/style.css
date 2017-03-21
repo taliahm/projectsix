@@ -126,26 +126,51 @@ body {
   background-image: url(../../assets/gplaypattern.png);
   background-attachment: fixed;
   color: #050505;
-  font-size: 1.2rem; }
+  font-size: 1.2rem;
+  font-family: "Nunito", sans-serif; }
 
-h1 {
-  color: #52F9D0;
-  font-family: cursive; }
-
-form.signIn {
-  display: none; }
-
-form.signUp {
-  display: none; }
-
-form.show {
-  display: flex; }
+h1, h2, h3, h4, h5, h6 {
+  margin: 0; }
 
 main {
   display: none; }
 
 main.showMain {
-  display: block; }
+  display: block;
+  max-width: 1200px;
+  margin: 20px auto; }
+
+.mainHeader {
+  display: flex;
+  justify-content: space-between; }
+
+.signOutSection {
+  display: flex; }
+
+.signOutSection p {
+  font-family: "Pacifico", cursive;
+  font-size: 2rem;
+  margin-right: 10px; }
+
+.signOutSection__signOutBtn {
+  background: none;
+  background: #3d4e88;
+  border: none;
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 1.7rem;
+  transition: all 0.3s ease-in;
+  color: #FDFDFD;
+  border-radius: 10px;
+  flex-shrink: 0;
+  margin: auto; }
+  .signOutSection__signOutBtn:hover {
+    background: #0e111e; }
+
+.holdAllTasks {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
 
 .holdActiveandCompleted {
   display: flex;
@@ -159,8 +184,12 @@ main.showMain {
   display: flex;
   justify-content: center; }
 
+.taskSection__header {
+  font-size: 4rem;
+  color: #2D3A65;
+  margin-bottom: 20px; }
+
 .holdClockandTask {
-  border: 1px solid red;
   width: 30%;
   display: flex;
   flex-direction: column;
@@ -169,7 +198,25 @@ main.showMain {
 
 .countdown {
   align-self: center;
-  text-align: center; }
+  text-align: center;
+  border: 1px solid #2D3A65;
+  padding: 10px;
+  color: #2D3A65;
+  border-radius: 5px;
+  width: 80%; }
+
+.countdown h4 {
+  margin-bottom: 7px;
+  font-size: 1.5rem; }
+
+.timeUnitWrap {
+  display: flex;
+  justify-content: space-around;
+  color: #08dda9; }
+
+.timeUnitWrap span {
+  display: block;
+  color: #2D3A65; }
 
 .monthlyList {
   list-style: none;
@@ -203,14 +250,140 @@ main.showMain {
 .monthlyList__label--completed .imgContain {
   width: 12%; }
 
+header {
+  background: #2D3A65;
+  padding: 20px 10px 30px 10px;
+  line-height: 1.4;
+  text-align: center; }
+
+header h1 {
+  color: #FDFDFD;
+  font-family: "Pacifico", cursive;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 1px grey;
+  font-size: 5.5rem;
+  margin-bottom: 30px;
+  margin-top: 30px; }
+
+header h2, header h4 {
+  color: #a5ffde; }
+
+header h2 {
+  font-size: 2.5rem; }
+
+header h4 {
+  font-size: 2rem; }
+
 .userAction {
   display: none; }
 
 .showUserAction {
-  display: flex; }
+  display: flex;
+  justify-content: center;
+  padding-top: 50px; }
+
+.userAuth__title, .userAuth__instructions {
+  margin: 0;
+  color: #52F9D0;
+  text-align: center; }
+
+.userAuth__instructions {
+  font-size: 2rem;
+  margin-bottom: 20px; }
+
+.showUserAction .btn {
+  background: none;
+  background: #3d4e88;
+  border: none;
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 1.7rem;
+  transition: all 0.3s ease-in;
+  color: #FDFDFD;
+  border-radius: 10px; }
+  .showUserAction .btn:hover {
+    background: #0e111e; }
+
+.showUserAction .btn:hover {
+  background: #253053; }
+
+.userAuth {
+  display: none; }
+
+.userAuth__instructions span {
+  display: block; }
+
+.userAuth__title {
+  font-size: 3rem;
+  margin-bottom: 40px; }
+
+.userAuth__title--big {
+  font-size: 3.2rem;
+  letter-spacing: 1.5px; }
+
+.userAuth__title span {
+  display: block;
+  font-size: 2.9rem; }
+
+.show {
+  display: block;
+  max-width: 40%;
+  margin: 0 auto; }
+
+.formWrap {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 20px 40px 20px;
+  background: #3d4e88;
+  border-radius: 10px; }
+
+.formWrap label {
+  color: #a5ffde;
+  font-size: 2rem;
+  margin-bottom: 10px; }
+
+.formWrap .formWrap__textInput {
+  width: 60%;
+  background: none;
+  background: white;
+  border: none;
+  padding: 10px;
+  font-size: 1.4rem;
+  margin-bottom: 25px;
+  border-radius: 5px; }
+
+.userAuth__submitBtn {
+  background: none;
+  background: #83fbdd;
+  border: none;
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 1.7rem;
+  transition: all 0.3s ease-in;
+  color: #2D3A65;
+  border-radius: 10px;
+  padding: 10px 40px;
+  text-transform: uppercase;
+  margin-top: 10px; }
+  .userAuth__submitBtn:hover {
+    background: #08dda9; }
+
+footer {
+  position: fixed;
+  bottom: 0; }
 
 .overlayFooter {
   position: absolute;
   bottom: 0;
   right: 0;
-  background: grey; }
+  background: grey;
+  z-index: 99; }
+
+.moveThis-enter {
+  transition: all 1s;
+  transform: scale(1); }
+
+.moveThis-enter-active {
+  transform: scale(0); }

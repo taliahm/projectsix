@@ -1,46 +1,50 @@
 import React from 'react';
-import Countdown from 'react-count-down';
-// import Clock from './clock.js';
+import CSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default (props) => {
-	const OPTIONS = { endDate: 'September 21 2017', prefix: 'until my birthday!'}
-	// const userSignedUp = new Date(props.userSignedUpDate)
-	// console.log(userSignedUp)
-	// const longerDate = Date('April 2 2017')
 	const byTimeArray = props.data.filter((item) => {
 		return item.frequency === props.frequency
-	});
+	})
 	return (
 		<ul className="monthlyList">
-				{byTimeArray.map((item, i) => {
+				{byTimeArray.map((item, i ) => {
 					let descriptionKey = item.description.replace(" ", "");
-					if(item.status === 'completed') {
-					return (
-							<li className="monthlyList__listItem monthlyList__listItem--completed" key={descriptionKey}>
-								<input name={item.description} checked
-									   onChange={(e)=> props.clickFunction(e)} 
-									   type="checkbox" 
-									   id={`${item.description}`}/>
-								<label className="monthlyList__label monthlyList__label--completed" htmlFor={`${item.description}`}>
-									<div className="imgContain"><img src="../../assets/checked.png" alt=""/></div>
-									<span>{item.description}</span>
-								</label>
-							</li>
-						)
-					}
-					else {
+					 if(item.status === 'completed') {
 						return (
-								<li className="monthlyList__listItem monthlyList__listItem--active" key={descriptionKey}>
-									<input name={item.description}
+								<li className="monthlyList__listItem monthlyList__listItem--completed" key={descriptionKey}>
+									<input name={item.description} checked
 										   onChange={(e)=> props.clickFunction(e)} 
 										   type="checkbox" 
 										   id={`${item.description}`}/>
-									<label className="monthlyList__label monthlyList__label--active" htmlFor={`${item.description}`}>
-										<div className="imgContain"><img src="../../assets/unchecked.png" alt=""/></div>
+									<label className="monthlyList__label monthlyList__label--completed" htmlFor={`${item.description}`}>
+										<div className="imgContain"><img src="../../assets/checked.png" alt=""/></div>
 										<span>{item.description}</span>
 									</label>
-									<a className="monthlyList__tag" onClick={(e) => props.removeFunction(e)} className={item.description} name={item.description} href="#">Does Not Apply to Me</a>
 								</li>
+							)
+						}
+					else {
+						return (
+								
+									<li className="monthlyList__listItem monthlyList__listItem--active" key={descriptionKey}>
+										<CSSTransitionGroup
+											component="span"
+											className="moveThis"
+											transitionName="removeTodo"
+											transitionEnterTimeout={1000}
+											transitionLeaveTimeout={1000}>	
+										<input name={item.description}
+											   onChange={(e)=> props.clickFunction(e)} 
+											   type="checkbox" 
+											   id={`${item.description}`}/>
+									   
+										<label className="monthlyList__label monthlyList__label--active" htmlFor={`${item.description}`}>
+											<div className="imgContain"><img src="../../assets/unchecked.png" alt=""/></div>
+											<span>{item.description}</span>
+										</label>
+										<a className="monthlyList__tag" onClick={(e) => props.removeFunction(e)} className={item.description} name={item.description} href="#">Does Not Apply to Me</a>
+									</CSSTransitionGroup>
+									</li>
 							)
 					}
 				})}
