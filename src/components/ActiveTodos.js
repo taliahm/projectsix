@@ -31,7 +31,8 @@ export default (props) => {
 										data={filteredActiveData} 
 										countdown={props.countdown} 
 										frequency='3' 
-										monthStatus={props.threeMonthStatus}/>
+										monthStatus={props.threeMonthStatus}
+										statusOfTask='active'/>
 									<Clock month='90' dbRef='Three' updateFunction={(months) => props.countdownComplete(months)}/>
 								</div>
 								<div className="holdClockandTask">
@@ -43,7 +44,8 @@ export default (props) => {
 										data={filteredActiveData} 
 										countdown={props.countdown} 
 										frequency='6'
-										monthStatus={props.sixMonthStatus} />
+										monthStatus={props.sixMonthStatus} 
+										statusOfTask='active'/>
 								</div>
 								<div className="holdClockandTask">
 									<Clock month='360' dbRef='Twelve' updateFunction={(months) => props.countdownComplete(months)}/>
@@ -54,25 +56,52 @@ export default (props) => {
 										data={filteredActiveData} 
 										countdown={props.countdown}
 										frequency='12' 
-										monthStatus={props.twelveMonthStatus}/>
+										monthStatus={props.twelveMonthStatus}
+										statusOfTask='active'/>
 								</div>
 							</div>
 							<h3 className="taskSection__header">You've cleaned these, congrats!</h3>
 							<div className="completedTasks taskSection">
 								<div className="holdClockandTask">
-									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredCompleteData} countdown='upclock' frequency='3' />
+									<h6>Good job cleaning these, don't forget you'll have to clean these again in</h6>
+									<Clock month='90' dbRef='Three' updateFunction={(months) => props.countdownComplete(months)}/>
+									<MonthlyTask 
+												 userSignedUpDate={props.userSignedUpDate} 
+												 clickFunction={(e) => props.clickFunction(e)} 
+												 removeFunction={(e) => props.removeFunction(e)} 
+												 data={filteredCompleteData} 
+												 frequency='3' 
+												 monthStatus={props.threeMonthCompletedStatus}
+												 statusOfTask='completed'/>
 								</div>
 								<div className="holdClockandTask">
-									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredCompleteData} countdown='upclock' frequency='6' />
+									<h5>You're killing it! You've cleaned everything you need to, buuut you will have to clean some stuff again in</h5>
+									<Clock month='180' dbRef='Six' updateFunction={(months) => props.countdownComplete(months)}/>
+									<MonthlyTask 
+												 userSignedUpDate={props.userSignedUpDate} 
+												 clickFunction={(e) => props.clickFunction(e)} 
+												 removeFunction={(e) => props.removeFunction(e)} 
+												 data={filteredCompleteData} 
+												 frequency='6' 
+												 monthStatus={props.sixMonthCompletedStatus}
+												 statusOfTask='completed'/>
 								</div>
 								<div className="holdClockandTask">
-									<MonthlyTask userSignedUpDate={props.userSignedUpDate} clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredCompleteData} countdown='upclock' frequency='12' />
+									<h6>Get ready to clean again in</h6>
+									<Clock month='360' dbRef='Twelve' updateFunction={(months) => props.countdownComplete(months)}/>
+									<MonthlyTask 
+												 userSignedUpDate={props.userSignedUpDate} 
+												 clickFunction={(e) => props.clickFunction(e)} 
+												 removeFunction={(e) => props.removeFunction(e)} 
+												 data={filteredCompleteData} 
+												 frequency='12' 
+												 monthStatus={props.twelveMonthCompletedStatus}
+												 statusOfTask='completed'/>
 								</div>
 							</div>
 						</section>		
 				)
 	}
-
 
 
 

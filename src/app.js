@@ -108,7 +108,10 @@ class App extends React.Component {
 				userUIDApp: '',
 				threeMonthStatus: '',
 				sixMonthStatus: '', 
-				twelveMonthStatus: ''
+				twelveMonthStatus: '',
+				threeMonthCompletedStatus: '',
+				sixMonthCompletedStatus: '',
+				twelveMonthCompletedStatus: ''
 		}
 	}
 	componentDidMount() {
@@ -133,6 +136,7 @@ class App extends React.Component {
 							inactiveToDoList.push(stateToDoList[key])
 						}
 					}
+					//creating Arrays of Active to dos by month
 					const threeMonthActive = []
 					const sixMonthActive = []
 					const twelveMonthActive = []
@@ -147,6 +151,7 @@ class App extends React.Component {
 							twelveMonthActive.push(item)
 						}
 					})
+					//setting state for active to dos
 					let threeMonthEmpty = ''
 					let sixMonthEmpty = ''
 					let twelveMonthEmpty = ''
@@ -168,6 +173,43 @@ class App extends React.Component {
 					else if(twelveMonthActive.length === 0) {
 						twelveMonthEmpty = 'empty'
 					}
+					//creating Arrays for Completed to dos by month
+					const threeMonthCompleted = []
+					const sixMonthCompleted = []
+					const twelveMonthCompleted = []
+					completedToDoList.map((item) => {
+						if(item.frequency === '3'){
+							threeMonthCompleted.push(item)
+						}
+						else if(item.frequency === '6'){
+							sixMonthCompleted.push(item)
+						}
+						else if(item.frequency === '12') {
+							twelveMonthCompleted.push(item)
+						}
+					})
+					//setting state for completed to dos!
+					let threeMonthEmptyCompleted = ''
+					let sixMonthEmptyCompleted = ''
+					let twelveMonthEmptyCompleted = ''
+					if(threeMonthCompleted.length > 0){
+						threeMonthEmptyCompleted = 'full'
+					}
+					else if(threeMonthCompleted.length === 0) {
+						threeMonthEmptyCompleted = 'empty'
+					}
+					if(sixMonthCompleted.length > 0){
+						sixMonthEmptyCompleted = 'full'
+					}
+					else if(sixMonthCompleted.length === 0) {
+						sixMonthEmptyCompleted = 'empty'
+					}
+					if(twelveMonthCompleted.length > 0){
+						twelveMonthEmptyCompleted = 'full'
+					}
+					else if(twelveMonthCompleted.length === 0) {
+						twelveMonthEmptyCompleted = 'empty'
+					}
 				this.setState({
 					todos: stateToDoList, 
 					userUIDApp: user.uid,
@@ -176,7 +218,10 @@ class App extends React.Component {
 					inactiveToDos: inactiveToDoList,
 					threeMonthStatus: threeMonthEmpty,
 					sixMonthStatus: sixMonthEmpty, 
-					twelveMonthStatus: twelveMonthEmpty
+					twelveMonthStatus: twelveMonthEmpty,
+					threeMonthCompletedStatus: threeMonthEmptyCompleted,
+					sixMonthCompletedStatus: sixMonthEmptyCompleted,
+					twelveMonthCompletedStatus: twelveMonthEmptyCompleted,
 					})
 				}
 				this.mainContent.classList.add('showMain')
@@ -438,7 +483,11 @@ class App extends React.Component {
 									 status='completed'
 									 threeMonthStatus={this.state.threeMonthStatus} 
 									 sixMonthStatus={this.state.sixMonthStatus}
-									 twelveMonthStatus={this.state.twelveMonthStatus}/>
+									 twelveMonthStatus={this.state.twelveMonthStatus}
+									 threeMonthCompletedStatus={this.state.threeMonthCompletedStatus}
+									 sixMonthCompletedStatus={this.state.sixMonthCompletedStatus}
+									 twelveMonthCompletedStatus={this.state.twelveMonthCompletedStatus}
+									/>
 						<h2>You've indicated these do not apply to you</h2>
 						<InactiveTodos clickFunction={this.statusUpdate} 
 									   addToDo={this.reactivateToDo} 

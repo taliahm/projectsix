@@ -53,9 +53,14 @@ export default (props) => {
 		</ul>
 		)
 	}
-	else if (props.monthStatus === 'empty'){
+	else if (props.monthStatus === 'empty' && props.statusOfTask === 'active'){
 		return(
-				<div>get cleaning!</div>
+				<div>Excellent work, you've completed the tasks in this time bracket, grab a book!</div>
+			)
+	}
+	else if (props.monthStatus === 'empty' && props.statusOfTask === 'completed'){
+		return(
+				<div>No completed tasks, maybe, start cleaning?</div>
 			)
 	}
 	return (
