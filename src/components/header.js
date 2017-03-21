@@ -9,7 +9,9 @@ export default class Header extends React.Component {
 			email:" ",
 			password:" ",
 			confirm:" ",
-			showForm: ''
+			showForm: '',
+			showAlert: false,
+			showAlertText: ''
 		}
 		this.signIn = this.signIn.bind(this);
 		this.handleChange = this.handleChange.bind(this);
@@ -46,40 +48,133 @@ export default class Header extends React.Component {
 		console.log('signing in')
 		firebase.auth()
 			.signInWithEmailAndPassword(this.state.email, this.state.password)
-			.then((userData) => {
-				console.log(userData)
+			.catch((error) => {
+				console.log(error.code)
+				let alertMessage = ''
+				if(error.code === 'auth/invalid-email') {
+					alertMessage = 'Please check you have entered the correct email and attempt to sign in again'
+					this.setState({
+						showAlertText: alertMessage
+					})
+				}
+				else if(error.code === 'auth/user-disabled' || error.code === 'auth/user-not-found') {
+					alertMessage = 'Sorry, for some reason we do not have a record of your email, please sign up'
+					this.setState({
+						showAlertText: alertMessage,
+						showForm: 'signUp',
+					})
+					this.formSignIn.classList.remove('show')
+					this.formSignUp.classList.add('show')
+				}
+				else if(error.code === 'auth/wrong-password') {
+						alertMessage = 'Looks like your password is wrong, try again please!'
+						this.setState({
+							showAlert: true,
+							showAlertText: alertMessage, 
+							password: '',
+							confirm: ''
+						})
+						let passInput = document.getElementById('signInPassword')
+						console.log(passInput)
+						passInput.value = ''
+				}
+				else {
+					alertMessage = 'We are so sorry, something went wrong, please try again!'
+				}
 				this.setState({
-					signedIn: true,
-					email: '',
-					password: '',
-					showForm: ''
-				})
-				document.getElementById('signIn').reset();
-				this.props.showMainContent()
-				this.formSignIn.classList.remove('show')
+						showAlert: true,
+						showAlertText: alertMessage
+					})
 			})
-	}
+			.then((userData) => {
+				if(userData) {
+					this.setState({
+						signedIn: true,
+						email: '',
+						password: '',
+						showForm: '',
+						showAlertText: ''
+					})
+					document.getElementById('signIn').reset();
+					this.props.showMainContent()
+					this.formSignIn.classList.remove('show')
+				}
+			})
+		}
+	
 	signUp(e) {
 		e.preventDefault();
 		console.log('sign up')
 		if(this.state.password === this.state.confirm) {
 			firebase.auth()
 				.createUserWithEmailAndPassword(this.state.email, this.state.password)
-				.then((userData) => {
-					console.log(userData)
+				.catch((error) => {
+					console.log('error error error')
+					console.log(error.code)
+					let alertMessage = ''
+					if(error.code === 'auth/email-already-in-use') {
+						alertMessage = 'Looks like you already have an account! Sign in to get cleaning!'
+						this.setState({
+								showForm: 'signUp',
+								showAlertText: alertMessage
+							})
+						this.formSignUp.classList.remove('show')
+						this.formSignIn.classList.add('show')
+					}
+					else if (error.code === 'auth/invalid-email') {
+						alertMessage = 'You\'ve entered an invalid email, please try again'
+					}
+					else if(error.code === 'auth/weak-password') {
+						alertMessage = 'You\'re password is not strong enough, please try again'
+						this.setState({
+							showAlertText: alertMessage, 
+							password: '',
+							confirm: ''
+						})
+						let passInput = document.getElementById('password')
+						let confirmInput = document.getElementById('confirmPassword')
+						console.log(passInput)
+						passInput.value = ''
+						confirmInput.value = ''
+					}
+					else {
+						alertMessage = 'We are so sorry, something went wrong, please try again!'
+					}
 					this.setState({
-						signedIn: true,
-						email: "",
-						password: "",
-						confirm: "",
-						showForm: ""
+						showAlert: true,
+						showAlertText: alertMessage
 					})
-					this.props.setStateonSignUp()
-					this.props.showMainContent()
 				})
-				document.getElementById('signUp').reset();
-				this.formSignUp.classList.remove('show')
+				.then((userData) => {
+					if(userData) {
+						this.setState({
+							signedIn: true,
+							email: "",
+							password: "",
+							confirm: "",
+							showForm: "",
+							showAlertText: ""
+						})
+						this.props.setStateonSignUp()
+						this.props.showMainContent()
+					document.getElementById('signUp').reset();
+					this.formSignUp.classList.remove('show')
+					}
+				})
 		}
+		else { let alertMessage = 'You\'re passwords did not match, please try again'
+						this.setState({
+							showAlert: true,
+							showAlertText: alertMessage, 
+							password: '',
+							confirm: ''
+						})
+						let passInput = document.getElementById('password')
+						let confirmInput = document.getElementById('confirmPassword')
+						console.log(passInput)
+						passInput.value = ''
+						confirmInput.value = ''
+			console.log('yo password do not match, check yo speeling')}
 	}
 	handleChange(e) {
 		this.setState({
@@ -122,7 +217,16 @@ export default class Header extends React.Component {
 							<label htmlFor="confirmPassword">Please confirm your password choice:</label>
 							<input className="formWrap__textInput" name="confirm" onChange={this.handleChange} type="password" id="confirmPassword"/>
 							<p className="userAuth__instructions">One click away from cleaning bliss!<span> Click submit to complete the sign up process</span></p>
-							<input className="userAuth__submitBtn" type="submit" value="Submit" onClick={this.signUp}/>
+							<input className="userAuth__submitBtn" type="submit" value="Submit" onClick={this.signUp} />
+							<SweetAlert
+							       show={this.state.showAlert}
+							       type="error"
+							       title="Oops! Something isn't quite right."
+							       confirmButtonColor='#2D3A65'
+							       text={this.state.showAlertText}
+							       inputValue="Try Again"
+							       onConfirm={() => this.setState({ showAlert: false })}
+							     />
 						</div>
 					</form>
 					<form className="signIn userAuth" id="signIn" onSubmit={this.signIn} ref={(form) => { this.formSignIn = form }}>
@@ -131,7 +235,7 @@ export default class Header extends React.Component {
 							<label htmlFor="email">Enter your email:</label>
 							<input className="formWrap__textInput" name="email" onChange={this.handleChange} id="email" type="email"/>
 							<label htmlFor="password">Enter your password:</label>
-							<input className="formWrap__textInput" name="password" onChange={this.handleChange} type="password" id="password"/>
+							<input className="formWrap__textInput" name="password" onChange={this.handleChange} type="password" id="signInPassword"/>
 							<p className="userAuth__instructions">Planning to clean today? Do it!</p>
 							<input className="userAuth__submitBtn" type="submit" value="Sign In" onClick={this.signIn}/>
 						</div>

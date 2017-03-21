@@ -119,6 +119,304 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   border: 0;
   padding: 0; }
 
+.formMakeToDo {
+  display: none; }
+
+.showFormMakeToDo {
+  display: flex;
+  position: absolute;
+  z-index: 99;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  flex-direction: column;
+  background: #FDFDFD;
+  padding: 20px;
+  border: 1px solid #52F9D0;
+  border-radius: 10px; }
+
+.closeForm {
+  align-self: flex-start; }
+
+.closeForm a i.fa-times {
+  text-decoration: none;
+  color: #52F9D0;
+  font-size: 2rem;
+  transition: all 0.3s ease-out;
+  transform: scale(1); }
+  .closeForm a i.fa-times:hover {
+    transform: scale(1.3); }
+
+.showFormMakeToDo h2 {
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 20px;
+  color: #2D3A65; }
+
+.showFormMakeToDo p {
+  text-align: center;
+  font-size: 1.7rem;
+  margin: 0 0 20px 0; }
+
+.showOverlay {
+  position: fixed;
+  background: rgba(253, 253, 253, 0.9);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 8; }
+
+.formList {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  align-items: center;
+  font-size: 1.7rem;
+  margin: 0 auto; }
+
+.formList li {
+  display: flex;
+  align-items: center; }
+
+.formList li h6 {
+  font-size: 1.7rem; }
+
+.formList input[type='radio'] ~ label {
+  margin-bottom: 5px; }
+
+.formList li:first-child {
+  margin-bottom: 10px; }
+
+.formList li:last-child {
+  align-self: center;
+  margin-top: 20px; }
+
+.formMakeToDo__submitBtn {
+  background: none;
+  background: #3d4e88;
+  border: none;
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 1.7rem;
+  transition: all 0.3s ease-in;
+  color: #FDFDFD;
+  border-radius: 10px; }
+  .formMakeToDo__submitBtn:hover {
+    background: #0e111e; }
+
+.holdCreateToDo {
+  display: flex; }
+
+.holdCreateToDo p {
+  font-family: "Pacifico", cursive;
+  font-size: 2rem;
+  margin-right: 10px; }
+
+.addToDoBtn {
+  background: none;
+  background: #3d4e88;
+  border: none;
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 1.7rem;
+  transition: all 0.3s ease-in;
+  color: #FDFDFD;
+  border-radius: 10px;
+  margin: auto;
+  flex-shrink: 0; }
+  .addToDoBtn:hover {
+    background: #0e111e; }
+
+.holdAllTasks {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.holdActiveandCompleted {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto; }
+
+.outerTaskSection {
+  background: rgba(255, 255, 255, 0.7);
+  margin-bottom: 40px;
+  padding: 30px;
+  position: relative; }
+
+.taskSection {
+  display: flex;
+  justify-content: center; }
+
+.taskSection__header {
+  font-size: 4rem;
+  color: #2D3A65;
+  margin-bottom: 20px;
+  text-align: center; }
+
+.holdClockandTask {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  min-height: 150px;
+  min-width: 300px;
+  border: 2px solid #2D3A65;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 0 10px 0 10px;
+  position: relative; }
+
+.holdClockandTask h4 {
+  text-align: center;
+  font-size: 1.7rem; }
+
+.monthlyList__message {
+  position: absolute;
+  z-index: 70;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #52F9D0;
+  display: flex;
+  padding: 20px; }
+
+.monthlyList__message--large {
+  position: absolute;
+  z-index: 80;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #2D3A65;
+  display: flex;
+  padding: 40px;
+  border: 3px #52F9D0 solid;
+  border-radius: 10px; }
+
+.monthlyList__messageText {
+  margin: auto;
+  text-align: center;
+  color: #2D3A65;
+  font-size: 1.8rem; }
+  .monthlyList__messageText span {
+    display: block;
+    font-family: "Pacifico", cursive;
+    font-size: 2.2rem; }
+
+.monthlyList__messageText--Large {
+  margin: auto;
+  text-align: center;
+  color: #FDFDFD;
+  font-size: 1.8rem; }
+  .monthlyList__messageText--Large span {
+    display: block;
+    font-family: "Pacifico", cursive;
+    font-size: 3rem;
+    color: #a5ffde; }
+
+.countdown {
+  align-self: center;
+  text-align: center;
+  margin: 0 auto;
+  color: #2D3A65;
+  border-radius: 5px;
+  width: 80%; }
+
+.countdownHeader {
+  margin-bottom: 7px;
+  font-size: 1.2rem;
+  color: #2D3A65;
+  text-align: center; }
+
+.timeUnitWrap {
+  display: flex;
+  justify-content: space-around;
+  color: #08dda9;
+  font-size: 1.7rem; }
+
+.timeUnitWrap span {
+  display: block;
+  color: #2D3A65; }
+
+.monthlyList {
+  list-style: none;
+  padding: 0; }
+
+.monthlyList__listItem {
+  display: flex; }
+
+.monthlyList__listItem input {
+  display: none; }
+
+.monthlyList__label {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  font-size: 1.8rem; }
+
+.monthlyList__tag {
+  display: block;
+  text-decoration: none;
+  color: grey;
+  font-size: .8rem;
+  align-self: center;
+  transform: scale(1);
+  transition: all 0.3s ease-out; }
+  .monthlyList__tag:hover {
+    color: #52F9D0;
+    transform: scale(1.2); }
+
+.monthlyList__label img {
+  max-width: 100%;
+  display: block;
+  flex-shrink: 0; }
+
+.monthlyList__label .imgContain {
+  margin-right: 10px;
+  flex-shrink: 0; }
+
+.monthlyList__label--active .imgContain {
+  width: 10%;
+  flex-shrink: 0; }
+
+.monthlyList__label--completed .imgContain {
+  width: 12%; }
+
+.holdInActive {
+  background: #FDFDFD;
+  width: 100%;
+  text-align: center;
+  padding: 30px 0; }
+
+.holdInActive h2 {
+  font-size: 2.5rem;
+  color: #2D3A65; }
+
+.inactiveList {
+  padding: 0;
+  margin: 0 auto;
+  width: 50%; }
+
+.inactiveList li {
+  display: flex; }
+
+.inactiveList input[type='checkbox'] {
+  display: none; }
+
+.monthlyList__tagInactive {
+  display: block;
+  text-decoration: none;
+  color: grey;
+  font-size: .8rem;
+  align-self: center;
+  transform: scale(1) translateX(0);
+  transition: all 0.3s ease-out; }
+  .monthlyList__tagInactive:hover {
+    color: #52F9D0;
+    transform: scale(1.2) translateX(10px); }
+
 html {
   font-size: 62.5%; }
 
@@ -166,89 +464,6 @@ main.showMain {
   margin: auto; }
   .signOutSection__signOutBtn:hover {
     background: #0e111e; }
-
-.holdAllTasks {
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-
-.holdActiveandCompleted {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 80%;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.7); }
-
-.taskSection {
-  display: flex;
-  justify-content: center; }
-
-.taskSection__header {
-  font-size: 4rem;
-  color: #2D3A65;
-  margin-bottom: 20px; }
-
-.holdClockandTask {
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  min-height: 150px;
-  min-width: 300px; }
-
-.countdown {
-  align-self: center;
-  text-align: center;
-  border: 1px solid #2D3A65;
-  padding: 10px;
-  color: #2D3A65;
-  border-radius: 5px;
-  width: 80%; }
-
-.countdown h4 {
-  margin-bottom: 7px;
-  font-size: 1.5rem; }
-
-.timeUnitWrap {
-  display: flex;
-  justify-content: space-around;
-  color: #08dda9; }
-
-.timeUnitWrap span {
-  display: block;
-  color: #2D3A65; }
-
-.monthlyList {
-  list-style: none;
-  padding: 0; }
-
-.monthlyList__listItem {
-  display: flex; }
-
-.monthlyList__listItem input {
-  display: none; }
-
-.monthlyList__label {
-  display: flex;
-  align-items: center;
-  width: 50%; }
-
-.monthlyList__tag {
-  display: block;
-  text-decoration: none; }
-
-.monthlyList__label img {
-  max-width: 100%;
-  display: block; }
-
-.monthlyList__label .imgContain {
-  margin-right: 10px; }
-
-.monthlyList__label--active .imgContain {
-  width: 10%; }
-
-.monthlyList__label--completed .imgContain {
-  width: 12%; }
 
 header {
   background: #2D3A65;
@@ -381,9 +596,25 @@ footer {
   background: grey;
   z-index: 99; }
 
-.moveThis-enter {
-  transition: all 1s;
+.monthList__listItemHolder {
+  width: 100%;
+  display: flex; }
+
+.listItemFades {
   transform: scale(1); }
 
-.moveThis-enter-active {
-  transform: scale(0); }
+.listItemFades-appear {
+  transition: all 0.5s ease-in;
+  transform: translateY(-50%);
+  opacity: 0; }
+
+.listItemFades-appear.listItemFades-appear-active {
+  transform: translateY(0);
+  opacity: 1; }
+
+.listItemFades-leave {
+  transform: scale(1); }
+
+.listItemFades-leave.listItemFades-leave-active {
+  transform: scale(2);
+  transition: all 5s; }

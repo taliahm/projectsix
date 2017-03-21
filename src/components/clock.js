@@ -108,7 +108,6 @@ export default class Clock extends React.Component {
 	render() {
 		return(
 			<div className="countdown">
-				<h4>You need to clean these in:</h4>
 				<div className="timeUnitWrap">
 					<div className='timeUnit'>{this.state.totalTime.days} <span>days</span></div>
 					<div className='timeUnit'>{this.state.totalTime.hours} <span>hours</span></div>

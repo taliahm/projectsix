@@ -1,0 +1,106 @@
+//show hide to do form
+.wrapCreateToDo {
+	// position: relative;
+}
+.formMakeToDo{
+	display: none;
+}
+.showFormMakeToDo {
+	display: flex;
+	position: absolute;
+	z-index: 99;
+	top: 10%;
+	left: 50%;
+	transform: translate(-50%, 50%);
+	flex-direction: column;
+	background: $white;
+	padding: 20px;
+	border: 1px solid $surpriseGreen;
+	border-radius: 10px;
+}
+
+.closeForm {
+	align-self: flex-start;
+}
+.closeForm a i.fa-times{
+	text-decoration: none;
+	color: $surpriseGreen;
+	font-size: 2rem;
+	transition: all 0.3s ease-out;
+	transform: scale(1);
+	&:hover {
+		transform: scale(1.3);
+	}
+}
+.showFormMakeToDo h2 {
+	font-size: 3rem;
+	text-align: center;
+	margin-top: 20px;
+	color: $blue;
+}
+
+.showFormMakeToDo p {
+	text-align: center;
+	font-size: 1.7rem;
+	margin:0 0 20px 0;
+}
+
+.showFormMakeToDo {}
+.showOverlay {
+	position: fixed;
+	background: transparentize($white, 0.1);
+	top:0;
+	bottom: 0;
+	left:0;
+	right:0;
+	z-index: 8;
+}
+
+.formList {
+	display: flex;
+	flex-direction: column;
+	padding:0;
+	align-items: center;
+	font-size: 1.7rem;
+	margin: 0 auto;
+}
+
+.formList li {
+	display: flex;
+	align-items: center;
+}
+
+.formList li h6 {
+	font-size: 1.7rem;
+}
+
+.formList input[type='radio'] ~ label {
+	margin-bottom: 5px;
+}
+.formList li:first-child {
+	margin-bottom: 10px;
+}
+
+.formList li:last-child {
+	align-self:center;
+	margin-top: 20px;
+}
+.formMakeToDo__submitBtn {
+	@include btnStyles($white, $blue)
+}
+.holdCreateToDo {
+	display: flex;
+}
+
+.holdCreateToDo p {
+	font-family: "Pacifico", cursive;
+	font-size: 2rem;
+	 margin-right: 10px;
+}
+
+
+.addToDoBtn {
+	@include btnStyles($white, $blue);
+	margin: auto;
+	flex-shrink: 0;
+}
