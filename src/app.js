@@ -98,6 +98,9 @@ class App extends React.Component {
 		this.state = {
 				// signUpDate: "",
 				todos: {},
+				activeToDos: [],
+				completedToDos: [],
+				inactiveToDos: [],
 				time: false,
 				loading: true,
 				ticking: '',
@@ -113,9 +116,26 @@ class App extends React.Component {
 				const dbList = data.val()
 				for (let garbageKey in dbList) {
 					const stateToDoList = dbList[garbageKey]
+					const activeToDoList = []
+					const completedToDoList = []
+					const inactiveToDoList = []
+					for(let key in stateToDoList) {
+						if(stateToDoList[key].status === 'active') {
+							activeToDoList.push(stateToDoList[key])
+						}
+						else if(stateToDoList[key].status === 'completed') {
+							completedToDoList.push(stateToDoList[key])
+						}
+						else if(stateToDoList[key].status === 'inactive') {
+							inactiveToDoList.push(stateToDoList[key])
+						}
+					}
 				this.setState({
 					todos: stateToDoList, 
-					userUIDApp: user.uid
+					userUIDApp: user.uid,
+					activeToDos: activeToDoList,
+					completedToDos: completedToDoList,
+					inactiveToDos: inactiveToDoList
 					})
 				}
 				this.mainContent.classList.add('showMain')
@@ -192,7 +212,7 @@ class App extends React.Component {
 					// console.log(dbToDoList)
 					for (let key in dbToDoList) {
 						const innerToDos = dbToDoList[key];
-						// console.log(dbToDoList[key])
+						console.log(dbToDoList[key])
 						this.setState({
 							todos: innerToDos
 						})
@@ -372,7 +392,16 @@ class App extends React.Component {
 									 countdownComplete={this.countdownComplete}
 									 addToDo={this.reactivateToDo} 
 									 removeFunction={this.deactivateToDo} 
-									 todos={this.state.todos} 
+									 todos={this.state.todos}
+									 activeToDos={this.state.activeToDos} 
+									 status='completed' />
+						<ActiveTodos userSignedUpDate={this.state.signUpDate} 
+									 clickFunction={this.statusUpdate} 
+									 countdownComplete={this.countdownComplete}
+									 addToDo={this.reactivateToDo} 
+									 removeFunction={this.deactivateToDo} 
+									 todos={this.state.todos}
+									 activeToDos={this.state.completedToDos} 
 									 status='completed' />
 						<h2>You've indicated these do not apply to you</h2>
 						<InactiveTodos clickFunction={this.statusUpdate} 
