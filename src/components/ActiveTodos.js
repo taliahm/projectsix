@@ -7,6 +7,11 @@ import Clock from './clock.js';
 export default (props) => {
 	const allData = props.todos;
 	// console.log(props.userSignedUpDate)
+	let allDone = ''
+	if(props.threeMonthStatus === 'empty' && props.sixMonthStatus === 'empty' && props.twelveMonthStatus === 'empty'){
+		console.log('all done')
+		allDone = (<div>You are the cleanest person ever </div>)
+	}
 	const filteredActiveData = [ ];
 	const filteredCompleteData = [ ];
 	for(let key in allData) {
@@ -20,10 +25,12 @@ export default (props) => {
 			// console.log(filteredCompleteData)
 		}
 	}
+
 			return (	<section className="holdActiveandCompleted">
 							<h3 className="taskSection__header">Get cleaning! You have a lot to do!</h3>
 							<div className="activeTasks taskSection">
 								<div className="holdClockandTask">
+								{allDone}
 									<MonthlyTask 
 										userSignedUpDate={props.userSignedUpDate} 
 										clickFunction={(e) => props.clickFunction(e)} 
