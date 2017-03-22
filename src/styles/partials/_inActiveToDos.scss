@@ -60,6 +60,14 @@
 		color: $surpriseGreen;
 		transform: scale(1.2);
 	}
+	@include bp('med') {
+		transform: scale(1) translateX(0);
+		transition: all 0.3s ease-in;
+		&:hover {
+			color: $surpriseGreen;
+			transform: scale(1) translateX(-10px);
+		}
+	}
 }
 
 .emptyStatusMessage {

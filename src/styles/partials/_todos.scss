@@ -99,7 +99,7 @@ main.showMain {
 
 .monthlyList__message--large {
 	position: absolute;
-	z-index: 80;
+	z-index: 1; //above other messages but below pop outs
 	top:0;
 	bottom: 0;
 	right:0;
@@ -233,6 +233,15 @@ main.showMain {
 	&:hover {
 		color: $surpriseGreen;
 		transform: scale(1.2);
+	}
+	@include bp('med'){
+		transform: scale(1) translateX(0);
+		transition: all 0.3s ease-in;
+		&:hover {
+			color: $surpriseGreen;
+			transform: scale(1) translateX(-5px);
+			// font-size: 0.9rem;
+		}
 	}
 }
 
