@@ -38,18 +38,15 @@ export default class Header extends React.Component {
 	}
 	displayUserAction() {
 		if(this.state.signedIn === false) {
-			console.log('show me some login options!')
 			this.userAction.classList.add('showUserAction')
 
 		}
 	}
 	signIn(e) {
 		e.preventDefault();
-		console.log('signing in')
 		firebase.auth()
 			.signInWithEmailAndPassword(this.state.email, this.state.password)
 			.catch((error) => {
-				console.log(error.code)
 				let alertMessage = ''
 				if(error.code === 'auth/invalid-email') {
 					alertMessage = 'Please check you have entered the correct email and attempt to sign in again'
@@ -75,7 +72,6 @@ export default class Header extends React.Component {
 							confirm: ''
 						})
 						let passInput = document.getElementById('signInPassword')
-						console.log(passInput)
 						passInput.value = ''
 				}
 				else {
@@ -104,13 +100,10 @@ export default class Header extends React.Component {
 	
 	signUp(e) {
 		e.preventDefault();
-		console.log('sign up')
 		if(this.state.password === this.state.confirm) {
 			firebase.auth()
 				.createUserWithEmailAndPassword(this.state.email, this.state.password)
 				.catch((error) => {
-					console.log('error error error')
-					console.log(error.code)
 					let alertMessage = ''
 					if(error.code === 'auth/email-already-in-use') {
 						alertMessage = 'Looks like you already have an account! Sign in to get cleaning!'
@@ -133,7 +126,6 @@ export default class Header extends React.Component {
 						})
 						let passInput = document.getElementById('password')
 						let confirmInput = document.getElementById('confirmPassword')
-						console.log(passInput)
 						passInput.value = ''
 						confirmInput.value = ''
 					}
@@ -171,10 +163,9 @@ export default class Header extends React.Component {
 						})
 						let passInput = document.getElementById('password')
 						let confirmInput = document.getElementById('confirmPassword')
-						console.log(passInput)
 						passInput.value = ''
 						confirmInput.value = ''
-			console.log('yo password do not match, check yo speeling')}
+			}
 	}
 	handleChange(e) {
 		this.setState({
@@ -185,9 +176,6 @@ export default class Header extends React.Component {
 		e.preventDefault()
 		this.formSignUp.classList.remove('show')
 		this.formSignIn.classList.add('show')
-		console.log('user wants to sign in yo')
-		console.log(this.showSignUp)
-
 	}
 	showSignUp(e) {
 		e.preventDefault()
@@ -195,7 +183,6 @@ export default class Header extends React.Component {
 		this.formSignUp.classList.add('show')
 	}
 	render() {
-
 		return (
 				<div>
 				<header>

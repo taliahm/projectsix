@@ -576,6 +576,30 @@ main.showMain {
     font-family: "Pacifico", cursive;
     font-size: 2.2rem; }
 
+.monthlyListCompleted__message--large {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #2D3A65;
+  display: flex;
+  padding: 40px;
+  border: 3px #52F9D0 solid;
+  border-radius: 10px; }
+
+.monthlyListCompleted__messageText--large {
+  margin: auto;
+  text-align: center;
+  color: #FDFDFD;
+  font-size: 1.8rem; }
+  .monthlyListCompleted__messageText--large span {
+    display: block;
+    font-family: "Pacifico", cursive;
+    font-size: 2.4rem;
+    color: #a5ffde; }
+
 .monthlyList__messageText--Large {
   margin: auto;
   text-align: center;

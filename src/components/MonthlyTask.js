@@ -5,12 +5,14 @@ export default (props) => {
 	const byTimeArray = props.data.filter((item) => {
 		return item.frequency === props.frequency
 	})
-	const niceMessages = ['have a bath?', 'read a book?', 'walk the cat?', 'buy a new hat?', 'binge some Netflix?']
-	const getMessage = () => {
-		const randoNum = Math.floor(Math.random() * niceMessages.length)
-		return niceMessages[randoNum]
+	const meanMessages = ['Dude, you haven\'t completed anything yet, maybe,', 'Take a good hard look around your living space, maybe, ', 'This space is empty because you haven\'t cleaned anything, maybe,', 'There\'s nothing here because you have not cleaned, maybe,']
+	const niceMessages = ['have a bath?', 'read a book?', 'walk the cat?', 'buy a new hat?', 'binge some Netflix?', 'go for a walk?', 'bake some muffins?', 'eat a croissant?', 'wash your hair?']
+	const getMessage = (array) => {
+		const randoNum = Math.floor(Math.random() * array.length)
+		return array[randoNum]
 	}
-	let messageBit = getMessage()
+	let messageBit = getMessage(niceMessages)
+	let meanMessageBit = getMessage(meanMessages)
 	let items = ' '
 	let message = ''
 	if(props.monthStatus === 'full') {
@@ -61,7 +63,7 @@ export default (props) => {
 	}
 	else if (props.monthStatus === 'empty' && props.statusOfTask === 'completed'){
 		message = (
-				<div className="monthlyList__message"><p className='monthlyList__messageText'>No completed tasks, maybe, <span>start cleaning?</span></p></div>
+				<div className="monthlyList__message"><p className='monthlyList__messageText'>{meanMessageBit}<span>start cleaning?</span></p></div>
 			)
 	}
 	return (

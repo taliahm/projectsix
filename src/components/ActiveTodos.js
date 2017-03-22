@@ -1,16 +1,12 @@
 import React from 'react';
-// import MonthlyTask from './MonthlyTask.js';
-import MonthlyTask from './MonthlyTaskTest.js'
+import MonthlyTask from './MonthlyTask.js'
 import Clock from './clock.js';
-// import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 
 export default (props) => {
 	const allData = props.todos;
-	// console.log(randomMessage)
 	let allDone = ''
 	if(props.threeMonthStatus === 'empty' && props.sixMonthStatus === 'empty' && props.twelveMonthStatus === 'empty'){
-		console.log('all done')
 		allDone = (<div className="monthlyList__message--large">
 						<p className="monthlyList__messageText--Large">
 						<span>You are the cleanest person ever!</span>
@@ -18,20 +14,27 @@ export default (props) => {
 						</p>
 					</div>)
 	}
+	let nothingDone = ''
+	if(props.threeMonthCompletedStatus === 'empty' && props.sixMonthCompletedStatus === 'empty' && props.twelveMonthCompletedStatus === 'empty') {
+		console.log('empty')
+		nothingDone = (<div className="monthlyListCompleted__message--large">
+						<p className="monthlyListCompleted__messageText--large">
+						<span>You haven't cleaned anything!</span>
+						Take a look at your living space, do you see the dirt? Pick one, just one, of the tasks above and do it! We promise you will feel so much better!
+						</p>
+					</div>)
+	}
+	console.log(nothingDone)
 	const filteredActiveData = [ ];
 	const filteredCompleteData = [ ];
 	for(let key in allData) {
 		if (allData[key].status === 'active') {
 			filteredActiveData.push(allData[key]);
-			// console.log(filteredActiveData);
-		// console.log(filteredData);
 		}
 		else if (allData[key].status === 'completed') {
 			filteredCompleteData.push(allData[key]);
-			// console.log(filteredCompleteData)
 		}
 	}
-
 			return (	<section className="holdActiveandCompleted">
 							<section className="outerTaskSection">
 							{allDone}
@@ -94,6 +97,7 @@ export default (props) => {
 							</div>
 						</section>
 						<section className="outerTaskSection">
+							{nothingDone}
 							<h3 className="taskSection__header">You've cleaned these, congrats!</h3>
 							<div className="completedTasks taskSection">
 								<div className="holdClockandTask">
@@ -146,26 +150,3 @@ export default (props) => {
 
 
 
-
-
-// {Object.keys(yourObject).map(function(key) {
-//     return <div>Key: {key}, Value: {yourObject[key]}</div>;
-// })}
-
-
-// <MonthlyTask clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredArray} frequency='3' countdown={props.countdown}/>
-// 						<MonthlyTask clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredArray} frequency='6' countdown={props.countdown}/>
-// 						<MonthlyTask clickFunction={(e) => props.clickFunction(e)} removeFunction={(e) => props.removeFunction(e)} data={filteredArray} frequency='12' countdown={props.countdown}/>
-
-/*{Object.keys(props.todos.filter).map((key) => {
-	let descriptionKey = props.todos.filter[key].description.replace(" ", "");
-	return (
-		<li key={descriptionKey}>
-			<input type="checkbox" disabled id={item.description} name={item.description}/>
-			<label htmlFor={item.description}>
-				{item.description}
-			</label>
-			<a href="#" name={item.description} onClick={(e) => props.addToDo(e)}>Oops, does apply!</a>
-		</li>
-		)
-})} */

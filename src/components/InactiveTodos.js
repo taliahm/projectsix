@@ -10,7 +10,6 @@ export default (props) => {
 	for(let key in allData) {
 		if (allData[key].status === 'inactive') {
 			filteredData.push(allData[key]);
-		// console.log(filteredData);
 		}
 	}
 	const displayData = filteredData.map((item, i) => {
@@ -31,8 +30,3 @@ export default (props) => {
 		</div>
 		)
 	}
-
-
-// {Object.keys(yourObject).map(function(key) {
-//     return <div>Key: {key}, Value: {yourObject[key]}</div>;
-// })}

@@ -27,7 +27,7 @@ export default class Footer extends React.Component{
 			footer = ( <div className="overlayFooter">
 					   		<div className="innerFooter">
 					   			<div className="closeForm">
-					   			<a onClick={this.hideFooter} href="#"><i className="fa fa-times" aria-hidden="true"></i></a> 
+					   				<a onClick={this.hideFooter} href="#"><i className="fa fa-times" aria-hidden="true"></i></a>
 					   			</div>
 								<p>Created by Talia Harrison-Marcassa at HackerYou.</p>
 								<p>This site was created using React Js!</p>

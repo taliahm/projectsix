@@ -37,10 +37,9 @@ export default class CreateTodo extends React.Component {
 			const dbRef = firebase.database().ref(`users/${this.props.userUIDCreate}/todolist`)
 			dbRef.once('value').then((data) => {
 				const usersList = data.val();
-				// const keyToList = ' ';
 				for (let garbageKey in usersList) {
 					const keyToList = garbageKey;
-				const dbRefToList = firebase.database().ref(`users/${this.props.userUIDCreate}/todolist/${garbageKey}`)
+					const dbRefToList = firebase.database().ref(`users/${this.props.userUIDCreate}/todolist/${garbageKey}`)
 					dbRefToList.push(customItem);
 				}
 			})
@@ -62,7 +61,6 @@ export default class CreateTodo extends React.Component {
 	}
 	showToDoCreator(e) {
 		e.preventDefault();
-		console.log('clicked it')
 		const form = document.getElementById('makeToDo')
 		const overlay = document.getElementById('makeToDoOverlay')
 		form.classList.add('showFormMakeToDo')
@@ -70,7 +68,6 @@ export default class CreateTodo extends React.Component {
 	}
 	closeToDoMaker(e) {
 		e.preventDefault();
-		console.log('closed it')
 		this.setState({
 				userDescription: "",
 				userFrequency: "",
@@ -92,34 +89,35 @@ export default class CreateTodo extends React.Component {
 					<form id="makeToDo" onSubmit={this.addCustomToDo} className="formMakeToDo">
 						<div className="closeForm">
 							<a href="#" onClick={this.closeToDoMaker}>
-							<i className="fa fa-times" aria-hidden="true">
-							</i></a>
+								<i className="fa fa-times" aria-hidden="true">
+								</i>
+							</a>
 						</div>
 						<h2>Add Your Own Tasks to Your Cleaning Regime</h2>
 						<p>Please be sure to include a frequency.</p>
 						<ul className="formList">
-						<li>
-							<label htmlFor="userDescription">Describe Your Task:</label>
-							<input id="userDescription" type="text" value={this.state.userDescription} onChange={this.updateTask}/>
-						</li>
-						<li>
-							<h6>How frequently do you need to perform these tasks?</h6>
-						</li>
-						<li>
-							<input onChange={this.updateFrequency} value="3" name="userFrequency" id="threeMonth" className="radioButton" type="radio"/>
-							<label htmlFor="threeMonth">every 3 Months</label>
-						</li>
-						<li>
-							<input onChange={this.updateFrequency} value="6" name="userFrequency" id="sixMonth" className="radioButton" type="radio"/>
-							<label htmlFor="sixMonth">every 6 Months</label>
-						</li>
-						<li>
-							<input onChange={this.updateFrequency} value="12" name="userFrequency" id="twelveMonth" className="radioButton" type="radio"/>
-							<label htmlFor="twelveMonth">every Year!</label>
-						</li>
-						<li>
-							<input type="submit" value="Add To Do!" onClick={this.addCustomToDo} className="formMakeToDo__submitBtn"/>
-						</li>
+							<li>
+								<label htmlFor="userDescription">Describe Your Task:</label>
+								<input id="userDescription" type="text" value={this.state.userDescription} onChange={this.updateTask}/>
+							</li>
+							<li>
+								<h6>How frequently do you need to perform these tasks?</h6>
+							</li>
+							<li>
+								<input onChange={this.updateFrequency} value="3" name="userFrequency" id="threeMonth" className="radioButton" type="radio"/>
+								<label htmlFor="threeMonth">every 3 Months</label>
+							</li>
+							<li>
+								<input onChange={this.updateFrequency} value="6" name="userFrequency" id="sixMonth" className="radioButton" type="radio"/>
+								<label htmlFor="sixMonth">every 6 Months</label>
+							</li>
+							<li>
+								<input onChange={this.updateFrequency} value="12" name="userFrequency" id="twelveMonth" className="radioButton" type="radio"/>
+								<label htmlFor="twelveMonth">every Year!</label>
+							</li>
+							<li>
+								<input type="submit" value="Add To Do!" onClick={this.addCustomToDo} className="formMakeToDo__submitBtn"/>
+							</li>
 						</ul>
 					</form>
 				</div>
