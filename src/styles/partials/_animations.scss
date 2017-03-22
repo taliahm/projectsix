@@ -31,3 +31,20 @@
 	transform: scale(2);
 	transition: all 5s;
 }
+
+
+.footerAnimate {
+	margin:auto;
+}
+.footerArrives-appear {
+	transition: all 0.5s ease-out;
+	transform: scale(0);
+	opacity: 0;
+}
+
+.footerArrives-appear.footerArrives-appear-active {
+	transform: scale(1);
+	opacity: 1;
+}
+
+

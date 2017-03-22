@@ -21,7 +21,7 @@ export default (props) => {
 					 if(item.status === 'completed') {
 						return (
 								<li className="monthlyList__listItem monthlyList__listItem--completed" key={descriptionKey}>
-									<ReactCSSTransitionGroup transitionName="listItemFades" transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionAppearTimeout={500} transitionAppear={true} component="span" transitionAppear={true} className="monthList__listItemHolder" >
+									<ReactCSSTransitionGroup transitionName="listItemFades" transitionEnterTimeout={500} transitionLeaveTimeout={500} transitionAppearTimeout={500} transitionAppear={true} component="span" className="monthList__listItemHolder" >
 									<input name={item.description} checked
 										   onChange={(e)=> props.clickFunction(e)} 
 										   type="checkbox" 

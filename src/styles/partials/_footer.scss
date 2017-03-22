@@ -7,8 +7,7 @@ footer {
 
 .footerTag {
 	display: block;
-	margin-bottom: 20px;
-	margin-left: 20px;
+	margin: 30px 0 20px 20px;
 	font-size: 3rem;
 	color: $blue;
 	font-family: $cursive;
@@ -16,6 +15,7 @@ footer {
 	text-decoration: none;
 	transition: all 0.3s ease-out;
 	outline:none;
+	text-align: center;
 	&:hover {
 		color: $surpriseGreen;
 	}
@@ -36,13 +36,13 @@ footer {
 	color: $white;
 	margin: auto;
 	width:20%;
-	height: 50vh;
-	font-size: 1.4rem;
+	height: 70vh;
+	font-size: 1.6rem;
 	display: flex;
 	flex-direction: column;
 	justify-content:center;
 	align-items:center;
-	padding:10px;
+	padding:10px 15px;
 	border-radius: 10px;
 	@include bp('xlrg') {
 		width:50%;
@@ -58,8 +58,28 @@ footer {
 	}
 }
 
-.innerFooter p {
-	text-align: center;
+.footerTitle {
+	font-size: 2rem;
+	letter-spacing: 2px;
+	font-family: $cursive;
+	color: $otherGreen;
+	margin-top: 20px;
 }
 
+.innerFooter p {
+	text-align: center;
+	margin: 0;
+}
 
+.innerFooter p a {
+	text-decoration: none;
+	color: $white;
+	transition: all 0.3s ease-out;
+	&:hover {
+		color: $surpriseGreen;
+	}
+}
+
+.closeForm.closeFormFooter i.fa.fa-times {
+	color: $surpriseGreen;
+}
