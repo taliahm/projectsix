@@ -209,7 +209,7 @@ export default class Header extends React.Component {
 				</section>
 					<form className="signUp userAuth" id="signUp" onSubmit={this.signUp} ref={(form) => { this.formSignUp = form }}>
 						<div className="formWrap">
-							<h3 className="userAuth__title">Enter your email and choose a password<span> to sign up!</span></h3>
+							<h3 className="userAuth__title">Enter your email and choose a password to sign up!</h3>
 							<label htmlFor="email">Please enter your email:</label>
 							<input className="formWrap__textInput" name="email" onChange={this.handleChange} id="email" type="email"/>
 							<label htmlFor="password">Please enter a password:</label>

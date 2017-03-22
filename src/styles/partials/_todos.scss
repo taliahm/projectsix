@@ -57,7 +57,8 @@ main.showMain {
 	// width: 30%;
 	display: flex;
 	flex-direction: column;
-	justify-content:space-around;
+	// justify-content:space-around;
+	justify-content: space-between;
 	min-height: 150px;
 	min-width: 300px;
 	border: 2px solid $blue;
@@ -68,6 +69,15 @@ main.showMain {
 	 @include bp('xlrg') {
 	 	margin-bottom: 20px;
 	 }
+	 @include bp('sml') {
+	 	justify-content:space-around;
+	 }
+}
+
+.holdClockandTask--active.holdClockandTask {
+	@include bp('sml'){
+		padding:0;
+	}
 }
 
 .holdClockandTask h4 {
@@ -178,6 +188,22 @@ main.showMain {
 	margin-bottom:10px;
 	// justify-content: center;
 }
+
+//striped styling on mobile
+.monthlyList__listItem--active {
+	padding:10px 0;
+	margin-bottom: 0px;
+}
+
+.monthlyList__listItem--active:nth-child(odd) {
+	@include bp('sml') {
+		background: darken($white, 5);
+
+	}
+}
+
+
+
 .monthlyList__listItem input {
 	display: none;
 }
@@ -187,6 +213,13 @@ main.showMain {
 	align-items: center;
 	width: 70%;
 	font-size: 1.8rem;
+}
+
+.monthlyList__label--completed{
+	width:100%;
+	@include bp('sml') {
+		width: 100%;
+	}
 }
 
 .monthlyList__tag {
@@ -212,35 +245,17 @@ main.showMain {
 .monthlyList__label .imgContain {
 	margin-right: 10px;
 	flex-shrink: 0;
+	// width: 20px;
 }
 
 .monthlyList__label--active .imgContain {
-	// border:2px solid red;
-	width:10%;
-	flex-shrink: 0;
-	@include bp('xlrg') {
-		width:5%;
-	}
-	@include bp('lrg') {
-		width:9%;
-	}
-	@include bp('sml') {
-		width:12%;
-	}
+	width:25px;
 }
 
 .monthlyList__label--completed .imgContain {
-	width: 12%;
-	@include bp('xlrg') {
-		width:6%;
-	}
-	@include bp('lrg') {
-		width:9%;
-	}
-	@include bp('sml') {
-		width:10%;
-	}
+	width:30px;
 }
+
 
 .holdClock {
 	margin-top: 15px;

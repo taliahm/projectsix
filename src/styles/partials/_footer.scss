@@ -44,10 +44,16 @@ footer {
 	align-items:center;
 	padding:10px;
 	border-radius: 10px;
+	@include bp('xlrg') {
+		width:50%;
+	}
 	@include bp('lrg') {
 		width:50%;
 	}
 	@include bp('med') {
+		width:70%;
+	}
+	@include bp('sml') {
 		width:90%;
 	}
 }

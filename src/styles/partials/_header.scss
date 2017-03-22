@@ -2,6 +2,9 @@
 .mainHeader {
 	display: flex;
 	justify-content: space-between;
+	@include bp('xlrg'){
+		margin: 0 10px 0 10px;
+	}
 	@include bp('med') {
 		flex-direction:column;
 		padding:10px;
@@ -11,7 +14,8 @@
 .signOutSection {
 	display: flex;
 		@include bp('med') {
-		justify-content: center;
+		justify-content: space-between;
+		order: 3;
 	}
 }
 .signOutSection p {
@@ -24,6 +28,11 @@
 	@include btnStyles($white, $blue);
 	flex-shrink: 0;
 	margin: auto;
+	@include bp('med') {
+		margin:auto 0 auto 0;
+		flex-grow: 0;
+		// padding: 0;
+	}
 }
 
 
@@ -34,9 +43,6 @@ header {
 	padding: 20px 10px 30px 10px;
 	line-height: 1.4;
 	text-align: center;
-	@include bp('sml') {
-		width:100%;
-	}
 }
 header h1 {
 	color: $white;
@@ -97,8 +103,16 @@ header h4 {
 
 .showUserAction .btn {
 	@include btnStyles($white, $blue)
+	@include bp('lrg') {
+		max-width:50%;
+		margin:0 auto;
+	}
 	@include bp('med') {
 		margin-bottom:20px;
+		max-width:60%;
+	}
+	@include bp('sml') {
+		max-width: 90%;
 	}
 }
 
@@ -139,10 +153,13 @@ header h4 {
 	display: block;
 	max-width:40%;
 	margin: 0 auto;
+	@include bp('xlrg') {
+		max-width: 60%;
+	}
 	@include bp('lrg') {
 		max-width: 80%;
 	}
-	@include bp('med') {
+	@include bp('sml') {
 		max-width:100%;
 	}
 }
@@ -157,6 +174,8 @@ header h4 {
 	border-radius: 10px;
 	@include bp('med') {
 		text-align: center;
+	}
+	@include bp('sml') {
 		border-radius: 0;
 	}
 }

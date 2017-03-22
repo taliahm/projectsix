@@ -122,6 +122,9 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 .mainHeader {
   display: flex;
   justify-content: space-between; }
+  @media (max-width: 1200px) {
+    .mainHeader {
+      margin: 0 10px 0 10px; } }
   @media (max-width: 767px) {
     .mainHeader {
       flex-direction: column;
@@ -131,7 +134,8 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   display: flex; }
   @media (max-width: 767px) {
     .signOutSection {
-      justify-content: center; } }
+      justify-content: space-between;
+      order: 3; } }
 
 .signOutSection p {
   font-family: "Pacifico", cursive;
@@ -152,15 +156,16 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   margin: auto; }
   .signOutSection__signOutBtn:hover {
     background: #0e111e; }
+  @media (max-width: 767px) {
+    .signOutSection__signOutBtn {
+      margin: auto 0 auto 0;
+      flex-grow: 0; } }
 
 header {
   background: #2D3A65;
   padding: 20px 10px 30px 10px;
   line-height: 1.4;
   text-align: center; }
-  @media (max-width: 480px) {
-    header {
-      width: 100%; } }
 
 header h1 {
   color: #FDFDFD;
@@ -222,9 +227,17 @@ header h4 {
   border-radius: 10px; }
   .showUserAction .btn:hover {
     background: #0e111e; }
+  @media (max-width: 940px) {
+    .showUserAction .btn {
+      max-width: 50%;
+      margin: 0 auto; } }
   @media (max-width: 767px) {
     .showUserAction .btn {
-      margin-bottom: 20px; } }
+      margin-bottom: 20px;
+      max-width: 60%; } }
+  @media (max-width: 480px) {
+    .showUserAction .btn {
+      max-width: 90%; } }
 
 .showUserAction .btn:hover {
   background: #253053; }
@@ -257,10 +270,13 @@ header h4 {
   display: block;
   max-width: 40%;
   margin: 0 auto; }
+  @media (max-width: 1200px) {
+    .show {
+      max-width: 60%; } }
   @media (max-width: 940px) {
     .show {
       max-width: 80%; } }
-  @media (max-width: 767px) {
+  @media (max-width: 480px) {
     .show {
       max-width: 100%; } }
 
@@ -274,7 +290,9 @@ header h4 {
   border-radius: 10px; }
   @media (max-width: 767px) {
     .formWrap {
-      text-align: center;
+      text-align: center; } }
+  @media (max-width: 480px) {
+    .formWrap {
       border-radius: 0; } }
 
 .formWrap label {
@@ -310,6 +328,10 @@ header h4 {
   margin-top: 10px; }
   .userAuth__submitBtn:hover {
     background: #08dda9; }
+
+@media (max-width: 480px) {
+  .wrapCreateToDo {
+    order: 1; } }
 
 .formMakeToDo {
   display: none; }
@@ -415,6 +437,9 @@ header h4 {
 
 .holdCreateToDo {
   display: flex; }
+  @media (max-width: 767px) {
+    .holdCreateToDo {
+      justify-content: space-between; } }
 
 .holdCreateToDo p {
   font-family: "Pacifico", cursive;
@@ -435,6 +460,10 @@ header h4 {
   flex-shrink: 0; }
   .addToDoBtn:hover {
     background: #0e111e; }
+  @media (max-width: 767px) {
+    .addToDoBtn {
+      margin: auto 0 auto 0;
+      flex-grow: 0; } }
 
 main {
   display: none; }
@@ -484,7 +513,7 @@ main.showMain {
 .holdClockandTask {
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
   min-height: 150px;
   min-width: 300px;
   border: 2px solid #2D3A65;
@@ -495,6 +524,13 @@ main.showMain {
   @media (max-width: 1200px) {
     .holdClockandTask {
       margin-bottom: 20px; } }
+  @media (max-width: 480px) {
+    .holdClockandTask {
+      justify-content: space-around; } }
+
+@media (max-width: 480px) {
+  .holdClockandTask--active.holdClockandTask {
+    padding: 0; } }
 
 .holdClockandTask h4 {
   text-align: center;
@@ -584,6 +620,14 @@ main.showMain {
   display: flex;
   margin-bottom: 10px; }
 
+.monthlyList__listItem--active {
+  padding: 10px 0;
+  margin-bottom: 0px; }
+
+@media (max-width: 480px) {
+  .monthlyList__listItem--active:nth-child(odd) {
+    background: #f0f0f0; } }
+
 .monthlyList__listItem input {
   display: none; }
 
@@ -592,6 +636,12 @@ main.showMain {
   align-items: center;
   width: 70%;
   font-size: 1.8rem; }
+
+.monthlyList__label--completed {
+  width: 100%; }
+  @media (max-width: 480px) {
+    .monthlyList__label--completed {
+      width: 100%; } }
 
 .monthlyList__tag {
   display: block;
@@ -615,29 +665,10 @@ main.showMain {
   flex-shrink: 0; }
 
 .monthlyList__label--active .imgContain {
-  width: 10%;
-  flex-shrink: 0; }
-  @media (max-width: 1200px) {
-    .monthlyList__label--active .imgContain {
-      width: 5%; } }
-  @media (max-width: 940px) {
-    .monthlyList__label--active .imgContain {
-      width: 9%; } }
-  @media (max-width: 480px) {
-    .monthlyList__label--active .imgContain {
-      width: 12%; } }
+  width: 25px; }
 
 .monthlyList__label--completed .imgContain {
-  width: 12%; }
-  @media (max-width: 1200px) {
-    .monthlyList__label--completed .imgContain {
-      width: 6%; } }
-  @media (max-width: 940px) {
-    .monthlyList__label--completed .imgContain {
-      width: 9%; } }
-  @media (max-width: 480px) {
-    .monthlyList__label--completed .imgContain {
-      width: 10%; } }
+  width: 30px; }
 
 .holdClock {
   margin-top: 15px; }
@@ -645,6 +676,9 @@ main.showMain {
 .monthList__listItemHolder {
   width: 100%;
   display: flex; }
+  @media (max-width: 1200px) {
+    .monthList__listItemHolder {
+      justify-content: space-around; } }
 
 .listItemFades {
   transform: scale(1); }
@@ -764,10 +798,16 @@ footer {
   align-items: center;
   padding: 10px;
   border-radius: 10px; }
+  @media (max-width: 1200px) {
+    .innerFooter {
+      width: 50%; } }
   @media (max-width: 940px) {
     .innerFooter {
       width: 50%; } }
   @media (max-width: 767px) {
+    .innerFooter {
+      width: 70%; } }
+  @media (max-width: 480px) {
     .innerFooter {
       width: 90%; } }
 

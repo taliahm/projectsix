@@ -3,6 +3,9 @@
 .monthList__listItemHolder {
 	width:100%;
 	display: flex;
+	@include bp('xlrg') {
+		justify-content: space-around;
+	}
 }
 .listItemFades {
 	transform: scale(1);

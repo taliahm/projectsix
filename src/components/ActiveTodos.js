@@ -37,49 +37,55 @@ export default (props) => {
 							{allDone}
 							<h3 className="taskSection__header">Get cleaning! You have a lot to do!</h3>
 							<div className="activeTasks taskSection">
-								<div className="holdClockandTask">
-									<h4>Items to Clean:</h4>
-									<MonthlyTask 
-										userSignedUpDate={props.userSignedUpDate} 
-										clickFunction={(e) => props.clickFunction(e)} 
-										removeFunction={(e) => props.removeFunction(e)} 
-										data={filteredActiveData} 
-										countdown={props.countdown} 
-										frequency='3' 
-										monthStatus={props.threeMonthStatus}
-										statusOfTask='active'/>
+								<div className="holdClockandTask holdClockandTask--active">
+									<div className="holdActiveToDoandHeader">
+										<h4>Items to Clean:</h4>
+										<MonthlyTask 
+											userSignedUpDate={props.userSignedUpDate} 
+											clickFunction={(e) => props.clickFunction(e)} 
+											removeFunction={(e) => props.removeFunction(e)} 
+											data={filteredActiveData} 
+											countdown={props.countdown} 
+											frequency='3' 
+											monthStatus={props.threeMonthStatus}
+											statusOfTask='active'/>
+									</div>
 									<div className="holdClock">
 										<h4 className="countdownHeader">Complete these tasks before the time runs out and the dirt wins!</h4>
 										<Clock month='90' dbRef='Three' updateFunction={(months) => props.countdownComplete(months)}/>
 									</div>
 								</div>
-								<div className="holdClockandTask">
-									<h4>Items to Clean:</h4>
-									<MonthlyTask 
-										userSignedUpDate={props.userSignedUpDate} 
-										clickFunction={(e) => props.clickFunction(e)} 
-										removeFunction={(e) => props.removeFunction(e)} 
-										data={filteredActiveData} 
-										countdown={props.countdown} 
-										frequency='6'
-										monthStatus={props.sixMonthStatus} 
-										statusOfTask='active'/>
+								<div className="holdClockandTask holdClockandTask--active">
+									<div className="holdActiveToDoandHeader">
+										<h4>Items to Clean:</h4>
+										<MonthlyTask 
+											userSignedUpDate={props.userSignedUpDate} 
+											clickFunction={(e) => props.clickFunction(e)} 
+											removeFunction={(e) => props.removeFunction(e)} 
+											data={filteredActiveData} 
+											countdown={props.countdown} 
+											frequency='6'
+											monthStatus={props.sixMonthStatus} 
+											statusOfTask='active'/>
+									</div>
 									<div className="holdClock">
 										<h4 className="countdownHeader">Complete these tasks before the time runs out and the dirt wins!</h4>
 										<Clock month='180' dbRef='Six' updateFunction={(months) => props.countdownComplete(months)}/>
 									</div>
 								</div>
-								<div className="holdClockandTask">
-									<h4>Items to Clean:</h4>
-									<MonthlyTask 
-										userSignedUpDate={props.userSignedUpDate} 
-										clickFunction={(e) => props.clickFunction(e)} 
-										removeFunction={(e) => props.removeFunction(e)} 
-										data={filteredActiveData} 
-										countdown={props.countdown}
-										frequency='12' 
-										monthStatus={props.twelveMonthStatus}
-										statusOfTask='active'/>
+								<div className="holdClockandTask holdClockandTask--active">
+									<div className="holdActiveToDoandHeader">
+										<h4>Items to Clean:</h4>
+										<MonthlyTask 
+											userSignedUpDate={props.userSignedUpDate} 
+											clickFunction={(e) => props.clickFunction(e)} 
+											removeFunction={(e) => props.removeFunction(e)} 
+											data={filteredActiveData} 
+											countdown={props.countdown}
+											frequency='12' 
+											monthStatus={props.twelveMonthStatus}
+											statusOfTask='active'/>
+										</div>
 									<div className="holdClock">
 										<h4 className="countdownHeader">Complete these tasks before the time runs out and the dirt wins!</h4>
 										<Clock month='360' dbRef='Twelve' updateFunction={(months) => props.countdownComplete(months)}/>

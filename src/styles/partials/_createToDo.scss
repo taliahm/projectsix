@@ -1,6 +1,8 @@
 //show hide to do form
 .wrapCreateToDo {
-	// position: relative;
+	@include bp('sml'){
+		order: 1
+	}
 }
 .formMakeToDo{
 	display: none;
@@ -106,6 +108,9 @@
 }
 .holdCreateToDo {
 	display: flex;
+	@include bp('med') {
+		justify-content: space-between;
+	}
 }
 
 .holdCreateToDo p {
@@ -119,4 +124,8 @@
 	@include btnStyles($white, $blue);
 	margin: auto;
 	flex-shrink: 0;
+	@include bp('med'){
+		margin:auto 0 auto 0;
+		flex-grow: 0;
+	}
 }
