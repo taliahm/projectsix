@@ -122,9 +122,16 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
 .mainHeader {
   display: flex;
   justify-content: space-between; }
+  @media (max-width: 767px) {
+    .mainHeader {
+      flex-direction: column;
+      padding: 10px; } }
 
 .signOutSection {
   display: flex; }
+  @media (max-width: 767px) {
+    .signOutSection {
+      justify-content: center; } }
 
 .signOutSection p {
   font-family: "Pacifico", cursive;
@@ -151,6 +158,9 @@ header {
   padding: 20px 10px 30px 10px;
   line-height: 1.4;
   text-align: center; }
+  @media (max-width: 480px) {
+    header {
+      width: 100%; } }
 
 header h1 {
   color: #FDFDFD;
@@ -160,15 +170,24 @@ header h1 {
   font-size: 5.5rem;
   margin-bottom: 30px;
   margin-top: 30px; }
+  @media (max-width: 767px) {
+    header h1 {
+      font-size: 3.5rem; } }
 
 header h2, header h4 {
   color: #a5ffde; }
 
 header h2 {
   font-size: 2.5rem; }
+  @media (max-width: 767px) {
+    header h2 {
+      font-size: 1.8rem; } }
 
 header h4 {
   font-size: 2rem; }
+  @media (max-width: 767px) {
+    header h4 {
+      font-size: 1.4rem; } }
 
 .userAction {
   display: none; }
@@ -177,6 +196,10 @@ header h4 {
   display: flex;
   justify-content: center;
   padding-top: 50px; }
+  @media (max-width: 767px) {
+    .showUserAction {
+      flex-direction: column;
+      margin-bottom: 50px; } }
 
 .userAuth__title, .userAuth__instructions {
   margin: 0;
@@ -199,6 +222,9 @@ header h4 {
   border-radius: 10px; }
   .showUserAction .btn:hover {
     background: #0e111e; }
+  @media (max-width: 767px) {
+    .showUserAction .btn {
+      margin-bottom: 20px; } }
 
 .showUserAction .btn:hover {
   background: #253053; }
@@ -212,6 +238,9 @@ header h4 {
 .userAuth__title {
   font-size: 3rem;
   margin-bottom: 40px; }
+  @media (max-width: 767px) {
+    .userAuth__title {
+      font-size: 2.5rem; } }
 
 .userAuth__title--big {
   font-size: 3.2rem;
@@ -220,11 +249,20 @@ header h4 {
 .userAuth__title span {
   display: block;
   font-size: 2.9rem; }
+  @media (max-width: 767px) {
+    .userAuth__title span {
+      font-size: 2.2rem; } }
 
 .show {
   display: block;
   max-width: 40%;
   margin: 0 auto; }
+  @media (max-width: 940px) {
+    .show {
+      max-width: 80%; } }
+  @media (max-width: 767px) {
+    .show {
+      max-width: 100%; } }
 
 .formWrap {
   margin-top: 40px;
@@ -234,6 +272,10 @@ header h4 {
   padding: 40px 20px 40px 20px;
   background: #3d4e88;
   border-radius: 10px; }
+  @media (max-width: 767px) {
+    .formWrap {
+      text-align: center;
+      border-radius: 0; } }
 
 .formWrap label {
   color: #a5ffde;
@@ -249,6 +291,9 @@ header h4 {
   font-size: 1.4rem;
   margin-bottom: 25px;
   border-radius: 5px; }
+  @media (max-width: 767px) {
+    .formWrap .formWrap__textInput {
+      width: 90%; } }
 
 .userAuth__submitBtn {
   background: none;
@@ -281,6 +326,12 @@ header h4 {
   padding: 20px;
   border: 1px solid #52F9D0;
   border-radius: 10px; }
+  @media (max-width: 767px) {
+    .showFormMakeToDo {
+      transform: translate(0);
+      top: 0;
+      left: 0;
+      margin: 5px; } }
 
 .closeForm {
   align-self: flex-start; }
@@ -299,6 +350,9 @@ header h4 {
   text-align: center;
   margin-top: 20px;
   color: #2D3A65; }
+  @media (max-width: 767px) {
+    .showFormMakeToDo h2 {
+      font-size: 2rem; } }
 
 .showFormMakeToDo p {
   text-align: center;
@@ -328,12 +382,19 @@ header h4 {
 
 .formList li h6 {
   font-size: 1.7rem; }
+  @media (max-width: 767px) {
+    .formList li h6 {
+      text-align: center;
+      margin: 10px 0 10px 0; } }
 
 .formList input[type='radio'] ~ label {
   margin-bottom: 5px; }
 
 .formList li:first-child {
   margin-bottom: 10px; }
+  @media (max-width: 767px) {
+    .formList li:first-child {
+      flex-direction: column; } }
 
 .formList li:last-child {
   align-self: center;
@@ -399,16 +460,26 @@ main.showMain {
   margin-bottom: 40px;
   padding: 30px;
   position: relative; }
+  @media (max-width: 767px) {
+    .outerTaskSection {
+      padding: 0; } }
 
 .taskSection {
   display: flex;
   justify-content: center; }
+  @media (max-width: 1200px) {
+    .taskSection {
+      flex-direction: column;
+      flex-wrap: wrap; } }
 
 .taskSection__header {
   font-size: 4rem;
   color: #2D3A65;
   margin-bottom: 20px;
   text-align: center; }
+  @media (max-width: 767px) {
+    .taskSection__header {
+      font-size: 2.5rem; } }
 
 .holdClockandTask {
   display: flex;
@@ -421,6 +492,9 @@ main.showMain {
   border-radius: 5px;
   margin: 0 10px 0 10px;
   position: relative; }
+  @media (max-width: 1200px) {
+    .holdClockandTask {
+      margin-bottom: 20px; } }
 
 .holdClockandTask h4 {
   text-align: center;
@@ -428,7 +502,6 @@ main.showMain {
 
 .monthlyList__message {
   position: absolute;
-  z-index: 70;
   top: 0;
   bottom: 0;
   right: 0;
@@ -490,17 +563,26 @@ main.showMain {
   justify-content: space-around;
   color: #08dda9;
   font-size: 1.7rem; }
+  @media (max-width: 1200px) {
+    .timeUnitWrap {
+      max-width: 50%;
+      margin: 0 auto; } }
 
 .timeUnitWrap span {
   display: block;
   color: #2D3A65; }
+
+@media (max-width: 480px) {
+  .timeUnit {
+    margin: 0 5px 0 5px; } }
 
 .monthlyList {
   list-style: none;
   padding: 0; }
 
 .monthlyList__listItem {
-  display: flex; }
+  display: flex;
+  margin-bottom: 10px; }
 
 .monthlyList__listItem input {
   display: none; }
@@ -535,9 +617,30 @@ main.showMain {
 .monthlyList__label--active .imgContain {
   width: 10%;
   flex-shrink: 0; }
+  @media (max-width: 1200px) {
+    .monthlyList__label--active .imgContain {
+      width: 5%; } }
+  @media (max-width: 940px) {
+    .monthlyList__label--active .imgContain {
+      width: 9%; } }
+  @media (max-width: 480px) {
+    .monthlyList__label--active .imgContain {
+      width: 12%; } }
 
 .monthlyList__label--completed .imgContain {
   width: 12%; }
+  @media (max-width: 1200px) {
+    .monthlyList__label--completed .imgContain {
+      width: 6%; } }
+  @media (max-width: 940px) {
+    .monthlyList__label--completed .imgContain {
+      width: 9%; } }
+  @media (max-width: 480px) {
+    .monthlyList__label--completed .imgContain {
+      width: 10%; } }
+
+.holdClock {
+  margin-top: 15px; }
 
 .monthList__listItemHolder {
   width: 100%;
@@ -582,11 +685,24 @@ main.showMain {
   border: 2px solid #2D3A65;
   border-radius: 10px;
   padding: 20px; }
+  @media (max-width: 940px) {
+    .inactiveList {
+      width: 80%; } }
+  @media (max-width: 767px) {
+    .inactiveList {
+      max-width: 100%; } }
 
 .inactiveList li {
   display: flex;
   justify-content: space-between;
   font-size: 1.4rem; }
+  @media (max-width: 767px) {
+    .inactiveList li {
+      flex-wrap: wrap;
+      max-width: 100%;
+      overflow: hidden;
+      word-wrap: break-all;
+      overflow-wrap: break-word; } }
 
 .inactiveList input[type='checkbox'] {
   display: none; }
@@ -597,12 +713,12 @@ main.showMain {
   color: grey;
   font-size: .8rem;
   align-self: center;
-  transform: scale(1) translateX(0);
+  transform: scale(1);
   transition: all 0.3s ease-out;
   margin-left: 10px; }
   .monthlyList__tagInactive:hover {
     color: #52F9D0;
-    transform: scale(1.2) translateX(10px); }
+    transform: scale(1.2); }
 
 .emptyStatusMessage {
   font-size: 1.4rem; }
@@ -648,6 +764,12 @@ footer {
   align-items: center;
   padding: 10px;
   border-radius: 10px; }
+  @media (max-width: 940px) {
+    .innerFooter {
+      width: 50%; } }
+  @media (max-width: 767px) {
+    .innerFooter {
+      width: 90%; } }
 
 .innerFooter p {
   text-align: center; }

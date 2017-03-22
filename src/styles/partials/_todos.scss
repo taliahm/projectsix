@@ -29,11 +29,18 @@ main.showMain {
 	margin-bottom: 40px;
 	padding: 30px;
 	position: relative;
+	@include bp('med') {
+		padding:0;
+	}
 }
 
 .taskSection {
 	display: flex;
 	justify-content:center;
+	@include bp('xlrg') {
+		flex-direction:column;
+		flex-wrap: wrap;
+	}
 }
 
 .taskSection__header {
@@ -41,6 +48,9 @@ main.showMain {
 	color: $blue;
 	margin-bottom: 20px;
 	text-align:center;
+	@include bp('med') {
+		font-size: 2.5rem;
+	}
 }
 .holdClockandTask {
 	// border: 1px solid red;
@@ -55,6 +65,9 @@ main.showMain {
 	border-radius: 5px;
 	 margin: 0 10px 0 10px;
 	 position:relative;
+	 @include bp('xlrg') {
+	 	margin-bottom: 20px;
+	 }
 }
 
 .holdClockandTask h4 {
@@ -64,7 +77,7 @@ main.showMain {
 
 .monthlyList__message {
 	position: absolute;
-	z-index: 70; //Needs to be under create a task box and under message large
+	// z-index: 70; //Needs to be under create a task box and under message large
 	top:0;
 	bottom:0;
 	right:0;
@@ -139,11 +152,21 @@ main.showMain {
 	color: darken($surpriseGreen, 20);
 	font-size: 1.7rem;
 	// text-shadow: 1px 1px 1px black;
+	@include bp('xlrg') {
+		max-width: 50%;
+		margin: 0 auto;
+	}
 }
 
 .timeUnitWrap span {
 	display: block;
 	color: $blue;
+}
+
+.timeUnit {
+	@include bp('sml') {
+		margin: 0 5px 0 5px;
+	}
 }
 
 .monthlyList {
@@ -152,6 +175,7 @@ main.showMain {
 }
 .monthlyList__listItem {
 	display: flex;
+	margin-bottom:10px;
 	// justify-content: center;
 }
 .monthlyList__listItem input {
@@ -194,8 +218,30 @@ main.showMain {
 	// border:2px solid red;
 	width:10%;
 	flex-shrink: 0;
+	@include bp('xlrg') {
+		width:5%;
+	}
+	@include bp('lrg') {
+		width:9%;
+	}
+	@include bp('sml') {
+		width:12%;
+	}
 }
 
 .monthlyList__label--completed .imgContain {
 	width: 12%;
+	@include bp('xlrg') {
+		width:6%;
+	}
+	@include bp('lrg') {
+		width:9%;
+	}
+	@include bp('sml') {
+		width:10%;
+	}
+}
+
+.holdClock {
+	margin-top: 15px;
 }

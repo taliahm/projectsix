@@ -2,15 +2,23 @@
 .mainHeader {
 	display: flex;
 	justify-content: space-between;
+	@include bp('med') {
+		flex-direction:column;
+		padding:10px;
+	}
 }
 
 .signOutSection {
 	display: flex;
+		@include bp('med') {
+		justify-content: center;
+	}
 }
 .signOutSection p {
 	font-family: $cursive;
 	font-size: 2rem;
 	margin-right:10px;
+
 }
 .signOutSection__signOutBtn {
 	@include btnStyles($white, $blue);
@@ -26,6 +34,9 @@ header {
 	padding: 20px 10px 30px 10px;
 	line-height: 1.4;
 	text-align: center;
+	@include bp('sml') {
+		width:100%;
+	}
 }
 header h1 {
 	color: $white;
@@ -35,6 +46,9 @@ header h1 {
 	font-size: 5.5rem;
 	margin-bottom: 30px;
 	margin-top:30px;
+	@include bp('med') {
+		font-size: 3.5rem;
+	}
 }
 
 header h2, header h4 {
@@ -43,10 +57,16 @@ header h2, header h4 {
 
 header h2 {
 	font-size: 2.5rem;
+	@include bp('med') {
+		font-size: 1.8rem;
+	}
 }
 
 header h4 {
 	font-size: 2rem;
+	@include bp('med') {
+		font-size: 1.4rem;
+	}
 }
 .userAction {
 	display:none;
@@ -56,6 +76,10 @@ header h4 {
 	display: flex;
 	justify-content:center;
 	padding-top:50px;
+	@include bp('med') {
+		flex-direction:column;
+		margin-bottom:50px;
+	}
 }
 
 .userAuth__title, .userAuth__instructions {
@@ -73,7 +97,9 @@ header h4 {
 
 .showUserAction .btn {
 	@include btnStyles($white, $blue)
-	// text-transform: uppercase;
+	@include bp('med') {
+		margin-bottom:20px;
+	}
 }
 
 .showUserAction .btn:hover {
@@ -91,6 +117,9 @@ header h4 {
 .userAuth__title {
 	font-size: 3rem;
 	margin-bottom: 40px;
+	@include bp('med') {
+		font-size: 2.5rem;
+	}
 }
 
 .userAuth__title--big {
@@ -101,12 +130,21 @@ header h4 {
 .userAuth__title span {
 	display: block;
 	font-size: 2.9rem;
+	@include bp('med') {
+		font-size: 2.2rem;
+	}
 }
 
 .show {
 	display: block;
 	max-width:40%;
 	margin: 0 auto;
+	@include bp('lrg') {
+		max-width: 80%;
+	}
+	@include bp('med') {
+		max-width:100%;
+	}
 }
 .formWrap {
 	margin-top: 40px;
@@ -117,6 +155,10 @@ header h4 {
 	padding: 40px 20px 40px 20px;
 	background: lighten($blue, 10);
 	border-radius: 10px;
+	@include bp('med') {
+		text-align: center;
+		border-radius: 0;
+	}
 }
 
 .formWrap label {
@@ -135,6 +177,9 @@ header h4 {
 	font-size: 1.4rem;
 	margin-bottom: 25px;
 	border-radius: 5px;
+	@include bp('med') {
+		width: 90%;
+	}
 }
 
 .userAuth__submitBtn {

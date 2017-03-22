@@ -20,12 +20,26 @@
 	border: 2px solid $blue;
 	border-radius: 10px;
 	padding:20px;
+	@include bp('lrg') {
+		width:80%;
+	}
+	@include bp('med') {
+		max-width:100%;
+	}
 }
 
 .inactiveList li {
 	display: flex;
 	justify-content:space-between;
 	font-size: 1.4rem;
+	@include bp('med') {
+		flex-wrap:wrap;
+		max-width: 100%;
+		overflow:hidden;
+		word-wrap: break-all;
+		overflow-wrap: break-word;
+		// overflow-wrap:wrap;
+	}
 }
 
 .inactiveList input[type='checkbox'] {
@@ -39,12 +53,12 @@
 	color: grey;
 	font-size: .8rem;
 	align-self: center;
-	transform: scale(1) translateX(0);
+	transform: scale(1);
 	transition: all 0.3s ease-out;
 	margin-left: 10px;
 	&:hover {
 		color: $surpriseGreen;
-		transform: scale(1.2) translateX(10px);
+		transform: scale(1.2);
 	}
 }
 

@@ -17,6 +17,12 @@
 	padding: 20px;
 	border: 1px solid $surpriseGreen;
 	border-radius: 10px;
+	@include bp('med') {
+		transform: translate(0);
+		top:0;
+		left:0;
+		margin:5px;
+	}
 }
 
 .closeForm {
@@ -37,6 +43,9 @@
 	text-align: center;
 	margin-top: 20px;
 	color: $blue;
+	@include bp('med') {
+		font-size: 2rem;
+	}
 }
 
 .showFormMakeToDo p {
@@ -72,6 +81,10 @@
 
 .formList li h6 {
 	font-size: 1.7rem;
+	@include bp('med') {
+		text-align: center;
+		margin: 10px 0 10px 0;
+	}
 }
 
 .formList input[type='radio'] ~ label {
@@ -79,6 +92,9 @@
 }
 .formList li:first-child {
 	margin-bottom: 10px;
+	@include bp('med') {
+		flex-direction:column;
+	}
 }
 
 .formList li:last-child {
