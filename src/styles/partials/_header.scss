@@ -16,12 +16,14 @@
 		@include bp('med') {
 		justify-content: space-between;
 		order: 3;
+		align-items:baseline;
 	}
 }
 .signOutSection p {
 	font-family: $cursive;
 	font-size: 2rem;
 	margin-right:10px;
+	flex-shrink:0;
 
 }
 .signOutSection__signOutBtn {

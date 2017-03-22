@@ -135,12 +135,14 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   @media (max-width: 767px) {
     .signOutSection {
       justify-content: space-between;
-      order: 3; } }
+      order: 3;
+      align-items: baseline; } }
 
 .signOutSection p {
   font-family: "Pacifico", cursive;
   font-size: 2rem;
-  margin-right: 10px; }
+  margin-right: 10px;
+  flex-shrink: 0; }
 
 .signOutSection__signOutBtn {
   background: none;
@@ -488,7 +490,8 @@ header h4 {
 .holdCreateToDo p {
   font-family: "Pacifico", cursive;
   font-size: 2rem;
-  margin-right: 10px; }
+  margin-right: 10px;
+  flex-shrink: 0; }
 
 .addToDoBtn {
   background: none;
