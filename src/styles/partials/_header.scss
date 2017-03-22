@@ -34,6 +34,31 @@
 		// padding: 0;
 	}
 }
+.holdButtonandMessage {
+	display: flex;
+    align-items: center;
+    justify-content: center;
+    @include bp('med') {
+    	flex-direction: column;
+    }
+}
+.signOutSection .hiddenAnimation {
+	opacity: 0;
+	font-family: $sanSerif;
+	// text-align: center;
+	font-size: 1.6rem;
+	margin:0 0 0 10px;
+	color: $surpriseGreen;
+	transition: all 0.3s ease-in;
+	@include bp('med') {
+		text-align: center;
+	}
+}
+
+.signOutSection__signOutBtn:hover ~ .hiddenAnimation {
+	color: $blue;
+	opacity: 1;
+}
 
 
 

@@ -354,7 +354,10 @@ class App extends React.Component {
 					<section className="mainHeader">
 						<div className="signOutSection">
 							<p>Done Cleaning?</p>
-							<button className="signOutSection__signOutBtn" onClick={this.signOut}>Sign out</button>
+							<div className="holdButtonandMessage">
+								<button className="signOutSection__signOutBtn" onClick={this.signOut}>Sign out</button>
+								<p className="hiddenAnimation">No but really, did you clean?</p>
+							</div>
 						</div>
 						<CreateTodo  userUIDCreate={this.state.userUIDApp}/>
 					</section>

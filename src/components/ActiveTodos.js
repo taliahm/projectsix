@@ -38,7 +38,7 @@ export default (props) => {
 			return (	<section className="holdActiveandCompleted">
 							<section className="outerTaskSection">
 							{allDone}
-							<h3 className="taskSection__header">Get cleaning! You have a lot to do!</h3>
+							<h3 className="taskSection__header">Get cleaning! <span>You have a lot to do!</span></h3>
 							<div className="activeTasks taskSection">
 								<div className="holdClockandTask holdClockandTask--active">
 									<div className="holdActiveToDoandHeader">

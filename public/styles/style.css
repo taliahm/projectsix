@@ -161,6 +161,29 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
       margin: auto 0 auto 0;
       flex-grow: 0; } }
 
+.holdButtonandMessage {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+  @media (max-width: 767px) {
+    .holdButtonandMessage {
+      flex-direction: column; } }
+
+.signOutSection .hiddenAnimation {
+  opacity: 0;
+  font-family: "Nunito", sans-serif;
+  font-size: 1.6rem;
+  margin: 0 0 0 10px;
+  color: #52F9D0;
+  transition: all 0.3s ease-in; }
+  @media (max-width: 767px) {
+    .signOutSection .hiddenAnimation {
+      text-align: center; } }
+
+.signOutSection__signOutBtn:hover ~ .hiddenAnimation {
+  color: #2D3A65;
+  opacity: 1; }
+
 header {
   background: #2D3A65;
   padding: 20px 10px 30px 10px;
@@ -529,7 +552,12 @@ main.showMain {
   text-align: center; }
   @media (max-width: 767px) {
     .taskSection__header {
-      font-size: 2.5rem; } }
+      font-size: 2.5rem;
+      margin-top: 20px; } }
+
+@media (max-width: 767px) {
+  .taskSection__header span {
+    display: block; } }
 
 .holdClockandTask {
   display: flex;
