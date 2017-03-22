@@ -2,8 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { TodoList } from './data.js';
 import Header from './components/header.js';
+import CreateTodo from './components/CreateTodo.js';
 import InactiveTodos from './components/InactiveTodos.js';
 import ActiveTodos from './components/ActiveTodos.js';
+import SweetAlert from 'sweetalert-react';
+// import ActiveTodos from './components/ActiveToDoTest.js';
+// import MonthlyTask from './components/MonthlyTaskTest.js'
 import Footer from './components/Footer.js';
 // import Clock from './components/clock.js';
 
@@ -16,71 +20,7 @@ const config = {
  };
  firebase.initializeApp(config);
 
-class CreateTodo extends React.Component {
-	constructor() {
-		super();
-		this.updateTask = this.updateTask.bind(this);
-		this.updateFrequency = this.updateFrequency.bind(this);
-		this.addCustomToDo = this.addCustomToDo.bind(this);
-		this.state= {
-			userDescription: "",
-			userFrequency: "",
-		}
-	}
-	updateTask(e) {
-		this.setState ({
-			userDescription: e.target.value
-		})
-	}
-	updateFrequency(e) {
-		this.setState ({
-			userFrequency: e.target.value
-		})
-	}
-	addCustomToDo(e) {
-		e.preventDefault();
-		const customItem = {
-			description: this.state.userDescription ,
-			frequency: this.state.userFrequency , 
-			status: 'active'
-		}
-		//UPDATE
-		const dbRef = firebase.database().ref(`users/${this.props.userUIDCreate}/todolist`)
-		dbRef.once('value').then((data) => {
-			const usersList = data.val();
-			// const keyToList = ' ';
-			for (let garbageKey in usersList) {
-				const keyToList = garbageKey;
-			const dbRefToList = firebase.database().ref(`users/${this.props.userUIDCreate}/todolist/${garbageKey}`)
-				dbRefToList.push(customItem);
-			}
-		})
-		this.setState({
-				userDescription: "",
-				userFrequency: "",
-				});
-		document.getElementById('makeToDo').reset();
-	}
-	render() {
-		return (
-			<div>
-				<form id="makeToDo" onSubmit={this.addCustomToDo}>
-					<h6>Add Your Own Tasks:</h6>
-					<label htmlFor="userDescription">Describe Your Task:</label>
-					<input id="userDescription" type="text" value={this.state.userDescription} onChange={this.updateTask}/>
-					<h6>How frequenctly do you need to perform these tasks?</h6>
-					<label htmlFor="threeMonth">every 3 Months</label>
-					<input onChange={this.updateFrequency} value="3" name="userFrequency" id="threeMonth" className="radioButton" type="radio"/>
-					<label htmlFor="sixMonth">every 6 Months</label>
-					<input onChange={this.updateFrequency} value="6" name="userFrequency" id="sixMonth" className="radioButton" type="radio"/>
-					<label htmlFor="twelveMonth">every Year!</label>
-					<input onChange={this.updateFrequency} value="12" name="userFrequency" id="twelveMonth" className="radioButton" type="radio"/>
-					<input type="submit" value="add To Do!" onClick={this.addCustomToDo}/>
-				</form>
-			</div>
-			)
-	}
-}
+
 
 class App extends React.Component {
 	constructor() {
@@ -111,7 +51,8 @@ class App extends React.Component {
 				twelveMonthStatus: '',
 				threeMonthCompletedStatus: '',
 				sixMonthCompletedStatus: '',
-				twelveMonthCompletedStatus: ''
+				twelveMonthCompletedStatus: '',
+				inactiveStatus: ''
 		}
 	}
 	componentDidMount() {
@@ -135,6 +76,14 @@ class App extends React.Component {
 						else if(stateToDoList[key].status === 'inactive') {
 							inactiveToDoList.push(stateToDoList[key])
 						}
+					}
+					//check length of inActive key
+					let inactiveStatus = ''
+					if(inactiveToDoList.length > 0){
+						inactiveStatus = 'full'
+					}
+					else if(inactiveToDoList.length === 0){
+						inactiveStatus = 'empty'
 					}
 					//creating Arrays of Active to dos by month
 					const threeMonthActive = []
@@ -215,6 +164,12 @@ class App extends React.Component {
 					userUIDApp: user.uid,
 					activeToDos: activeToDoList,
 					completedToDos: completedToDoList,
+					activeThreeMonthList: threeMonthActive,
+					activeSixMonthList: sixMonthActive,
+					activeTwelveMonthList: twelveMonthActive,
+					completeThreeMonthList: threeMonthCompleted,
+					completeSixMonthList: sixMonthCompleted,
+					completeTwelveMonthList: twelveMonthCompleted,
 					inactiveToDos: inactiveToDoList,
 					threeMonthStatus: threeMonthEmpty,
 					sixMonthStatus: sixMonthEmpty, 
@@ -222,6 +177,7 @@ class App extends React.Component {
 					threeMonthCompletedStatus: threeMonthEmptyCompleted,
 					sixMonthCompletedStatus: sixMonthEmptyCompleted,
 					twelveMonthCompletedStatus: twelveMonthEmptyCompleted,
+					inactiveStatus: inactiveStatus
 					})
 				}
 				this.mainContent.classList.add('showMain')
@@ -390,6 +346,7 @@ class App extends React.Component {
 		this.userSignsOut()
 	}
 	showMainContent() {
+
 			this.mainContent.classList.add('showMain')
 	}
 	countdownComplete(months) {
@@ -488,11 +445,14 @@ class App extends React.Component {
 									 sixMonthCompletedStatus={this.state.sixMonthCompletedStatus}
 									 twelveMonthCompletedStatus={this.state.twelveMonthCompletedStatus}
 									/>
-						<h2>You've indicated these do not apply to you</h2>
-						<InactiveTodos clickFunction={this.statusUpdate} 
+						<section className="holdInActive">
+							<h2>You've indicated these tasks do not apply to you!</h2>
+							<InactiveTodos clickFunction={this.statusUpdate} 
 									   addToDo={this.reactivateToDo} 
 									   removeFunction={this.deactivateToDo} 
-									   todos={this.state.todos} />
+									   todos={this.state.todos} 
+									   lengthStatus={this.state.inactiveStatus}/>
+						</section>
 					</section>
 				</main>
 				<Footer />

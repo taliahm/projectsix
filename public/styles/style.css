@@ -119,33 +119,23 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   border: 0;
   padding: 0; }
 
-html {
-  font-size: 62.5%; }
-
-body {
-  background-image: url(../../assets/gplaypattern.png);
-  background-attachment: fixed;
-  color: #050505;
-  font-size: 1.2rem;
-  font-family: "Nunito", sans-serif; }
-
-h1, h2, h3, h4, h5, h6 {
-  margin: 0; }
-
-main {
-  display: none; }
-
-main.showMain {
-  display: block;
-  max-width: 1200px;
-  margin: 20px auto; }
-
 .mainHeader {
   display: flex;
   justify-content: space-between; }
+  @media (max-width: 1200px) {
+    .mainHeader {
+      margin: 0 10px 0 10px; } }
+  @media (max-width: 767px) {
+    .mainHeader {
+      flex-direction: column;
+      padding: 10px; } }
 
 .signOutSection {
   display: flex; }
+  @media (max-width: 767px) {
+    .signOutSection {
+      justify-content: space-between;
+      order: 3; } }
 
 .signOutSection p {
   font-family: "Pacifico", cursive;
@@ -166,89 +156,10 @@ main.showMain {
   margin: auto; }
   .signOutSection__signOutBtn:hover {
     background: #0e111e; }
-
-.holdAllTasks {
-  display: flex;
-  flex-direction: column;
-  align-items: center; }
-
-.holdActiveandCompleted {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  max-width: 80%;
-  margin: 0 auto;
-  background: rgba(255, 255, 255, 0.7); }
-
-.taskSection {
-  display: flex;
-  justify-content: center; }
-
-.taskSection__header {
-  font-size: 4rem;
-  color: #2D3A65;
-  margin-bottom: 20px; }
-
-.holdClockandTask {
-  width: 30%;
-  display: flex;
-  flex-direction: column;
-  min-height: 150px;
-  min-width: 300px; }
-
-.countdown {
-  align-self: center;
-  text-align: center;
-  border: 1px solid #2D3A65;
-  padding: 10px;
-  color: #2D3A65;
-  border-radius: 5px;
-  width: 80%; }
-
-.countdown h4 {
-  margin-bottom: 7px;
-  font-size: 1.5rem; }
-
-.timeUnitWrap {
-  display: flex;
-  justify-content: space-around;
-  color: #08dda9; }
-
-.timeUnitWrap span {
-  display: block;
-  color: #2D3A65; }
-
-.monthlyList {
-  list-style: none;
-  padding: 0; }
-
-.monthlyList__listItem {
-  display: flex; }
-
-.monthlyList__listItem input {
-  display: none; }
-
-.monthlyList__label {
-  display: flex;
-  align-items: center;
-  width: 50%; }
-
-.monthlyList__tag {
-  display: block;
-  text-decoration: none; }
-
-.monthlyList__label img {
-  max-width: 100%;
-  display: block; }
-
-.monthlyList__label .imgContain {
-  margin-right: 10px; }
-
-.monthlyList__label--active .imgContain {
-  width: 10%; }
-
-.monthlyList__label--completed .imgContain {
-  width: 12%; }
+  @media (max-width: 767px) {
+    .signOutSection__signOutBtn {
+      margin: auto 0 auto 0;
+      flex-grow: 0; } }
 
 header {
   background: #2D3A65;
@@ -264,15 +175,24 @@ header h1 {
   font-size: 5.5rem;
   margin-bottom: 30px;
   margin-top: 30px; }
+  @media (max-width: 767px) {
+    header h1 {
+      font-size: 3.5rem; } }
 
 header h2, header h4 {
   color: #a5ffde; }
 
 header h2 {
   font-size: 2.5rem; }
+  @media (max-width: 767px) {
+    header h2 {
+      font-size: 1.8rem; } }
 
 header h4 {
   font-size: 2rem; }
+  @media (max-width: 767px) {
+    header h4 {
+      font-size: 1.4rem; } }
 
 .userAction {
   display: none; }
@@ -281,6 +201,10 @@ header h4 {
   display: flex;
   justify-content: center;
   padding-top: 50px; }
+  @media (max-width: 767px) {
+    .showUserAction {
+      flex-direction: column;
+      margin-bottom: 50px; } }
 
 .userAuth__title, .userAuth__instructions {
   margin: 0;
@@ -303,6 +227,17 @@ header h4 {
   border-radius: 10px; }
   .showUserAction .btn:hover {
     background: #0e111e; }
+  @media (max-width: 940px) {
+    .showUserAction .btn {
+      max-width: 50%;
+      margin: 0 auto; } }
+  @media (max-width: 767px) {
+    .showUserAction .btn {
+      margin-bottom: 20px;
+      max-width: 60%; } }
+  @media (max-width: 480px) {
+    .showUserAction .btn {
+      max-width: 90%; } }
 
 .showUserAction .btn:hover {
   background: #253053; }
@@ -316,6 +251,9 @@ header h4 {
 .userAuth__title {
   font-size: 3rem;
   margin-bottom: 40px; }
+  @media (max-width: 767px) {
+    .userAuth__title {
+      font-size: 2.5rem; } }
 
 .userAuth__title--big {
   font-size: 3.2rem;
@@ -324,11 +262,23 @@ header h4 {
 .userAuth__title span {
   display: block;
   font-size: 2.9rem; }
+  @media (max-width: 767px) {
+    .userAuth__title span {
+      font-size: 2.2rem; } }
 
 .show {
   display: block;
   max-width: 40%;
   margin: 0 auto; }
+  @media (max-width: 1200px) {
+    .show {
+      max-width: 60%; } }
+  @media (max-width: 940px) {
+    .show {
+      max-width: 80%; } }
+  @media (max-width: 480px) {
+    .show {
+      max-width: 100%; } }
 
 .formWrap {
   margin-top: 40px;
@@ -338,6 +288,12 @@ header h4 {
   padding: 40px 20px 40px 20px;
   background: #3d4e88;
   border-radius: 10px; }
+  @media (max-width: 767px) {
+    .formWrap {
+      text-align: center; } }
+  @media (max-width: 480px) {
+    .formWrap {
+      border-radius: 0; } }
 
 .formWrap label {
   color: #a5ffde;
@@ -353,6 +309,9 @@ header h4 {
   font-size: 1.4rem;
   margin-bottom: 25px;
   border-radius: 5px; }
+  @media (max-width: 767px) {
+    .formWrap .formWrap__textInput {
+      width: 90%; } }
 
 .userAuth__submitBtn {
   background: none;
@@ -370,20 +329,500 @@ header h4 {
   .userAuth__submitBtn:hover {
     background: #08dda9; }
 
+@media (max-width: 480px) {
+  .wrapCreateToDo {
+    order: 1; } }
+
+.formMakeToDo {
+  display: none; }
+
+.showFormMakeToDo {
+  display: flex;
+  position: absolute;
+  z-index: 99;
+  top: 10%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  flex-direction: column;
+  background: #FDFDFD;
+  padding: 20px;
+  border: 1px solid #52F9D0;
+  border-radius: 10px; }
+  @media (max-width: 767px) {
+    .showFormMakeToDo {
+      transform: translate(0);
+      top: 0;
+      left: 0;
+      margin: 5px; } }
+
+.closeForm {
+  align-self: flex-start; }
+
+.closeForm a i.fa-times {
+  text-decoration: none;
+  color: #52F9D0;
+  font-size: 2rem;
+  transition: all 0.3s ease-out;
+  transform: scale(1); }
+  .closeForm a i.fa-times:hover {
+    transform: scale(1.3); }
+
+.showFormMakeToDo h2 {
+  font-size: 3rem;
+  text-align: center;
+  margin-top: 20px;
+  color: #2D3A65; }
+  @media (max-width: 767px) {
+    .showFormMakeToDo h2 {
+      font-size: 2rem; } }
+
+.showFormMakeToDo p {
+  text-align: center;
+  font-size: 1.7rem;
+  margin: 0 0 20px 0; }
+
+.showOverlay {
+  position: fixed;
+  background: rgba(253, 253, 253, 0.9);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 8; }
+
+.formList {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  align-items: center;
+  font-size: 1.7rem;
+  margin: 0 auto; }
+
+.formList li {
+  display: flex;
+  align-items: center; }
+
+.formList li h6 {
+  font-size: 1.7rem; }
+  @media (max-width: 767px) {
+    .formList li h6 {
+      text-align: center;
+      margin: 10px 0 10px 0; } }
+
+.formList input[type='radio'] ~ label {
+  margin-bottom: 5px; }
+
+.formList li:first-child {
+  margin-bottom: 10px; }
+  @media (max-width: 767px) {
+    .formList li:first-child {
+      flex-direction: column; } }
+
+.formList li:last-child {
+  align-self: center;
+  margin-top: 20px; }
+
+.formMakeToDo__submitBtn {
+  background: none;
+  background: #3d4e88;
+  border: none;
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 1.7rem;
+  transition: all 0.3s ease-in;
+  color: #FDFDFD;
+  border-radius: 10px; }
+  .formMakeToDo__submitBtn:hover {
+    background: #0e111e; }
+
+.holdCreateToDo {
+  display: flex; }
+  @media (max-width: 767px) {
+    .holdCreateToDo {
+      justify-content: space-between; } }
+
+.holdCreateToDo p {
+  font-family: "Pacifico", cursive;
+  font-size: 2rem;
+  margin-right: 10px; }
+
+.addToDoBtn {
+  background: none;
+  background: #3d4e88;
+  border: none;
+  margin: 0 10px;
+  padding: 10px 20px;
+  font-size: 1.7rem;
+  transition: all 0.3s ease-in;
+  color: #FDFDFD;
+  border-radius: 10px;
+  margin: auto;
+  flex-shrink: 0; }
+  .addToDoBtn:hover {
+    background: #0e111e; }
+  @media (max-width: 767px) {
+    .addToDoBtn {
+      margin: auto 0 auto 0;
+      flex-grow: 0; } }
+
+main {
+  display: none; }
+
+main.showMain {
+  display: block;
+  max-width: 1200px;
+  margin: 20px auto; }
+
+.holdAllTasks {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+
+.holdActiveandCompleted {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto; }
+
+.outerTaskSection {
+  background: rgba(255, 255, 255, 0.7);
+  margin-bottom: 40px;
+  padding: 30px;
+  position: relative; }
+  @media (max-width: 767px) {
+    .outerTaskSection {
+      padding: 0; } }
+
+.taskSection {
+  display: flex;
+  justify-content: center; }
+  @media (max-width: 1200px) {
+    .taskSection {
+      flex-direction: column;
+      flex-wrap: wrap; } }
+
+.taskSection__header {
+  font-size: 4rem;
+  color: #2D3A65;
+  margin-bottom: 20px;
+  text-align: center; }
+  @media (max-width: 767px) {
+    .taskSection__header {
+      font-size: 2.5rem; } }
+
+.holdClockandTask {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 150px;
+  min-width: 300px;
+  border: 2px solid #2D3A65;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 0 10px 0 10px;
+  position: relative; }
+  @media (max-width: 1200px) {
+    .holdClockandTask {
+      margin-bottom: 20px; } }
+  @media (max-width: 480px) {
+    .holdClockandTask {
+      justify-content: space-around; } }
+
+@media (max-width: 480px) {
+  .holdClockandTask--active.holdClockandTask {
+    padding: 0; } }
+
+.holdClockandTask h4 {
+  text-align: center;
+  font-size: 1.7rem; }
+
+.monthlyList__message {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #52F9D0;
+  display: flex;
+  padding: 20px; }
+
+.monthlyList__message--large {
+  position: absolute;
+  z-index: 80;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  background: #2D3A65;
+  display: flex;
+  padding: 40px;
+  border: 3px #52F9D0 solid;
+  border-radius: 10px; }
+
+.monthlyList__messageText {
+  margin: auto;
+  text-align: center;
+  color: #2D3A65;
+  font-size: 1.8rem; }
+  .monthlyList__messageText span {
+    display: block;
+    font-family: "Pacifico", cursive;
+    font-size: 2.2rem; }
+
+.monthlyList__messageText--Large {
+  margin: auto;
+  text-align: center;
+  color: #FDFDFD;
+  font-size: 1.8rem; }
+  .monthlyList__messageText--Large span {
+    display: block;
+    font-family: "Pacifico", cursive;
+    font-size: 3rem;
+    color: #a5ffde; }
+
+.countdown {
+  align-self: center;
+  text-align: center;
+  margin: 0 auto;
+  color: #2D3A65;
+  border-radius: 5px;
+  width: 80%; }
+
+.countdownHeader {
+  margin-bottom: 7px;
+  font-size: 1.2rem;
+  color: #2D3A65;
+  text-align: center; }
+
+.timeUnitWrap {
+  display: flex;
+  justify-content: space-around;
+  color: #08dda9;
+  font-size: 1.7rem; }
+  @media (max-width: 1200px) {
+    .timeUnitWrap {
+      max-width: 50%;
+      margin: 0 auto; } }
+
+.timeUnitWrap span {
+  display: block;
+  color: #2D3A65; }
+
+@media (max-width: 480px) {
+  .timeUnit {
+    margin: 0 5px 0 5px; } }
+
+.monthlyList {
+  list-style: none;
+  padding: 0; }
+
+.monthlyList__listItem {
+  display: flex;
+  margin-bottom: 10px; }
+
+.monthlyList__listItem--active {
+  padding: 10px 0;
+  margin-bottom: 0px; }
+
+@media (max-width: 480px) {
+  .monthlyList__listItem--active:nth-child(odd) {
+    background: #f0f0f0; } }
+
+.monthlyList__listItem input {
+  display: none; }
+
+.monthlyList__label {
+  display: flex;
+  align-items: center;
+  width: 70%;
+  font-size: 1.8rem; }
+
+.monthlyList__label--completed {
+  width: 100%; }
+  @media (max-width: 480px) {
+    .monthlyList__label--completed {
+      width: 100%; } }
+
+.monthlyList__tag {
+  display: block;
+  text-decoration: none;
+  color: grey;
+  font-size: .8rem;
+  align-self: center;
+  transform: scale(1);
+  transition: all 0.3s ease-out; }
+  .monthlyList__tag:hover {
+    color: #52F9D0;
+    transform: scale(1.2); }
+
+.monthlyList__label img {
+  max-width: 100%;
+  display: block;
+  flex-shrink: 0; }
+
+.monthlyList__label .imgContain {
+  margin-right: 10px;
+  flex-shrink: 0; }
+
+.monthlyList__label--active .imgContain {
+  width: 25px; }
+
+.monthlyList__label--completed .imgContain {
+  width: 30px; }
+
+.holdClock {
+  margin-top: 15px; }
+
+.monthList__listItemHolder {
+  width: 100%;
+  display: flex; }
+  @media (max-width: 1200px) {
+    .monthList__listItemHolder {
+      justify-content: space-around; } }
+
+.listItemFades {
+  transform: scale(1); }
+
+.listItemFades-appear {
+  transition: all 0.5s ease-in;
+  transform: translateY(-50%);
+  opacity: 0; }
+
+.listItemFades-appear.listItemFades-appear-active {
+  transform: translateY(0);
+  opacity: 1; }
+
+.listItemFades-leave {
+  transform: scale(1); }
+
+.listItemFades-leave.listItemFades-leave-active {
+  transform: scale(2);
+  transition: all 5s; }
+
+.holdInActive {
+  background: #FDFDFD;
+  width: 100%;
+  text-align: center;
+  padding: 30px 0; }
+
+.holdInActive h2 {
+  font-size: 2.5rem;
+  color: #2D3A65;
+  margin-bottom: 20px; }
+
+.inactiveList {
+  padding: 0;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  width: 40%;
+  border: 2px solid #2D3A65;
+  border-radius: 10px;
+  padding: 20px; }
+  @media (max-width: 940px) {
+    .inactiveList {
+      width: 80%; } }
+  @media (max-width: 767px) {
+    .inactiveList {
+      max-width: 100%; } }
+
+.inactiveList li {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.4rem; }
+  @media (max-width: 767px) {
+    .inactiveList li {
+      flex-wrap: wrap;
+      max-width: 100%;
+      overflow: hidden;
+      word-wrap: break-all;
+      overflow-wrap: break-word; } }
+
+.inactiveList input[type='checkbox'] {
+  display: none; }
+
+.monthlyList__tagInactive {
+  display: block;
+  text-decoration: none;
+  color: grey;
+  font-size: .8rem;
+  align-self: center;
+  transform: scale(1);
+  transition: all 0.3s ease-out;
+  margin-left: 10px; }
+  .monthlyList__tagInactive:hover {
+    color: #52F9D0;
+    transform: scale(1.2); }
+
+.emptyStatusMessage {
+  font-size: 1.4rem; }
+
 footer {
   position: fixed;
   bottom: 0; }
 
+.footerTag {
+  display: block;
+  margin-bottom: 20px;
+  margin-left: 20px;
+  font-size: 3rem;
+  color: #2D3A65;
+  font-family: "Pacifico", cursive;
+  letter-spacing: 1.3px;
+  text-decoration: none;
+  transition: all 0.3s ease-out;
+  outline: none; }
+  .footerTag:hover {
+    color: #52F9D0; }
+
 .overlayFooter {
-  position: absolute;
+  position: fixed;
+  top: 0;
   bottom: 0;
+  left: 0;
   right: 0;
-  background: grey;
-  z-index: 99; }
+  background: rgba(253, 253, 253, 0.7);
+  z-index: 99;
+  display: flex; }
 
-.moveThis-enter {
-  transition: all 1s;
-  transform: scale(1); }
+.innerFooter {
+  background: #2D3A65;
+  color: #FDFDFD;
+  margin: auto;
+  width: 20%;
+  height: 50vh;
+  font-size: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px; }
+  @media (max-width: 1200px) {
+    .innerFooter {
+      width: 50%; } }
+  @media (max-width: 940px) {
+    .innerFooter {
+      width: 50%; } }
+  @media (max-width: 767px) {
+    .innerFooter {
+      width: 70%; } }
+  @media (max-width: 480px) {
+    .innerFooter {
+      width: 90%; } }
 
-.moveThis-enter-active {
-  transform: scale(0); }
+.innerFooter p {
+  text-align: center; }
+
+html {
+  font-size: 62.5%; }
+
+body {
+  background-image: url(../../assets/gplaypattern.png);
+  background-attachment: fixed;
+  color: #050505;
+  font-size: 1.2rem;
+  font-family: "Nunito", sans-serif; }
+
+h1, h2, h3, h4, h5, h6 {
+  margin: 0; }

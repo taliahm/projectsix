@@ -25,3 +25,38 @@ $sanSerif: 'Nunito', sans-serif;
 		background: darken($bgColor, 20);
 	}
 }
+
+// $bp-xlarge: 1200px;
+$bp-large: 940px;
+$bp-medium: 767px;
+$bp-small: 480px;
+$bp-smlMed: 540px;
+
+@mixin bp($size) {
+	@if $size == 'xlrg' {
+		@media (max-width: 1200px) {
+			@content;
+	}
+}
+@if $size =='lrg' {
+	@media (max-width: $bp-large){
+		@content;
+	}
+}
+
+@if ($size =='med') {
+	@media (max-width: $bp-medium){
+		@content;
+	}
+}
+@if ($size =='smlMed') {
+	@media (max-width: $bp-smlMed){
+		@content;
+	}
+}
+@if ($size =='sml') {
+	@media (max-width: $bp-small) {
+		@content;
+		}
+	}
+}

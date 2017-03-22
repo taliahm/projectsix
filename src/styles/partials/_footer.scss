@@ -1,0 +1,65 @@
+
+//Footer Styling
+footer {
+	position: fixed;
+	bottom:0;
+}
+
+.footerTag {
+	display: block;
+	margin-bottom: 20px;
+	margin-left: 20px;
+	font-size: 3rem;
+	color: $blue;
+	font-family: $cursive;
+	letter-spacing: 1.3px;
+	text-decoration: none;
+	transition: all 0.3s ease-out;
+	outline:none;
+	&:hover {
+		color: $surpriseGreen;
+	}
+}
+.overlayFooter {
+	position: fixed;
+	top:0;
+	bottom:0;
+	left:0;
+	right:0;
+	background: transparentize($white, 0.3);
+	z-index: 99;
+	display: flex;
+}
+
+.innerFooter {
+	background: $blue;
+	color: $white;
+	margin: auto;
+	width:20%;
+	height: 50vh;
+	font-size: 1.4rem;
+	display: flex;
+	flex-direction: column;
+	justify-content:center;
+	align-items:center;
+	padding:10px;
+	border-radius: 10px;
+	@include bp('xlrg') {
+		width:50%;
+	}
+	@include bp('lrg') {
+		width:50%;
+	}
+	@include bp('med') {
+		width:70%;
+	}
+	@include bp('sml') {
+		width:90%;
+	}
+}
+
+.innerFooter p {
+	text-align: center;
+}
+
+

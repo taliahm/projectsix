@@ -1,0 +1,262 @@
+main {
+	display: none;
+}
+
+main.showMain {
+	display: block;
+	max-width: 1200px;
+	margin: 20px auto;
+}
+
+.holdAllTasks {
+	display: flex;
+	flex-direction:column;
+	align-items: center;
+}
+
+
+.holdActiveandCompleted {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	// max-width: 80%;
+	margin: 0 auto;
+	
+}
+
+.outerTaskSection {
+	background: transparentize(white, 0.3);
+	margin-bottom: 40px;
+	padding: 30px;
+	position: relative;
+	@include bp('med') {
+		padding:0;
+	}
+}
+
+.taskSection {
+	display: flex;
+	justify-content:center;
+	@include bp('xlrg') {
+		flex-direction:column;
+		flex-wrap: wrap;
+	}
+}
+
+.taskSection__header {
+	font-size: 4rem;
+	color: $blue;
+	margin-bottom: 20px;
+	text-align:center;
+	@include bp('med') {
+		font-size: 2.5rem;
+	}
+}
+.holdClockandTask {
+	// border: 1px solid red;
+	// width: 30%;
+	display: flex;
+	flex-direction: column;
+	// justify-content:space-around;
+	justify-content: space-between;
+	min-height: 150px;
+	min-width: 300px;
+	border: 2px solid $blue;
+	padding: 10px;
+	border-radius: 5px;
+	 margin: 0 10px 0 10px;
+	 position:relative;
+	 @include bp('xlrg') {
+	 	margin-bottom: 20px;
+	 }
+	 @include bp('sml') {
+	 	justify-content:space-around;
+	 }
+}
+
+.holdClockandTask--active.holdClockandTask {
+	@include bp('sml'){
+		padding:0;
+	}
+}
+
+.holdClockandTask h4 {
+	text-align: center;
+	font-size: 1.7rem;
+}
+
+.monthlyList__message {
+	position: absolute;
+	// z-index: 70; //Needs to be under create a task box and under message large
+	top:0;
+	bottom:0;
+	right:0;
+	left:0;
+	background: $surpriseGreen;
+	display: flex;
+	padding: 20px;
+}
+
+.monthlyList__message--large {
+	position: absolute;
+	z-index: 80;
+	top:0;
+	bottom: 0;
+	right:0;
+	left:0;
+	background: $blue;
+	display: flex;
+	padding: 40px;
+	border:3px $surpriseGreen solid;
+	border-radius: 10px;
+}
+
+
+.monthlyList__messageText {
+	margin: auto;
+	text-align: center;
+	color: $blue;
+	font-size: 1.8rem;
+	span {
+		display: block;
+		font-family: $cursive;
+		font-size: 2.2rem;
+	}
+}
+
+.monthlyList__messageText--Large {
+	margin: auto;
+	text-align: center;
+	color: $white;
+	font-size: 1.8rem;
+	span {
+		display: block;
+		font-family: $cursive;
+		font-size: 3rem;
+		color: $otherGreen;
+	}
+}
+
+.countdown {
+	align-self: center;
+	text-align: center;
+	margin: 0 auto;
+	// background: lighten($blue, 10);
+	// border: 1px solid $blue;
+	// padding: 10px;
+	color: $blue;
+	border-radius: 5px;
+	width: 80%;
+}
+
+.countdownHeader {
+	margin-bottom: 7px;
+	font-size: 1.2rem;
+	color: $blue;
+	text-align:center;
+}
+
+.timeUnitWrap {
+	display: flex;
+	justify-content: space-around;
+	color: darken($surpriseGreen, 20);
+	font-size: 1.7rem;
+	// text-shadow: 1px 1px 1px black;
+	@include bp('xlrg') {
+		max-width: 50%;
+		margin: 0 auto;
+	}
+}
+
+.timeUnitWrap span {
+	display: block;
+	color: $blue;
+}
+
+.timeUnit {
+	@include bp('sml') {
+		margin: 0 5px 0 5px;
+	}
+}
+
+.monthlyList {
+	list-style: none;
+	padding:0;
+}
+.monthlyList__listItem {
+	display: flex;
+	margin-bottom:10px;
+	// justify-content: center;
+}
+
+//striped styling on mobile
+.monthlyList__listItem--active {
+	padding:10px 0;
+	margin-bottom: 0px;
+}
+
+.monthlyList__listItem--active:nth-child(odd) {
+	@include bp('sml') {
+		background: darken($white, 5);
+
+	}
+}
+
+
+
+.monthlyList__listItem input {
+	display: none;
+}
+
+.monthlyList__label {
+	display: flex;
+	align-items: center;
+	width: 70%;
+	font-size: 1.8rem;
+}
+
+.monthlyList__label--completed{
+	width:100%;
+	@include bp('sml') {
+		width: 100%;
+	}
+}
+
+.monthlyList__tag {
+	display: block;
+	text-decoration: none;
+	color: grey;
+	font-size: .8rem;
+	align-self: center;
+	transform: scale(1);
+	transition: all 0.3s ease-out;
+	&:hover {
+		color: $surpriseGreen;
+		transform: scale(1.2);
+	}
+}
+
+.monthlyList__label img {
+	max-width: 100%;
+	display: block;
+	flex-shrink:0;
+}
+
+.monthlyList__label .imgContain {
+	margin-right: 10px;
+	flex-shrink: 0;
+	// width: 20px;
+}
+
+.monthlyList__label--active .imgContain {
+	width:25px;
+}
+
+.monthlyList__label--completed .imgContain {
+	width:30px;
+}
+
+
+.holdClock {
+	margin-top: 15px;
+}

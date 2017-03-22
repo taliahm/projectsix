@@ -1,0 +1,211 @@
+//Adding todos bit and sign out button
+.mainHeader {
+	display: flex;
+	justify-content: space-between;
+	@include bp('xlrg'){
+		margin: 0 10px 0 10px;
+	}
+	@include bp('med') {
+		flex-direction:column;
+		padding:10px;
+	}
+}
+
+.signOutSection {
+	display: flex;
+		@include bp('med') {
+		justify-content: space-between;
+		order: 3;
+	}
+}
+.signOutSection p {
+	font-family: $cursive;
+	font-size: 2rem;
+	margin-right:10px;
+
+}
+.signOutSection__signOutBtn {
+	@include btnStyles($white, $blue);
+	flex-shrink: 0;
+	margin: auto;
+	@include bp('med') {
+		margin:auto 0 auto 0;
+		flex-grow: 0;
+		// padding: 0;
+	}
+}
+
+
+
+//HEADER STYLING
+header {
+	background: $blue;
+	padding: 20px 10px 30px 10px;
+	line-height: 1.4;
+	text-align: center;
+}
+header h1 {
+	color: $white;
+	font-family: $cursive;
+	letter-spacing: 2px;
+	text-shadow: 1px 1px 1px grey;
+	font-size: 5.5rem;
+	margin-bottom: 30px;
+	margin-top:30px;
+	@include bp('med') {
+		font-size: 3.5rem;
+	}
+}
+
+header h2, header h4 {
+	color: $otherGreen;
+}
+
+header h2 {
+	font-size: 2.5rem;
+	@include bp('med') {
+		font-size: 1.8rem;
+	}
+}
+
+header h4 {
+	font-size: 2rem;
+	@include bp('med') {
+		font-size: 1.4rem;
+	}
+}
+.userAction {
+	display:none;
+}
+
+.showUserAction {
+	display: flex;
+	justify-content:center;
+	padding-top:50px;
+	@include bp('med') {
+		flex-direction:column;
+		margin-bottom:50px;
+	}
+}
+
+.userAuth__title, .userAuth__instructions {
+	margin:0;
+	color:$surpriseGreen;
+	text-align: center;
+}
+
+.userAuth__instructions{
+	font-size: 2rem;
+	margin-bottom:20px;
+}
+
+
+
+.showUserAction .btn {
+	@include btnStyles($white, $blue)
+	@include bp('lrg') {
+		max-width:50%;
+		margin:0 auto;
+	}
+	@include bp('med') {
+		margin-bottom:20px;
+		max-width:60%;
+	}
+	@include bp('sml') {
+		max-width: 90%;
+	}
+}
+
+.showUserAction .btn:hover {
+	background: darken($blue, 5);
+}
+
+.userAuth {
+	display: none;
+}
+
+.userAuth__instructions span {
+	display: block;
+}
+
+.userAuth__title {
+	font-size: 3rem;
+	margin-bottom: 40px;
+	@include bp('med') {
+		font-size: 2.5rem;
+	}
+}
+
+.userAuth__title--big {
+	font-size: 3.2rem;
+	letter-spacing: 1.5px;
+}
+
+.userAuth__title span {
+	display: block;
+	font-size: 2.9rem;
+	@include bp('med') {
+		font-size: 2.2rem;
+	}
+}
+
+.show {
+	display: block;
+	max-width:40%;
+	margin: 0 auto;
+	@include bp('xlrg') {
+		max-width: 60%;
+	}
+	@include bp('lrg') {
+		max-width: 80%;
+	}
+	@include bp('sml') {
+		max-width:100%;
+	}
+}
+.formWrap {
+	margin-top: 40px;
+	display: flex;
+	flex-direction:column;
+	// max-width:40%;
+	align-items: center;
+	padding: 40px 20px 40px 20px;
+	background: lighten($blue, 10);
+	border-radius: 10px;
+	@include bp('med') {
+		text-align: center;
+	}
+	@include bp('sml') {
+		border-radius: 0;
+	}
+}
+
+.formWrap label {
+	// text-transform: uppercase;
+	color: $otherGreen;	
+	font-size: 2rem;
+	margin-bottom:10px;
+}
+
+.formWrap .formWrap__textInput {
+	width:60%;
+	background: none;
+	background: white;
+	border:none;
+	padding: 10px;
+	font-size: 1.4rem;
+	margin-bottom: 25px;
+	border-radius: 5px;
+	@include bp('med') {
+		width: 90%;
+	}
+}
+
+.userAuth__submitBtn {
+	@include btnStyles($blue, $surpriseGreen)
+	padding: 10px 40px;
+	text-transform: uppercase;
+	margin-top:10px;
+}
+
+

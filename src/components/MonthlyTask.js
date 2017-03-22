@@ -1,5 +1,5 @@
 import React from 'react';
-import CSSTransitionGroup from 'react-addons-css-transition-group';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 
 export default (props) => {
 	const byTimeArray = props.data.filter((item) => {
@@ -7,13 +7,16 @@ export default (props) => {
 	})
 	let items = ' '
 	if(props.monthStatus === 'full') {
-	return (
+	items = (
 		<ul className="monthlyList">
+				<ReactCSSTransitionGroup transitionName="listItemFades" transitionEnterTimeout={5000} transitionLeaveTimeout={5000} component="span">
+				
 				{byTimeArray.map((item, i ) => {
 					let descriptionKey = item.description.replace(" ", "");
 					 if(item.status === 'completed') {
 						return (
 								<li className="monthlyList__listItem monthlyList__listItem--completed" key={descriptionKey}>
+
 									<input name={item.description} checked
 										   onChange={(e)=> props.clickFunction(e)} 
 										   type="checkbox" 
@@ -22,19 +25,14 @@ export default (props) => {
 										<div className="imgContain"><img src="../../assets/checked.png" alt=""/></div>
 										<span>{item.description}</span>
 									</label>
+
 								</li>
+									
 							)
 						}
 					else {
-						return (
-								
+						items= (
 									<li className="monthlyList__listItem monthlyList__listItem--active" key={descriptionKey}>
-										<CSSTransitionGroup
-											component="span"
-											className="moveThis"
-											transitionName="removeTodo"
-											transitionEnterTimeout={1000}
-											transitionLeaveTimeout={1000}>	
 										<input name={item.description}
 											   onChange={(e)=> props.clickFunction(e)} 
 											   type="checkbox" 
@@ -45,11 +43,13 @@ export default (props) => {
 											<span>{item.description}</span>
 										</label>
 										<a className="monthlyList__tag" onClick={(e) => props.removeFunction(e)} className={item.description} name={item.description} href="#">Does Not Apply to Me</a>
-									</CSSTransitionGroup>
 									</li>
 							)
 					}
 				})}
+									
+				</ReactCSSTransitionGroup>
+									
 		</ul>
 		)
 	}
@@ -64,7 +64,9 @@ export default (props) => {
 			)
 	}
 	return (
-			<section></section>
+			<section>
+				{items}
+			</section>
 		)
 }
 
