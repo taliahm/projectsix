@@ -96,25 +96,27 @@ export default class CreateTodo extends React.Component {
 						<h2>Add Your Own Tasks to Your Cleaning Regime</h2>
 						<p>Please be sure to include a frequency.</p>
 						<ul className="formList">
-							<li>
+							<li className="describe">
 								<label htmlFor="userDescription">Describe Your Task:</label>
 								<input id="userDescription" type="text" value={this.state.userDescription} onChange={this.updateTask}/>
 							</li>
 							<li>
-								<h6>How frequently do you need to perform these tasks?</h6>
+								<h6>How frequently do you need to perform this task?</h6>
 							</li>
-							<li>
-								<input onChange={this.updateFrequency} value="3" name="userFrequency" id="threeMonth" className="radioButton" type="radio"/>
-								<label htmlFor="threeMonth">every 3 Months</label>
-							</li>
-							<li>
-								<input onChange={this.updateFrequency} value="6" name="userFrequency" id="sixMonth" className="radioButton" type="radio"/>
-								<label htmlFor="sixMonth">every 6 Months</label>
-							</li>
-							<li>
-								<input onChange={this.updateFrequency} value="12" name="userFrequency" id="twelveMonth" className="radioButton" type="radio"/>
-								<label htmlFor="twelveMonth">every Year!</label>
-							</li>
+							<div className="frequentContain">
+								<li>
+									<input onChange={this.updateFrequency} value="3" name="userFrequency" id="threeMonth" className="radioButton" type="radio"/>
+									<label htmlFor="threeMonth">every 3 Months</label>
+								</li>
+								<li>
+									<input onChange={this.updateFrequency} value="6" name="userFrequency" id="sixMonth" className="radioButton" type="radio"/>
+									<label htmlFor="sixMonth">every 6 Months</label>
+								</li>
+								<li>
+									<input onChange={this.updateFrequency} value="12" name="userFrequency" id="twelveMonth" className="radioButton" type="radio"/>
+									<label htmlFor="twelveMonth">every Year!</label>
+								</li>
+							</div>
 							<li>
 								<input type="submit" value="Add To Do!" onClick={this.addCustomToDo} className="formMakeToDo__submitBtn"/>
 							</li>

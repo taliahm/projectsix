@@ -383,9 +383,8 @@ header h4 {
   left: 50%;
   transform: translate(-50%, 50%);
   flex-direction: column;
-  background: #FDFDFD;
+  background: #52F9D0;
   padding: 20px;
-  border: 1px solid #52F9D0;
   border-radius: 10px; }
   @media (max-width: 767px) {
     .showFormMakeToDo {
@@ -394,7 +393,6 @@ header h4 {
       left: 0;
       width: 99%;
       border: none;
-      background: rgba(165, 255, 222, 0.7);
       padding: 20px 5px;
       border-radius: 0; } }
 
@@ -403,7 +401,7 @@ header h4 {
 
 .closeForm a i.fa-times {
   text-decoration: none;
-  color: #52F9D0;
+  color: #2D3A65;
   font-size: 2rem;
   transition: all 0.3s ease-out;
   transform: scale(1); }
@@ -429,7 +427,7 @@ header h4 {
 
 .showOverlay {
   position: fixed;
-  background: rgba(253, 253, 253, 0.9);
+  background: rgba(0, 0, 0, 0.7);
   top: 0;
   bottom: 0;
   left: 0;
@@ -449,24 +447,47 @@ header h4 {
   align-items: center; }
 
 .formList li h6 {
-  font-size: 1.7rem; }
+  font-size: 1.7rem;
+  margin: 20px 0; }
   @media (max-width: 940px) {
     .formList li h6 {
       text-align: center;
-      margin: 10px 0 10px 0; } }
+      margin: 10px 0; } }
+
+.frequentContain {
+  display: flex;
+  margin-bottom: 30px; }
+  @media (max-width: 480px) {
+    .frequentContain {
+      flex-direction: column;
+      align-items: center; } }
+
+.formList input[type='radio'] {
+  display: none; }
 
 .formList input[type='radio'] ~ label {
-  margin-bottom: 5px; }
+  margin: 10px 5px 5px 5px;
+  padding: 5px;
+  transition: all 0.3s ease-out;
+  border: 1px solid black; }
 
-.formList li:first-child {
+.formList input[type='radio']:checked ~ label {
+  font-size: 1.8rem;
+  color: #FDFDFD;
+  border: 1px solid white; }
+
+.formList .describe {
+  flex-direction: column;
   margin-bottom: 10px; }
-  @media (max-width: 767px) {
-    .formList li:first-child {
-      flex-direction: column; } }
 
-.formList li:last-child {
-  align-self: center;
-  margin-top: 20px; }
+.formList .describe input {
+  background: none;
+  border: none;
+  outline: none;
+  background: #FDFDFD;
+  padding: 10px;
+  width: 100%;
+  border-radius: 5px; }
 
 .formMakeToDo__submitBtn {
   background: none;

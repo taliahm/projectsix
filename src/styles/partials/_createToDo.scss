@@ -15,9 +15,9 @@
 	left: 50%;
 	transform: translate(-50%, 50%);
 	flex-direction: column;
-	background: $white;
+	background: $surpriseGreen;
 	padding: 20px;
-	border: 1px solid $surpriseGreen;
+	// border: 1px solid $surpriseGreen;
 	border-radius: 10px;
 	@include bp('med') {
 		transform: translate(0);
@@ -26,7 +26,7 @@
 		// margin:5px;
 		width:99%;
 		border: none;
-		background: transparentize($otherGreen, 0.3);
+		// background: transparentize($otherGreen, 0.3);
 		padding:20px 5px;
 		border-radius: 0;
 	}
@@ -37,7 +37,7 @@
 }
 .closeForm a i.fa-times{
 	text-decoration: none;
-	color: $surpriseGreen;
+	color: $blue;
 	font-size: 2rem;
 	transition: all 0.3s ease-out;
 	transform: scale(1);
@@ -67,7 +67,7 @@
 .showFormMakeToDo {}
 .showOverlay {
 	position: fixed;
-	background: transparentize($white, 0.1);
+	background: transparentize(black, 0.3);
 	top:0;
 	bottom: 0;
 	left:0;
@@ -91,26 +91,57 @@
 
 .formList li h6 {
 	font-size: 1.7rem;
+	margin: 20px 0;
 	@include bp('lrg') {
 		text-align: center;
-		margin: 10px 0 10px 0;
+		margin: 10px 0;
+	}
+}
+.frequentContain {
+	display: flex;
+	margin-bottom: 30px;
+	@include bp('sml') {
+		flex-direction: column;
+		align-items:center;
 	}
 }
 
+.formList input[type='radio'] {
+	display: none;
+}
 .formList input[type='radio'] ~ label {
-	margin-bottom: 5px;
-}
-.formList li:first-child {
-	margin-bottom: 10px;
-	@include bp('med') {
-		flex-direction:column;
-	}
+	margin:10px 5px 5px 5px;
+	padding: 5px;
+	transition: all 0.3s ease-out;
+	border: 1px solid black;
 }
 
-.formList li:last-child {
-	align-self:center;
-	margin-top: 20px;
+.formList input[type='radio']:checked ~ label {
+	font-size:  1.8rem;
+	color: $white;
+	border: 1px solid white;
 }
+
+
+.formList .describe{
+	flex-direction: column;
+	margin-bottom: 10px;
+}
+
+.formList .describe input {
+	background: none;
+	border: none;
+	outline: none;
+	background: $white;
+	padding: 10px;
+	width: 100%;
+	border-radius: 5px;
+}
+
+// .formList li:last-child {
+// 	align-self:center;
+// 	margin-top: 20px;
+// }
 .formMakeToDo__submitBtn {
 	@include btnStyles($white, $blue)
 }
