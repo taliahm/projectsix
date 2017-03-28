@@ -176,7 +176,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   font-family: "Nunito", sans-serif;
   font-size: 1.6rem;
   margin: 0 0 0 10px;
-  color: #52F9D0;
+  color: #C9D7F8;
   transition: all 0.3s ease-in; }
   @media (max-width: 767px) {
     .signOutSection .hiddenAnimation {
@@ -195,8 +195,8 @@ header {
 header h1 {
   color: #FDFDFD;
   font-family: "Pacifico", cursive;
-  letter-spacing: 2px;
-  text-shadow: 1px 1px 1px grey;
+  letter-spacing: 6px;
+  font-weight: lighter;
   font-size: 5.5rem;
   margin-bottom: 10px;
   margin-top: 30px; }
@@ -211,13 +211,15 @@ header .hiddenHeader {
   line-height: 0.3;
   margin: 0;
   transition: all 0.3s ease-in;
-  text-shadow: none; }
+  text-shadow: none;
+  font-family: "Nunito", sans-serif;
+  letter-spacing: 2px; }
 
 header h1:hover ~ .hiddenHeader {
   opacity: 1; }
 
 header h2, header h4 {
-  color: #a5ffde; }
+  color: #D4C5E2; }
 
 header h2 {
   margin-top: 20px;
@@ -246,7 +248,7 @@ header h4 {
 
 .userAuth__title, .userAuth__instructions {
   margin: 0;
-  color: #52F9D0;
+  color: #C9D7F8;
   text-align: center; }
 
 .userAuth__instructions {
@@ -335,7 +337,7 @@ header h4 {
       border-radius: 0; } }
 
 .formWrap label {
-  color: #a5ffde;
+  color: #D4C5E2;
   font-size: 2rem;
   margin-bottom: 10px; }
 
@@ -354,7 +356,7 @@ header h4 {
 
 .userAuth__submitBtn {
   background: none;
-  background: #83fbdd;
+  background: #f6f8fe;
   border: none;
   margin: 0 10px;
   padding: 10px 20px;
@@ -366,7 +368,7 @@ header h4 {
   text-transform: uppercase;
   margin-top: 10px; }
   .userAuth__submitBtn:hover {
-    background: #08dda9; }
+    background: #6f94ec; }
 
 @media (max-width: 480px) {
   .wrapCreateToDo {
@@ -383,7 +385,7 @@ header h4 {
   left: 50%;
   transform: translate(-50%, 50%);
   flex-direction: column;
-  background: #52F9D0;
+  background: #C9D7F8;
   padding: 20px;
   border-radius: 10px; }
   @media (max-width: 767px) {
@@ -615,7 +617,7 @@ main.showMain {
   bottom: 0;
   right: 0;
   left: 0;
-  background: #52F9D0;
+  background: #C9D7F8;
   display: flex;
   padding: 20px; }
 
@@ -629,7 +631,7 @@ main.showMain {
   background: #2D3A65;
   display: flex;
   padding: 40px;
-  border: 3px #52F9D0 solid;
+  border: 3px #C9D7F8 solid;
   border-radius: 10px; }
 
 .monthlyList__messageText {
@@ -652,7 +654,7 @@ main.showMain {
   background: #2D3A65;
   display: flex;
   padding: 40px;
-  border: 3px #52F9D0 solid;
+  border: 3px #C9D7F8 solid;
   border-radius: 10px; }
 
 .monthlyListCompleted__messageText--large {
@@ -664,7 +666,7 @@ main.showMain {
     display: block;
     font-family: "Pacifico", cursive;
     font-size: 2.4rem;
-    color: #a5ffde; }
+    color: #D4C5E2; }
 
 .monthlyList__messageText--Large {
   margin: auto;
@@ -675,7 +677,7 @@ main.showMain {
     display: block;
     font-family: "Pacifico", cursive;
     font-size: 3rem;
-    color: #a5ffde; }
+    color: #D4C5E2; }
 
 .countdown {
   align-self: center;
@@ -694,7 +696,7 @@ main.showMain {
 .timeUnitWrap {
   display: flex;
   justify-content: space-around;
-  color: #08dda9;
+  color: #6f94ec;
   font-size: 1.7rem; }
   @media (max-width: 1200px) {
     .timeUnitWrap {
@@ -749,14 +751,14 @@ main.showMain {
   transform: scale(1);
   transition: all 0.3s ease-out; }
   .monthlyList__tag:hover {
-    color: #52F9D0;
+    color: #C9D7F8;
     transform: scale(1.2); }
   @media (max-width: 767px) {
     .monthlyList__tag {
       transform: scale(1) translateX(0);
       transition: all 0.3s ease-in; }
       .monthlyList__tag:hover {
-        color: #52F9D0;
+        color: #C9D7F8;
         transform: scale(1) translateX(-5px); } }
 
 .monthlyList__label img {
@@ -867,14 +869,14 @@ main.showMain {
   transition: all 0.3s ease-out;
   margin-left: 10px; }
   .monthlyList__tagInactive:hover {
-    color: #52F9D0;
+    color: #C9D7F8;
     transform: scale(1.2); }
   @media (max-width: 767px) {
     .monthlyList__tagInactive {
       transform: scale(1) translateX(0);
       transition: all 0.3s ease-in; }
       .monthlyList__tagInactive:hover {
-        color: #52F9D0;
+        color: #C9D7F8;
         transform: scale(1) translateX(-10px); } }
 
 .emptyStatusMessage {
@@ -889,14 +891,13 @@ footer {
   margin: 30px 0 20px 20px;
   font-size: 3rem;
   color: #2D3A65;
-  font-family: "Pacifico", cursive;
   letter-spacing: 1.3px;
   text-decoration: none;
   transition: all 0.3s ease-out;
   outline: none;
   text-align: center; }
   .footerTag:hover {
-    color: #52F9D0; }
+    color: #C9D7F8; }
 
 .overlayFooter {
   position: fixed;
@@ -938,7 +939,7 @@ footer {
   font-size: 2rem;
   letter-spacing: 2px;
   font-family: "Pacifico", cursive;
-  color: #a5ffde;
+  color: #D4C5E2;
   margin-top: 20px; }
 
 .innerFooter p {
@@ -950,16 +951,16 @@ footer {
   color: #FDFDFD;
   transition: all 0.3s ease-out; }
   .innerFooter p a:hover {
-    color: #52F9D0; }
+    color: #C9D7F8; }
 
 .closeForm.closeFormFooter i.fa.fa-times {
-  color: #52F9D0; }
+  color: #C9D7F8; }
 
 html {
   font-size: 62.5%; }
 
 body {
-  background-image: url(../../assets/gplaypattern.png);
+  background-image: url(../../assets/sakura.png);
   background-attachment: fixed;
   color: #050505;
   font-size: 1.2rem;

@@ -106,15 +106,15 @@ export default class CreateTodo extends React.Component {
 							<div className="frequentContain">
 								<li>
 									<input onChange={this.updateFrequency} value="3" name="userFrequency" id="threeMonth" className="radioButton" type="radio"/>
-									<label htmlFor="threeMonth">every 3 Months</label>
+									<label htmlFor="threeMonth">Every 3 Months</label>
 								</li>
 								<li>
 									<input onChange={this.updateFrequency} value="6" name="userFrequency" id="sixMonth" className="radioButton" type="radio"/>
-									<label htmlFor="sixMonth">every 6 Months</label>
+									<label htmlFor="sixMonth">Every 6 Months</label>
 								</li>
 								<li>
 									<input onChange={this.updateFrequency} value="12" name="userFrequency" id="twelveMonth" className="radioButton" type="radio"/>
-									<label htmlFor="twelveMonth">every Year!</label>
+									<label htmlFor="twelveMonth">Every Year!</label>
 								</li>
 							</div>
 							<li>
