@@ -1,1 +1,2 @@
-#React Project at HackerYou
+# ReactJS Project at HackerYou
+Built with React and Firebase
