@@ -42,7 +42,7 @@ export default (props) => {
 							<div className="activeTasks taskSection">
 								<div className="holdClockandTask holdClockandTask--active">
 									<div className="holdActiveToDoandHeader">
-										<h4>Items to Clean:</h4>
+										<h4 className="monthlyToCleanHeader">Clean these in the <span>next 3 months!</span></h4>
 										<MonthlyTask 
 											userSignedUpDate={props.userSignedUpDate} 
 											clickFunction={(e) => props.clickFunction(e)} 
@@ -60,7 +60,7 @@ export default (props) => {
 								</div>
 								<div className="holdClockandTask holdClockandTask--active">
 									<div className="holdActiveToDoandHeader">
-										<h4>Items to Clean:</h4>
+										<h4 className="monthlyToCleanHeader">Clean these in the <span>next 6 months!</span></h4>
 										<MonthlyTask 
 											userSignedUpDate={props.userSignedUpDate} 
 											clickFunction={(e) => props.clickFunction(e)} 
@@ -78,7 +78,7 @@ export default (props) => {
 								</div>
 								<div className="holdClockandTask holdClockandTask--active">
 									<div className="holdActiveToDoandHeader">
-										<h4>Items to Clean:</h4>
+										<h4 className="monthlyToCleanHeader">Clean these in the <span>next year!</span></h4>
 										<MonthlyTask 
 											userSignedUpDate={props.userSignedUpDate} 
 											clickFunction={(e) => props.clickFunction(e)} 

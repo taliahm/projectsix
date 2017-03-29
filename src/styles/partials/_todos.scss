@@ -44,10 +44,11 @@ main.showMain {
 }
 
 .taskSection__header {
-	font-size: 4rem;
-	color: $blue;
+	font-size: 3.8rem;
+	color: $black;
 	margin-bottom: 20px;
 	text-align:center;
+	letter-spacing: 1.2px;
 	@include bp('med') {
 		font-size: 2.5rem;
 		margin-top: 20px;
@@ -67,18 +68,32 @@ main.showMain {
 	// justify-content:space-around;
 	justify-content: space-between;
 	min-height: 150px;
+	max-width: 300px;
 	min-width: 300px;
-	border: 2px solid $blue;
+	border: 2px solid $black;
 	padding: 10px;
-	border-radius: 5px;
+	// border-radius: 5px;
 	 margin: 0 10px 0 10px;
 	 position:relative;
 	 @include bp('xlrg') {
 	 	margin-bottom: 20px;
+	 	max-width: initial;
+	 	min-width: initial;
 	 }
 	 @include bp('sml') {
 	 	justify-content:space-around;
 	 }
+}
+
+.monthlyToCleanHeader {
+	padding: 20px 5px;
+	letter-spacing: 1.2px;
+	// border-bottom: 2px solid $black;
+	background: $blue;
+	color: $white;
+	span {
+		display: block;
+	}
 }
 
 .holdClockandTask--active.holdClockandTask {
@@ -188,6 +203,7 @@ main.showMain {
 	font-size: 1.2rem;
 	color: $blue;
 	text-align:center;
+	font-weight: normal;
 }
 
 .timeUnitWrap {
@@ -216,6 +232,7 @@ main.showMain {
 .monthlyList {
 	list-style: none;
 	padding:0;
+	margin:0;
 }
 .monthlyList__listItem {
 	display: flex;
@@ -259,21 +276,24 @@ main.showMain {
 .monthlyList__tag {
 	display: block;
 	text-decoration: none;
-	color: grey;
-	font-size: .8rem;
+	// color: $white;
+	color: $blue;
+	// border: 1px solid grey;
+	padding: 2px;
+	font-size: 1.6rem;
+	letter-spacing: 1.1px;
 	align-self: center;
 	transform: scale(1);
 	transition: all 0.3s ease-out;
 	&:hover {
-		color: $surpriseGreen;
-		transform: scale(1.2);
+		transform: scale(1.1);
+		// color: $otherGreen;
 	}
 	@include bp('med'){
-		transform: scale(1) translateX(0);
+		transform: scale(1);
 		transition: all 0.3s ease-in;
 		&:hover {
-			color: $surpriseGreen;
-			transform: scale(1) translateX(-5px);
+			transform: scale(1.1);
 			// font-size: 0.9rem;
 		}
 	}

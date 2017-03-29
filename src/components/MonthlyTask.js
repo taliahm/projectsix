@@ -49,7 +49,7 @@ export default (props) => {
 											<div className="imgContain"><img src="../../assets/unchecked.png" alt=""/></div>
 											<span>{item.description}</span>
 										</label>
-										<a  onClick={(e) => props.removeFunction(e)} className={`${item.description} monthlyList__tag`} name={item.description} href="#">Does Not Apply to Me</a>
+										<a  onClick={(e) => props.removeFunction(e)} className={`${item.description} monthlyList__tag`} name={item.description} href="#">x</a>
 										</ReactCSSTransitionGroup>
 									</li>
 							)

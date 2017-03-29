@@ -3,17 +3,16 @@ $purple: #C3ACCE;
 $lightBlue: #C6DBF0;
 $medBlue: #AED1E6;
 $blue: #2D3A65;
-// $surpriseGreen: #52F9D0;
+$surpriseGreen: #52F9D0;
 
-
-$surpriseGreen: #C9D7F8;
+// $surpriseGreen: #1399A2;
 
 // $otherGreen: #8defaf;
-// $otherGreen: #a5ffde;
-$otherGreen: #D4C5E2;
+$otherGreen: #a5ffde;
+// $otherGreen: #D4C5E2;
 $black: #050505;
 
-$cursive: 'Pacifico', cursive;
+$cursive: 'Caveat', sans-serif;
 $sanSerif: 'Nunito', sans-serif;
 
 @mixin btnStyles($color, $bgColor) {
@@ -25,7 +24,7 @@ $sanSerif: 'Nunito', sans-serif;
 	font-size: 1.7rem;
 	transition: all 0.3s ease-in;
 	color: $color;
-	border-radius: 10px;
+	border-radius: 100px;
 	&:hover {
 		background: darken($bgColor, 20);
 	}

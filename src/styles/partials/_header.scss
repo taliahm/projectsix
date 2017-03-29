@@ -21,10 +21,10 @@
 }
 .signOutSection p {
 	font-family: $cursive;
-	font-size: 2rem;
+	font-size: 3rem;
 	margin-right:10px;
 	flex-shrink:0;
-
+	font-weight: bold;
 }
 .signOutSection__signOutBtn {
 	@include btnStyles($white, $blue);
@@ -74,14 +74,15 @@ header {
 header h1 {
 	color: $white;
 	font-family: $cursive;
-	letter-spacing: 6px;
-	font-weight: lighter;
+	letter-spacing: 2px;
+	font-weight: bold;
 	// text-shadow: 1px 1px 1px grey;
-	font-size: 5.5rem;
+	font-size: 7rem;
 	margin-bottom: 10px;
 	margin-top:30px;
 	@include bp('med') {
-		font-size: 3.5rem;
+		font-size: 4rem;
+		line-height: 0.8;
 	}
 }
 
@@ -109,13 +110,16 @@ header h2, header h4 {
 header h2 {
 	margin-top: 20px;
 	font-size: 2.5rem;
+	letter-spacing: 1.1px;
 	@include bp('med') {
 		font-size: 1.8rem;
+		margin-bottom: 10px;
 	}
 }
 
 header h4 {
 	font-size: 2rem;
+	letter-spacing: 1.1px;
 	@include bp('med') {
 		font-size: 1.4rem;
 	}

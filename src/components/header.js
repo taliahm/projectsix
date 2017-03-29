@@ -190,8 +190,8 @@ export default class Header extends React.Component {
 					<h1>You should be cleaning!</h1>
 					<h1 className="hiddenHeader">Seriously though, get cleaning.</h1>
 					</div>
-					<h2>Can't remember what you should be cleaning? No problem, we do.</h2>
-					<h4>The dirt will win, don't give up!</h4>
+					<h2>Can't remember what you should be cleaning?</h2>
+					<h4>No problem, we do.</h4>
 				</header>
 				<section className="userAction" ref={(section) => {this.userAction = section}}>
 					<button className="btn btn--showSignIn" onClick={this.showSignIn}>Have an account? Sign In!</button>

@@ -139,10 +139,11 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
       align-items: baseline; } }
 
 .signOutSection p {
-  font-family: "Pacifico", cursive;
-  font-size: 2rem;
+  font-family: "Caveat", sans-serif;
+  font-size: 3rem;
   margin-right: 10px;
-  flex-shrink: 0; }
+  flex-shrink: 0;
+  font-weight: bold; }
 
 .signOutSection__signOutBtn {
   background: none;
@@ -153,7 +154,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   font-size: 1.7rem;
   transition: all 0.3s ease-in;
   color: #FDFDFD;
-  border-radius: 10px;
+  border-radius: 100px;
   flex-shrink: 0;
   margin: auto; }
   .signOutSection__signOutBtn:hover {
@@ -176,7 +177,7 @@ legend, button::-moz-focus-inner, input::-moz-focus-inner {
   font-family: "Nunito", sans-serif;
   font-size: 1.6rem;
   margin: 0 0 0 10px;
-  color: #C9D7F8;
+  color: #52F9D0;
   transition: all 0.3s ease-in; }
   @media (max-width: 767px) {
     .signOutSection .hiddenAnimation {
@@ -194,15 +195,16 @@ header {
 
 header h1 {
   color: #FDFDFD;
-  font-family: "Pacifico", cursive;
-  letter-spacing: 6px;
-  font-weight: lighter;
-  font-size: 5.5rem;
+  font-family: "Caveat", sans-serif;
+  letter-spacing: 2px;
+  font-weight: bold;
+  font-size: 7rem;
   margin-bottom: 10px;
   margin-top: 30px; }
   @media (max-width: 767px) {
     header h1 {
-      font-size: 3.5rem; } }
+      font-size: 4rem;
+      line-height: 0.8; } }
 
 header .hiddenHeader {
   display: block;
@@ -219,17 +221,20 @@ header h1:hover ~ .hiddenHeader {
   opacity: 1; }
 
 header h2, header h4 {
-  color: #D4C5E2; }
+  color: #a5ffde; }
 
 header h2 {
   margin-top: 20px;
-  font-size: 2.5rem; }
+  font-size: 2.5rem;
+  letter-spacing: 1.1px; }
   @media (max-width: 767px) {
     header h2 {
-      font-size: 1.8rem; } }
+      font-size: 1.8rem;
+      margin-bottom: 10px; } }
 
 header h4 {
-  font-size: 2rem; }
+  font-size: 2rem;
+  letter-spacing: 1.1px; }
   @media (max-width: 767px) {
     header h4 {
       font-size: 1.4rem; } }
@@ -248,7 +253,7 @@ header h4 {
 
 .userAuth__title, .userAuth__instructions {
   margin: 0;
-  color: #C9D7F8;
+  color: #52F9D0;
   text-align: center; }
 
 .userAuth__instructions {
@@ -264,7 +269,7 @@ header h4 {
   font-size: 1.7rem;
   transition: all 0.3s ease-in;
   color: #FDFDFD;
-  border-radius: 10px; }
+  border-radius: 100px; }
   .showUserAction .btn:hover {
     background: #0e111e; }
   @media (max-width: 940px) {
@@ -337,7 +342,7 @@ header h4 {
       border-radius: 0; } }
 
 .formWrap label {
-  color: #D4C5E2;
+  color: #a5ffde;
   font-size: 2rem;
   margin-bottom: 10px; }
 
@@ -356,19 +361,19 @@ header h4 {
 
 .userAuth__submitBtn {
   background: none;
-  background: #f6f8fe;
+  background: #83fbdd;
   border: none;
   margin: 0 10px;
   padding: 10px 20px;
   font-size: 1.7rem;
   transition: all 0.3s ease-in;
   color: #2D3A65;
-  border-radius: 10px;
+  border-radius: 100px;
   padding: 10px 40px;
   text-transform: uppercase;
   margin-top: 10px; }
   .userAuth__submitBtn:hover {
-    background: #6f94ec; }
+    background: #08dda9; }
 
 @media (max-width: 480px) {
   .wrapCreateToDo {
@@ -385,9 +390,9 @@ header h4 {
   left: 50%;
   transform: translate(-50%, 50%);
   flex-direction: column;
-  background: #C9D7F8;
+  background: #FDFDFD;
   padding: 20px;
-  border-radius: 10px; }
+  border-radius: 5px; }
   @media (max-width: 767px) {
     .showFormMakeToDo {
       transform: translate(0);
@@ -449,8 +454,10 @@ header h4 {
   align-items: center; }
 
 .formList li h6 {
-  font-size: 1.7rem;
-  margin: 20px 0; }
+  font-size: 1.8rem;
+  letter-spacing: 1.1px;
+  margin: 20px 0;
+  padding: 0 5px; }
   @media (max-width: 940px) {
     .formList li h6 {
       text-align: center;
@@ -471,25 +478,39 @@ header h4 {
   margin: 10px 5px 5px 5px;
   padding: 5px;
   transition: all 0.3s ease-out;
-  border: 1px solid black; }
+  background: #a5ffde;
+  font-weight: bold;
+  letter-spacing: 1.1px;
+  transition: all 0.3s ease-in;
+  border: 1px solid transparent; }
 
 .formList input[type='radio']:checked ~ label {
-  font-size: 1.8rem;
-  color: #FDFDFD;
-  border: 1px solid white; }
+  color: #050505;
+  border: 1px solid #050505; }
 
 .formList .describe {
   flex-direction: column;
-  margin-bottom: 10px; }
+  margin-bottom: 10px;
+  margin-top: 20px; }
+
+.formList .describe label {
+  font-weight: bold;
+  letter-spacing: 1.1px;
+  font-size: 1.8rem; }
 
 .formList .describe input {
+  margin-top: 10px;
   background: none;
   border: none;
   outline: none;
-  background: #FDFDFD;
+  background: #a5ffde;
   padding: 10px;
-  width: 100%;
-  border-radius: 5px; }
+  width: 250px;
+  border: 1px solid transparent;
+  transition: all 0.3s ease-in; }
+
+.formList .describe input:focus {
+  border: 1px solid #050505; }
 
 .formMakeToDo__submitBtn {
   background: none;
@@ -500,7 +521,9 @@ header h4 {
   font-size: 1.7rem;
   transition: all 0.3s ease-in;
   color: #FDFDFD;
-  border-radius: 10px; }
+  border-radius: 100px;
+  margin-top: 20px;
+  margin-bottom: 20px; }
   .formMakeToDo__submitBtn:hover {
     background: #0e111e; }
 
@@ -511,10 +534,11 @@ header h4 {
       justify-content: space-between; } }
 
 .holdCreateToDo p {
-  font-family: "Pacifico", cursive;
-  font-size: 2rem;
+  font-family: "Caveat", sans-serif;
+  font-size: 3rem;
   margin-right: 10px;
-  flex-shrink: 0; }
+  flex-shrink: 0;
+  font-weight: bold; }
 
 .addToDoBtn {
   background: none;
@@ -525,7 +549,7 @@ header h4 {
   font-size: 1.7rem;
   transition: all 0.3s ease-in;
   color: #FDFDFD;
-  border-radius: 10px;
+  border-radius: 100px;
   margin: auto;
   flex-shrink: 0; }
   .addToDoBtn:hover {
@@ -572,10 +596,11 @@ main.showMain {
       flex-wrap: wrap; } }
 
 .taskSection__header {
-  font-size: 4rem;
-  color: #2D3A65;
+  font-size: 3.8rem;
+  color: #050505;
   margin-bottom: 20px;
-  text-align: center; }
+  text-align: center;
+  letter-spacing: 1.2px; }
   @media (max-width: 767px) {
     .taskSection__header {
       font-size: 2.5rem;
@@ -590,18 +615,28 @@ main.showMain {
   flex-direction: column;
   justify-content: space-between;
   min-height: 150px;
+  max-width: 300px;
   min-width: 300px;
-  border: 2px solid #2D3A65;
+  border: 2px solid #050505;
   padding: 10px;
-  border-radius: 5px;
   margin: 0 10px 0 10px;
   position: relative; }
   @media (max-width: 1200px) {
     .holdClockandTask {
-      margin-bottom: 20px; } }
+      margin-bottom: 20px;
+      max-width: initial;
+      min-width: initial; } }
   @media (max-width: 480px) {
     .holdClockandTask {
       justify-content: space-around; } }
+
+.monthlyToCleanHeader {
+  padding: 20px 5px;
+  letter-spacing: 1.2px;
+  background: #2D3A65;
+  color: #FDFDFD; }
+  .monthlyToCleanHeader span {
+    display: block; }
 
 @media (max-width: 480px) {
   .holdClockandTask--active.holdClockandTask {
@@ -617,7 +652,7 @@ main.showMain {
   bottom: 0;
   right: 0;
   left: 0;
-  background: #C9D7F8;
+  background: #52F9D0;
   display: flex;
   padding: 20px; }
 
@@ -631,7 +666,7 @@ main.showMain {
   background: #2D3A65;
   display: flex;
   padding: 40px;
-  border: 3px #C9D7F8 solid;
+  border: 3px #52F9D0 solid;
   border-radius: 10px; }
 
 .monthlyList__messageText {
@@ -641,7 +676,7 @@ main.showMain {
   font-size: 1.8rem; }
   .monthlyList__messageText span {
     display: block;
-    font-family: "Pacifico", cursive;
+    font-family: "Caveat", sans-serif;
     font-size: 2.2rem; }
 
 .monthlyListCompleted__message--large {
@@ -654,7 +689,7 @@ main.showMain {
   background: #2D3A65;
   display: flex;
   padding: 40px;
-  border: 3px #C9D7F8 solid;
+  border: 3px #52F9D0 solid;
   border-radius: 10px; }
 
 .monthlyListCompleted__messageText--large {
@@ -664,9 +699,9 @@ main.showMain {
   font-size: 1.8rem; }
   .monthlyListCompleted__messageText--large span {
     display: block;
-    font-family: "Pacifico", cursive;
+    font-family: "Caveat", sans-serif;
     font-size: 2.4rem;
-    color: #D4C5E2; }
+    color: #a5ffde; }
 
 .monthlyList__messageText--Large {
   margin: auto;
@@ -675,9 +710,9 @@ main.showMain {
   font-size: 1.8rem; }
   .monthlyList__messageText--Large span {
     display: block;
-    font-family: "Pacifico", cursive;
+    font-family: "Caveat", sans-serif;
     font-size: 3rem;
-    color: #D4C5E2; }
+    color: #a5ffde; }
 
 .countdown {
   align-self: center;
@@ -691,12 +726,13 @@ main.showMain {
   margin-bottom: 7px;
   font-size: 1.2rem;
   color: #2D3A65;
-  text-align: center; }
+  text-align: center;
+  font-weight: normal; }
 
 .timeUnitWrap {
   display: flex;
   justify-content: space-around;
-  color: #6f94ec;
+  color: #08dda9;
   font-size: 1.7rem; }
   @media (max-width: 1200px) {
     .timeUnitWrap {
@@ -713,7 +749,8 @@ main.showMain {
 
 .monthlyList {
   list-style: none;
-  padding: 0; }
+  padding: 0;
+  margin: 0; }
 
 .monthlyList__listItem {
   display: flex;
@@ -745,21 +782,21 @@ main.showMain {
 .monthlyList__tag {
   display: block;
   text-decoration: none;
-  color: grey;
-  font-size: .8rem;
+  color: #2D3A65;
+  padding: 2px;
+  font-size: 1.6rem;
+  letter-spacing: 1.1px;
   align-self: center;
   transform: scale(1);
   transition: all 0.3s ease-out; }
   .monthlyList__tag:hover {
-    color: #C9D7F8;
-    transform: scale(1.2); }
+    transform: scale(1.1); }
   @media (max-width: 767px) {
     .monthlyList__tag {
-      transform: scale(1) translateX(0);
+      transform: scale(1);
       transition: all 0.3s ease-in; }
       .monthlyList__tag:hover {
-        color: #C9D7F8;
-        transform: scale(1) translateX(-5px); } }
+        transform: scale(1.1); } }
 
 .monthlyList__label img {
   max-width: 100%;
@@ -781,7 +818,8 @@ main.showMain {
 
 .monthList__listItemHolder {
   width: 100%;
-  display: flex; }
+  display: flex;
+  justify-content: space-between; }
   @media (max-width: 1200px) {
     .monthList__listItemHolder {
       justify-content: space-around; } }
@@ -825,7 +863,8 @@ main.showMain {
 
 .holdInActive h2 {
   font-size: 2.5rem;
-  color: #2D3A65;
+  color: #050505;
+  letter-spacing: 1.2px;
   margin-bottom: 20px; }
 
 .inactiveList {
@@ -834,8 +873,7 @@ main.showMain {
   display: flex;
   flex-direction: column;
   width: 40%;
-  border: 2px solid #2D3A65;
-  border-radius: 10px;
+  border: 2px solid #050505;
   padding: 20px; }
   @media (max-width: 940px) {
     .inactiveList {
@@ -862,21 +900,21 @@ main.showMain {
 .monthlyList__tagInactive {
   display: block;
   text-decoration: none;
-  color: grey;
-  font-size: .8rem;
+  color: #2D3A65;
+  font-size: 1.5rem;
   align-self: center;
   transform: scale(1);
   transition: all 0.3s ease-out;
   margin-left: 10px; }
   .monthlyList__tagInactive:hover {
-    color: #C9D7F8;
+    color: #52F9D0;
     transform: scale(1.2); }
   @media (max-width: 767px) {
     .monthlyList__tagInactive {
       transform: scale(1) translateX(0);
       transition: all 0.3s ease-in; }
       .monthlyList__tagInactive:hover {
-        color: #C9D7F8;
+        color: #52F9D0;
         transform: scale(1) translateX(-10px); } }
 
 .emptyStatusMessage {
@@ -891,13 +929,23 @@ footer {
   margin: 30px 0 20px 20px;
   font-size: 3rem;
   color: #2D3A65;
-  letter-spacing: 1.3px;
+  letter-spacing: 1.1px;
   text-decoration: none;
   transition: all 0.3s ease-out;
   outline: none;
-  text-align: center; }
+  text-align: center;
+  font-weight: bold; }
+  .footerTag:active {
+    outline: none;
+    border: none; }
+  .footerTag:focus {
+    outline: none;
+    border: none; }
   .footerTag:hover {
-    color: #C9D7F8; }
+    color: #52F9D0; }
+  @media (max-width: 480px) {
+    .footerTag {
+      margin: 0; } }
 
 .overlayFooter {
   position: fixed;
@@ -913,14 +961,12 @@ footer {
   background: #2D3A65;
   color: #FDFDFD;
   margin: auto;
-  width: 20%;
-  height: 70vh;
+  width: 40%;
   font-size: 1.6rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 10px 15px;
+  padding: 50px 25px 70px 25px;
   border-radius: 10px; }
   @media (max-width: 1200px) {
     .innerFooter {
@@ -933,38 +979,46 @@ footer {
       width: 70%; } }
   @media (max-width: 480px) {
     .innerFooter {
-      width: 90%; } }
+      width: 95%;
+      padding: 50px 5px 70px 5px; } }
 
 .footerTitle {
-  font-size: 2rem;
+  font-size: 3rem;
   letter-spacing: 2px;
-  font-family: "Pacifico", cursive;
-  color: #D4C5E2;
-  margin-top: 20px; }
+  font-family: "Caveat", sans-serif;
+  color: #a5ffde;
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.innerFooter h4 {
+  margin-bottom: 20px;
+  margin-top: 40px; }
 
 .innerFooter p {
   text-align: center;
-  margin: 0; }
+  margin: 0;
+  line-height: 1.7;
+  letter-spacing: 1.1px; }
 
 .innerFooter p a {
   text-decoration: none;
   color: #FDFDFD;
   transition: all 0.3s ease-out; }
   .innerFooter p a:hover {
-    color: #C9D7F8; }
+    color: #52F9D0; }
 
 .closeForm.closeFormFooter i.fa.fa-times {
-  color: #C9D7F8; }
+  color: #52F9D0; }
 
 html {
   font-size: 62.5%; }
 
 body {
-  background-image: url(../../assets/sakura.png);
   background-attachment: fixed;
   color: #050505;
   font-size: 1.2rem;
-  font-family: "Nunito", sans-serif; }
+  font-family: "Nunito", sans-serif;
+  background: white; }
 
 h1, h2, h3, h4, h5, h6 {
   margin: 0; }

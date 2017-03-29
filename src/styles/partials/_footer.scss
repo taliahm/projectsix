@@ -1,4 +1,4 @@
-
+	
 //Footer Styling
 footer {
 	position: fixed;
@@ -11,13 +11,25 @@ footer {
 	font-size: 3rem;
 	color: $blue;
 	// font-family: $cursive;
-	letter-spacing: 1.3px;
+	letter-spacing: 1.1px;
 	text-decoration: none;
 	transition: all 0.3s ease-out;
 	outline:none;
 	text-align: center;
+	font-weight: bold;
+	&:active {
+		outline:none;
+		border: none;
+	}
+	&:focus {
+		outline:none;
+		border:none;
+	}
 	&:hover {
 		color: $surpriseGreen;
+	}
+	@include bp('sml') {
+		margin: 0;
 	}
 }
 .overlayFooter {
@@ -35,14 +47,12 @@ footer {
 	background: $blue;
 	color: $white;
 	margin: auto;
-	width:20%;
-	height: 70vh;
+	width:40%;
 	font-size: 1.6rem;
 	display: flex;
 	flex-direction: column;
-	justify-content:center;
 	align-items:center;
-	padding:10px 15px;
+	padding:50px 25px 70px 25px;
 	border-radius: 10px;
 	@include bp('xlrg') {
 		width:50%;
@@ -54,21 +64,28 @@ footer {
 		width:70%;
 	}
 	@include bp('sml') {
-		width:90%;
+		width:95%;
+		padding: 50px 5px 70px 5px;
 	}
 }
 
 .footerTitle {
-	font-size: 2rem;
+	font-size: 3rem;
 	letter-spacing: 2px;
 	font-family: $cursive;
 	color: $otherGreen;
 	margin-top: 20px;
+	margin-bottom:20px;
 }
-
+.innerFooter h4 {
+	margin-bottom: 20px;
+	margin-top: 40px;
+}
 .innerFooter p {
 	text-align: center;
 	margin: 0;
+	line-height: 1.7;
+	letter-spacing: 1.1px;
 }
 
 .innerFooter p a {

@@ -13,11 +13,12 @@ html{
 }
 
 body {
-	background-image: url(../../assets/sakura.png);
+	// background-image: url(../../assets/sakura.png);
 	background-attachment: fixed;
 	color: $black;
 	font-size: 1.2rem;
 	font-family:$sanSerif;
+	background: white;
 }
 h1, h2, h3, h4, h5, h6 {
 	margin:0;

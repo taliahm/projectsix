@@ -7,7 +7,8 @@
 
 .holdInActive h2 {
 	font-size: 2.5rem;
-	color: $blue;
+	color: $black;
+	letter-spacing: 1.2px;
 	margin-bottom:20px;
 }
 
@@ -17,8 +18,8 @@
 	display: flex;
 	flex-direction:column;
 	width:40%;
-	border: 2px solid $blue;
-	border-radius: 10px;
+	border: 2px solid $black;
+	// border-radius: 10px;
 	padding:20px;
 	@include bp('lrg') {
 		width:80%;
@@ -50,8 +51,8 @@
 .monthlyList__tagInactive {
 	display: block;
 	text-decoration: none;
-	color: grey;
-	font-size: .8rem;
+	color: $blue;
+	font-size: 1.5rem;
 	align-self: center;
 	transform: scale(1);
 	transition: all 0.3s ease-out;

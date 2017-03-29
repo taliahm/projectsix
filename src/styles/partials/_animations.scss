@@ -3,6 +3,7 @@
 .monthList__listItemHolder {
 	width:100%;
 	display: flex;
+	justify-content: space-between;
 	@include bp('xlrg') {
 		justify-content: space-around;
 	}
